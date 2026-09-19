@@ -1,5 +1,16 @@
 # AGENTS.md
 
+## Chuu Fork
+
+This checkout is Chuu, a noncommercial Mos fork. For this fork use
+`project.yml`, `MouseControl.xcodeproj`, scheme `Debug`, and `script/build_and_run.sh`.
+The app and widget require macOS 14+; current builds use Xcode 27.1.
+Keep the CC BY-NC 4.0 license and upstream attribution. The original project,
+website and release tooling below describe upstream Mos, not a Chuu release.
+Use `docs/build.md` for fork-specific build and signing instructions.
+Do not publish local vendor image sets, user preferences, hardware backups or migration data.
+`docs/interaction-proposal.md` is a proposal, not permission to implement it.
+
 本文件是 Mos 仓库的通用 agent 入口。Claude、Codex 和其他自动化编码代理都应从这里开始；工具专属入口文件只保留跳转，不复制长指令。
 
 ## 指令优先级
