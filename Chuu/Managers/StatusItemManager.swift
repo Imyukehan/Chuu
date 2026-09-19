@@ -105,6 +105,8 @@ extension StatusItemManager {
             if #available(macOS 14.0, *) {
                 menu.addItem(withTitle: NSLocalizedString("About", tableName: "Chuu", comment: "About menu"),
                              action: #selector(aboutClick), keyEquivalent: "").target = self
+                menu.addItem(withTitle: NSLocalizedString("Check for Updates…", tableName: "Chuu", comment: "Update menu"),
+                             action: #selector(ChuuAppMenu.checkForUpdates), keyEquivalent: "").target = ChuuAppMenu.shared
             }
             // Quit
             Utils.addMenuItemWithSeparator(to: menu, title: NSLocalizedString("Quit", comment: ""), icon: #imageLiteral(resourceName: "SF.escape"), action: #selector(quitClick))
@@ -131,11 +133,7 @@ extension StatusItemManager {
     }
 
     @objc func aboutClick() {
-        NSApp.activate(ignoringOtherApps: true)
-        NSApp.orderFrontStandardAboutPanel(options: [
-            .applicationName: "Chuu",
-            .credits: NSAttributedString(string: "Based on Mos by Caldis · CC BY-NC 4.0\nPersonal development fork\nProduct imagery © Logitech / MCHOSE")
-        ])
+        ChuuAppMenu.shared.showAbout()
     }
 }
 

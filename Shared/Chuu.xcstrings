@@ -1,6 +1,118 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "About Chuu": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "About Chuu"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "关于 Chuu"}}}
+    },
+    "Check for Updates…": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Check for Updates…"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "检查更新…"}}}
+    },
+    "Settings…": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Settings…"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "设置…"}}}
+    },
+    "Services": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Services"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "服务"}}}
+    },
+    "Hide Chuu": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Hide Chuu"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "隐藏 Chuu"}}}
+    },
+    "Hide Others": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Hide Others"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "隐藏其他"}}}
+    },
+    "Show All": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Show All"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "显示全部"}}}
+    },
+    "Quit Chuu": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Quit Chuu"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "退出 Chuu"}}}
+    },
+    "File": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "File"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "文件"}}}
+    },
+    "Open Chuu": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Open Chuu"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "打开 Chuu"}}}
+    },
+    "Close Window": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Close Window"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "关闭窗口"}}}
+    },
+    "Edit": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Edit"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "编辑"}}}
+    },
+    "Undo": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Undo"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "撤销"}}}
+    },
+    "Redo": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Redo"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "重做"}}}
+    },
+    "Cut": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Cut"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "剪切"}}}
+    },
+    "Copy": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Copy"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "复制"}}}
+    },
+    "Paste": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Paste"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "粘贴"}}}
+    },
+    "Select All": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Select All"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "全选"}}}
+    },
+    "Window": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Window"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "窗口"}}}
+    },
+    "Minimize": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Minimize"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "最小化"}}}
+    },
+    "Bring All to Front": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Bring All to Front"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "前置全部窗口"}}}
+    },
+    "Help": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Help"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "帮助"}}}
+    },
+    "Chuu on GitHub": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Chuu on GitHub"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "Chuu 的 GitHub 项目"}}}
+    },
+    "Report an Issue": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Report an Issue"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "反馈问题"}}}
+    },
+    "Updates Not Configured": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Updates Not Configured"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "尚未配置应用内更新"}}}
+    },
+    "This development build has no update feed configured. You can view published versions on GitHub Releases.": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "This development build has no update feed configured. You can view published versions on GitHub Releases."}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "当前开发版尚未配置更新源，可前往 GitHub Releases 查看发布版本。"}}}
+    },
+    "Not Now": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Not Now"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "暂不"}}}
+    },
+    "View Releases": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "View Releases"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "查看发布版本"}}}
+    },
     "Onboard buttons": {
       "extractionState": "manual",
       "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Onboard buttons"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "板载按键"}}}

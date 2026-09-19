@@ -56,3 +56,5 @@ The normal tests use fixtures, not writes to attached mice. See [architecture](a
 The original Chuu Icon Composer document is in `Resources/Chuu.icon`. Vendor-owned `G502Top`, `G502Side` and `G7` image sets are optional local resources and excluded from Git. Without them the app renders the system mouse symbol; button settings remain available. The README screenshot shows the maintainer's local image sets, not additional hardware support.
 
 This repository publishes source, not a notarized distribution or a stable release.
+
+See [in-app updates](updates.md) for the current development behavior and the proposed Sparkle/GitHub release workflow.

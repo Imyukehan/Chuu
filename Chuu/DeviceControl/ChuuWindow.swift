@@ -102,11 +102,15 @@ final class ChuuWindow: NSWindowController, NSWindowDelegate, NSToolbarDelegate 
         navigation.select(index: sender.selectedIndex)
     }
 
-    func present(deviceID: String? = nil) {
+    func present(deviceID: String? = nil, page: ChuuNavigation.Page? = nil) {
         if let deviceID {
             ChuuModel.shared.selectedID = deviceID
             navigation.select(index: 0)
             (window?.toolbar?.items.first(where: { $0.itemIdentifier == Self.navigationID }) as? NSToolbarItemGroup)?.selectedIndex = 0
+        }
+        if let page, let index = ChuuNavigation.Page.allCases.firstIndex(of: page) {
+            navigation.select(index: index)
+            (window?.toolbar?.items.first(where: { $0.itemIdentifier == Self.navigationID }) as? NSToolbarItemGroup)?.selectedIndex = index
         }
         ChuuModel.shared.start()
         Utils.showDockIcon()

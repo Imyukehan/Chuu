@@ -8,7 +8,7 @@ A native macOS mouse companion for battery status, onboard buttons, smooth scrol
 
 ![Chuu with a white G502 X PLUS, battery status and button controls](docs/images/home.png)
 
-The screenshot is from a local development build. The Logitech product artwork is vendor-owned and is not included in the source. Builds without optional artwork use a generic mouse symbol.
+The screenshot is from a local development build. Optional device artwork is not included in the source; builds without it use a generic mouse symbol.
 
 ## Features
 
@@ -64,3 +64,11 @@ See [architecture and compatibility](docs/architecture.md) for extension points 
 ## Credits and License
 
 Chuu is a noncommercial fork of [Caldis/Mos](https://github.com/Caldis/Mos), retaining its history and [CC BY-NC 4.0 license](LICENSE). It is not an MIT-licensed project and is not affiliated with Mos or hardware vendors. See [NOTICES](NOTICES.md) for third-party material and [archived upstream documentation](docs/upstream/README.md).
+
+## Disclaimer
+
+Chuu is an independent community project, not an official app from any mouse manufacturer. Brand and model names are used to identify devices; compatibility does not imply affiliation or endorsement.
+
+Device visuals may be images, rendered previews, or models from different sources. Third-party artwork and trademarks remain subject to their respective owners' rights and are not licensed by Chuu's source-code license. Source-specific credits and usage notes are maintained in [NOTICES](NOTICES.md), including optional assets used only by the local prototype. Obtaining an asset through another open-source tool does not make that asset part of the tool's code license.
+
+Hardware support is experimental and limited to the documented models and connection modes. Keep backups before changing onboard settings; an untested device or firmware version may behave differently.

@@ -128,6 +128,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // 运行后启动滚动处理
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         guard AppRuntime.shouldRunAppStartupSideEffects else { return }
+        ChuuAppMenu.shared.install()
         if #available(macOS 14.0, *) {
             ChuuModel.shared.start()
             ChuuWindow.shared.present()
