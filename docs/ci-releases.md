@@ -6,7 +6,7 @@
 
 1. Update `MARKETING_VERSION` and increment `CURRENT_PROJECT_VERSION` in `project.yml`. Regenerate the project and add a changelog entry.
 2. Commit and push the changes. Create an annotated `vMAJOR.MINOR.PATCH` tag on that commit and push the tag.
-3. Actions checks out that exact tag, builds an Apple Silicon / Intel universal Release app, verifies both bundle versions, architectures and code signatures, then packages a ZIP with license, notices and installation notes.
+3. Actions checks out that exact tag, builds an Apple Silicon-only (`arm64`) Release app, verifies both bundle versions, architectures and code signatures, then packages a ZIP with license, notices and installation notes. Both the main executable and widget must contain only `arm64`; Intel Macs are not supported by these new packages.
 4. On success, a GitHub **prerelease** is created with the ZIP, SHA256SUMS and build metadata. It is not marked as the latest stable release.
 
 Example for a future version (do not move an existing tag):
@@ -17,6 +17,8 @@ git push origin v0.1.2
 ```
 
 The tag must match the built app's version, and the widget must match both app version and build number. Failed builds do not publish a release. Existing releases and assets are never overwritten; use a new version for corrections. An existing source-only tag can receive its first package through the manual workflow below.
+
+New archives are named `Chuu-<version>-unnotarized-arm64.zip`. Previously published universal archives are unchanged.
 
 ## Manual Run
 

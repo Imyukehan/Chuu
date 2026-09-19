@@ -60,7 +60,7 @@ jobs:
         run: |
           bash -n scripts/ci/package-test-build.sh
           python3 -B -m unittest discover -s scripts/ci -p '*_tests.py'
-      - name: Build and verify universal test package
+      - name: Build and verify Apple Silicon test package
         id: package
         env:
           TAG: ${{ inputs.tag || github.ref_name }}

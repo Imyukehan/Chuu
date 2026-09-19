@@ -12,6 +12,10 @@ class ReleaseMetadataTests(unittest.TestCase):
         self.assertFalse(result["notarized"])
         self.assertEqual(result["signing"], "ad-hoc")
 
+    def test_package_targets_only_apple_silicon(self):
+        result = validate(self.app, self.widget, "v0.1.1")
+        self.assertEqual(result["architectures"], ["arm64"])
+
     def test_rejects_bad_or_mismatched_tags(self):
         for tag in ["main", "v0.1.2", "v0.1.1\n", "v0.1.1;echo bad"]:
             with self.subTest(tag=tag), self.assertRaises(ValueError):

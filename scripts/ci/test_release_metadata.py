@@ -21,7 +21,7 @@ def validate(app, widget, tag):
             raise ValueError("Tag, app and widget versions must match")
     if app.get("SUFeedURL"):
         raise ValueError("Test packages must not opt into an update feed")
-    return {"version": version, "build": build, "tag": tag, "architectures": ["arm64", "x86_64"],
+    return {"version": version, "build": build, "tag": tag, "architectures": ["arm64"],
             "signing": "ad-hoc", "notarized": False, "widget_runtime_validated": False}
 
 
@@ -42,7 +42,7 @@ def main():
 
 For testing only. Ad-hoc signed, not Developer ID signed or notarized. This is not a stable release and is not delivered through Sparkle.
 
-- Universal macOS app: Apple Silicon and Intel. Minimum system: macOS {app['LSMinimumSystemVersion']}.
+- Apple Silicon (arm64) macOS app, for M-series Macs only. Intel Macs are not supported by this package. Minimum system: macOS {app['LSMinimumSystemVersion']}.
 - macOS may block first launch. Review this build's source and origin before approving it through System Settings > Privacy & Security. Do not disable Gatekeeper globally.
 - Scrolling and button shortcuts require Accessibility permission. Changing from a signed development app may require granting permission again.
 - The WidgetKit extension is bundled, but App Group sharing and widget operation are NOT validated with ad-hoc signing. Use a normally signed local build when the widget is essential.
@@ -56,7 +56,7 @@ Changes: https://github.com/Imyukehan/Chuu/blob/{commit}/CHANGELOG.md
 
 ## 中文说明
 
-这是未公证测试包，不是稳定版，也不会通过应用内更新分发。包含 Apple Silicon / Intel 通用程序。首次启动可能被 macOS 拦截，请核对来源后自行决定是否允许打开，不要关闭系统的全局安全保护。
+这是未公证测试包，不是稳定版，也不会通过应用内更新分发。仅适用于 M 系列芯片的 Mac（Apple Silicon / arm64），不支持 Intel Mac。首次启动可能被 macOS 拦截，请核对来源后自行决定是否允许打开，不要关闭系统的全局安全保护。
 
 滚动和快捷操作需要辅助功能权限，更换签名后可能需要重新授权。包内包含 WidgetKit 扩展，但临时签名下的 App Group 共享和小组件功能未经验证；依赖小组件时请继续使用正常签名的本机构建。测试包不包含本机专用鼠标外观素材。替换旧版前请备份设置，并退出正在运行的其他 Chuu 副本。
 """

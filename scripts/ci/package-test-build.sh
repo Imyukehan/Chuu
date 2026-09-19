@@ -27,14 +27,14 @@ xcodebuild -project Chuu.xcodeproj -scheme Chuu -configuration Release \
   -onlyUsePackageVersionsFromResolvedFile \
   CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= \
   CODE_SIGNING_ALLOWED=YES PROVISIONING_PROFILE_SPECIFIER= \
-  ONLY_ACTIVE_ARCH=NO 'ARCHS=arm64 x86_64' build 2>&1 | tee build/ci-build.log
+  ONLY_ACTIVE_ARCH=NO ARCHS=arm64 build 2>&1 | tee build/ci-build.log
 
 APP="$SOURCE/build/TestRelease/Build/Products/Release/Chuu.app"
 codesign --verify --deep --strict "$APP"
 for binary in "$APP/Contents/MacOS/MouseControl" "$APP/Contents/PlugIns/ChuuWidget.appex/Contents/MacOS/ChuuWidget"; do
   architectures=$(xcrun lipo -archs "$binary")
-  [[ " $architectures " == *" arm64 "* && " $architectures " == *" x86_64 "* ]] || {
-    echo "Missing universal architecture in $binary: $architectures" >&2
+  [[ "$architectures" == arm64 ]] || {
+    echo "Expected arm64-only binary in $binary: $architectures" >&2
     exit 1
   }
 done
@@ -42,7 +42,7 @@ python3 "$TOOLS/test_release_metadata.py" "$APP" "$TAG" "$COMMIT" "$OUTPUT"
 
 STAGE=$(mktemp -d "${TMPDIR:-/tmp}/chuu-test-package.XXXXXX")
 trap 'rm -rf "$STAGE"' EXIT
-NAME="Chuu-${TAG#v}-unnotarized-universal"
+NAME="Chuu-${TAG#v}-unnotarized-arm64"
 mkdir -p "$STAGE/$NAME"
 ditto "$APP" "$STAGE/$NAME/Chuu.app"
 cp LICENSE NOTICES.md "$STAGE/$NAME/"
