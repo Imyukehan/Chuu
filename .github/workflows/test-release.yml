@@ -113,7 +113,7 @@ jobs:
             echo 'This release already exists. Existing assets will not be overwritten; use a new version tag.' >&2
             exit 1
           fi
-          gh release create "$TAG" dist/*.zip dist/SHA256SUMS dist/build-info.json \
+          gh release create "$TAG" dist/*.zip dist/SHA256SUMS dist/build-info.json dist/release-notes.md \
             --verify-tag --prerelease --latest=false \
             --title "Chuu $TAG (Unnotarized test build)" \
             --notes-file dist/release-notes.md
