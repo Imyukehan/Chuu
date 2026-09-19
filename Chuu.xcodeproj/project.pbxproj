@@ -1,0 +1,1657 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0101958978723DFA8189D2E4 /* LogiExternalBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17012FC1ADF5217F0432405E /* LogiExternalBridge.swift */; };
+		06DF5F742AA4551E23D8D159 /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8425EC65824142D856A821 /* WelcomeWindowController.swift */; };
+		085E03541304A13B621C839D /* OpenTargetConfigPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BA6AA76631E29C79B74F57 /* OpenTargetConfigPopover.swift */; };
+		0AEE635DA6CD2B6F64AFA702 /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BF1A80A8525BAFA365FC1E /* IntroductionViewController.swift */; };
+		0E452B76936B170D53B902F7 /* InputEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB73C6500BC314D48081FC4 /* InputEvent.swift */; };
+		0EBE9AB4B6CD33C552ECE7AB /* ScrollTargetApplicationRulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E501434CFB5311CEB2EFAB /* ScrollTargetApplicationRulesTests.swift */; };
+		0F600ED6DDDC29DE5F25AD26 /* MouseAdapterRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4904A05C7CA0216B92216A /* MouseAdapterRegistry.swift */; };
+		11BF8448AAA3AB3E4C4B2D21 /* ChuuWindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60D0D0A0A6C8C1816C059AF /* ChuuWindowTests.swift */; };
+		11F0215131EA52CD7BEAAF59 /* ChuuNavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEDD195CC9987EEFE131DBE /* ChuuNavigationTests.swift */; };
+		13D45DB594DF74BBFA416351 /* ButtonTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26BE2481A369AC68DD9F9D4 /* ButtonTableCellView.swift */; };
+		14CC5CC58A84C6E78A464EC8 /* ChuuBatteryWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28EE929DFB5AB330BA70670 /* ChuuBatteryWidget.swift */; };
+		1592DF39F714D8B11192CFD9 /* OptionsScrollDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F028863723C4A81A517A0B4D /* OptionsScrollDefaultsTests.swift */; };
+		15A6D8D03951853CCE534028 /* PreferencesButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAFD19001A0065B8FB0B6BF /* PreferencesButtonsViewController.swift */; };
+		187F8CFFE3F4D018EBB8AB95 /* Chuu.icon in Resources */ = {isa = PBXBuildFile; fileRef = DE2374B832B1B88282440F5C /* Chuu.icon */; };
+		18FF961C6F1425A53DDF015C /* ScrollCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9FCEA7FBE8B38E06819380 /* ScrollCore.swift */; };
+		19A4392029D404628CE74D02 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = B232D7BC064B5C3351098F13 /* Sparkle */; };
+		1A4AA782433C5929B5DCF961 /* MouseInteractionSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CF224E23B0222D977306F7 /* MouseInteractionSessionController.swift */; };
+		1AB0B1F1EE5AE4685C039C05 /* LogiButtonDeliveryMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE29E9D5ABD65F833D072D /* LogiButtonDeliveryMode.swift */; };
+		1B405CFF289A81CACB6627B5 /* FakeLogiExternalBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8E74749AF7C74992C3195A /* FakeLogiExternalBridge.swift */; };
+		1BA468534D354882FB218B7B /* MouseHardwareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5307FC024CD74C305427DD89 /* MouseHardwareService.swift */; };
+		1CE2BB06BF25F4D348162913 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C37508B4AD30BB0F05B9D /* AppDelegate.swift */; };
+		1DA1EC6042310A6A371E3B9B /* FakeLogiDeviceSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976696063FB7070126746D17 /* FakeLogiDeviceSession.swift */; };
+		1E745C1B2F4E805EC2BF3872 /* OptionsChangePropagationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98904554F3CE10EF88C151 /* OptionsChangePropagationTests.swift */; };
+		1E823B9BE98887E76E791AB9 /* LogiDebugPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D439DD25DBA9ACA8DBFBD8 /* LogiDebugPanel.swift */; };
+		2027E56228CA6DBB025AF1B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BA92A7C25190104B655ECA /* Constants.swift */; };
+		2044F2F78D418BC8E8C306CA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEE926EDC5A89AB42342048 /* Utils.swift */; };
+		23FF2EE1390882C76E63C2E5 /* PreferencesScrollingWithApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7A2D8B6A16BF802974F46 /* PreferencesScrollingWithApplicationViewController.swift */; };
+		24120C22017C29F91CADFD58 /* ToastLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23BCF145E91150735BBB43 /* ToastLayout.swift */; };
+		2599BA0F35165B8C3B4A812A /* MouseSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455D18EAB3B4F9DEDD4F113 /* MouseSnapshot.swift */; };
+		268ECBD055B9E57F33FEFCFA /* KeyPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC91C227335DE8862E524EC /* KeyPopover.swift */; };
+		28B315C68E572E7E729B0E50 /* RemovingRegexUTF16RangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B614926F70346948DB15413 /* RemovingRegexUTF16RangeTests.swift */; };
+		2BA52E34C1D2534540399846 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 48232E4549ED3F06126BF093 /* Localizable.xcstrings */; };
+		319C3F285A52E3768B2EECE2 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C43C3078EF92EF0CC67BC /* WelcomeViewController.swift */; };
+		32447DF2BF0248076DD4E0D4 /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B7C0ECC3B7BDA8AF4168AE /* PreferencesTabViewController.swift */; };
+		33F1937A10CC26A664A74CC9 /* Interpolator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130497A279F73B61677212EE /* Interpolator.swift */; };
+		346667398601021B1B998E5D /* ScrollHotkeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6231E0FB3978F2CC3C5BC5A7 /* ScrollHotkeyTests.swift */; };
+		38184765744A106307426D46 /* MouseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA4BEEFF720B780064AAA /* MouseAdapter.swift */; };
+		3C73E376084E07D6FEF4B016 /* ChuuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEFEF1180CA8D0DB30BC435 /* ChuuView.swift */; };
+		3F4701D5BC4F680C34695DF9 /* LogiSelfTestWizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C05B515EF6E4B8429480DA5 /* LogiSelfTestWizard.swift */; };
+		4103B260A9A415F6BE3D67CA /* ScrollCoreHotkeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBF99D5B1D502F5D64C47EF /* ScrollCoreHotkeyTests.swift */; };
+		41B6DBC71949A10A1A02C107 /* ScrollFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A521A68A2E6E9A1981508 /* ScrollFilter.swift */; };
+		436984E2882A3B789CA8F761 /* LogiCIDDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8DD8EA2A1C813E17F350E0 /* LogiCIDDirectory.swift */; };
+		443BEC8AE7005977DF4B669A /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25679A11EC8CE0285B63C657 /* ToastManager.swift */; };
+		4675E6785A23C999B736DF68 /* ScrollPhaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BFBDCEA9C2F7DDBC426C7B /* ScrollPhaseTests.swift */; };
+		4AF017EB376554032F55B6E4 /* ChuuProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AF1861F677DAAAB1DE29E1 /* ChuuProfileTests.swift */; };
+		4B28B0293F14C3A30E709795 /* ChuuBrandingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D2BF0243BE547ECF2631C4 /* ChuuBrandingTests.swift */; };
+		4B8B1B0F4D355D8379FEBA9B /* G7MouseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F055D13DD64657B0176E7A /* G7MouseAdapter.swift */; };
+		4EB08F40706CB10F369381CA /* InputProcessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609DA7B16660D55E5DF3C31F /* InputProcessorTests.swift */; };
+		4ED9581D7E011EBBDF7B6B65 /* ModifierFlagsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1769CAE57BAF23980EC70B /* ModifierFlagsProviding.swift */; };
+		4F2004AB438E24588B142E3B /* MouseInteractionSessionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCE38FD87251BFF56F58B77 /* MouseInteractionSessionControllerTests.swift */; };
+		4F4368D0C21FD05DF6DDE0E9 /* ScrollActionPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9E493E6C41EFD8C9C47529 /* ScrollActionPort.swift */; };
+		51B7C54456135F289AC9E8F6 /* LogiStandardMouseButtonAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84D73F380D660F30F268768 /* LogiStandardMouseButtonAlias.swift */; };
+		5460BFE6C74B59915C4F3EC9 /* ScrollDispatchContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1983C626B0513096DD2EAD46 /* ScrollDispatchContext.swift */; };
+		55A061CDFC6D578CA8295E7B /* ButtonBindingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94751049534F3354AEE976B /* ButtonBindingTests.swift */; };
+		55C0C522D04E777B93059081 /* LogiForceSensingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C432EC2B799122D64C932F14 /* LogiForceSensingTests.swift */; };
+		57D5FC2DF5CB58C9B3F2D3EF /* LogiReportingDidCompleteEmptyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3185B5FDA2114774A1455EAC /* LogiReportingDidCompleteEmptyPathTests.swift */; };
+		57FC265CD447F9F3AA6A54E7 /* Archieve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5484E02647241A6F08B5B2D5 /* Archieve.swift */; };
+		5CD4D70B7CE78131AD5F0371 /* KeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3924C9E2EA02FE765C55269 /* KeyCode.swift */; };
+		60F16EE142222108B15C03A1 /* ExampleMouseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996166FA2BF6807286C6442B /* ExampleMouseAdapter.swift */; };
+		62FD20293916111ED7BF9316 /* BrandTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C15C4088A49B6EDFF8A47A2 /* BrandTag.swift */; };
+		6488E97F566295A11DCD395B /* UsageSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A61B04FA0792032081F18 /* UsageSource.swift */; };
+		658C7979DB0CF9F226DC85C6 /* LogiBridgeDeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571BDF53DA96B9AB86332B05 /* LogiBridgeDeviceTests.swift */; };
+		6722055F7BE7F6384123C446 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7046BC83A0C59FC6B0ED6AB /* Toast.swift */; };
+		67FCEF695D36E9B845F0176F /* PreferencesScrollingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178A5CFCEE195B10F68DA02D /* PreferencesScrollingViewController.swift */; };
+		680C3CAA3DCB776EF440340F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F038E6AAFF0EBD3E73BF07EB /* README.md */; };
+		68FD51B0F7C0F456C74F3347 /* InterceptorAutoRestartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49AA0AF4FC2779A574CF71B /* InterceptorAutoRestartTests.swift */; };
+		69E8416A758F5D4802A2066F /* ScrollPosterStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14ED0DE0A89255EC8C56D6B /* ScrollPosterStateTests.swift */; };
+		6A141B866B3849E475D1AA8B /* ToastStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90E6CDE59492FA4D39CAB08 /* ToastStorage.swift */; };
+		6D02BC3173BC833C377AC3A9 /* KeyRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FDD77102DE10E3D5C34B41 /* KeyRecorder.swift */; };
+		6E0DABCDAFFD50A5036476DF /* Chuu.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4CCCC4A2B01ACB118D349858 /* Chuu.xcstrings */; };
+		6E96528F7FB12C8A7824B2F6 /* IntroductionWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E422B70C14869D2008E0B /* IntroductionWindowController.swift */; };
+		70B0A662B74C32FAF4560729 /* MouseAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3884AF4F1E43237FF6B93A90 /* MouseAdapterTests.swift */; };
+		71CDC572AACEEF4763B41E64 /* LogiCIDDirectoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56688688B8532A2BD1B7358 /* LogiCIDDirectoryTests.swift */; };
+		74C58676026E36B839B23245 /* InterpolatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA87460FD57871AA1A2442F /* InterpolatorTests.swift */; };
+		785C745CB1EA4B45B425451F /* LogiConflictDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B510CF791D99D883C481A78A /* LogiConflictDetectorTests.swift */; };
+		79B2DD4176088ABD46F8F7EE /* AdaptivePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1EBADBC199137C4C2368B7 /* AdaptivePopover.swift */; };
+		7BA80EE6D695DEE4F879AE69 /* ButtonUtilsCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55977E6741739696E1EFECF4 /* ButtonUtilsCacheTests.swift */; };
+		7C096643A617984BAC5D5DE2 /* OpenTargetPayloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8638EF3DBF91D49E2EAE141B /* OpenTargetPayloadTests.swift */; };
+		7C489C2AA1D7BE0C46FDC88C /* PreferencesGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF53EF080E6C42108D401E99 /* PreferencesGeneralViewController.swift */; };
+		7F18B5EEF691C8DDA6F5D427 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7864CE2968EBA2CB09245D02 /* WindowManager.swift */; };
+		82CB5D964984A20969C9BCA2 /* MonitorLogStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3D616BE62DFD092B5EF78 /* MonitorLogStore.swift */; };
+		85AD58F4F4C677AB7CEF6858 /* ChuuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25871BAA03EAE9FDD66ACF7A /* ChuuModel.swift */; };
+		8633FF069EC9EEFC6C6F4E1C /* LogiCenterDeviceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0691D3866019FDA9021C71B /* LogiCenterDeviceIntegrationTests.swift */; };
+		882931C50076C646D5C9E511 /* InputProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE58823460A9410F9AEA862 /* InputProcessor.swift */; };
+		88739C0A21834E8C19CC36A6 /* ActionDisplayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAE68610050C196EDDF633 /* ActionDisplayRenderer.swift */; };
+		897D01582A1202DF8CE4CFC0 /* ScrollFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915C096C13F473455F3235E0 /* ScrollFilterTests.swift */; };
+		8B6C477D9B533D8298D3F705 /* ShortcutExecutorOpenTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B7FFB71E2C999C3260A374 /* ShortcutExecutorOpenTargetTests.swift */; };
+		8BACCF74882538D14B7C3545 /* LogiSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77891A2BCEDBDB90AB1C48CE /* LogiSessionManager.swift */; };
+		8CA5358A3F5AB5FC512EB8E6 /* ButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50A1085AC2DE52094F89B37 /* ButtonCore.swift */; };
+		8ECD0E1F52ECDCB8F6546CD3 /* DivertPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421920E958EB816D6474CB22 /* DivertPlanner.swift */; };
+		8F20B77391BACA06B85B906E /* KeyPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0217747C6279D95379507E /* KeyPreview.swift */; };
+		8F6B294FCCD4F19065D6CE20 /* LogiControlReportingPacketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70E070054D548F6B85747A4 /* LogiControlReportingPacketTests.swift */; };
+		914A47A7541AC9C13A58B96B /* MouseAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1FB766869ED3BB204C11C8 /* MouseAlerts.swift */; };
+		9605DF5E2DE39E85387A2536 /* LogiReceiverCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ECC9B1C03BE29F0A1807B8 /* LogiReceiverCatalog.swift */; };
+		994D1A194A731D8298417F4E /* PreferencesUpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54322876235751D116C417 /* PreferencesUpdatesViewController.swift */; };
+		995ACA42DF51BF91F635FCE8 /* ScrollSmoothDetailSettingsPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579815EF1050A9F70A5EF4C4 /* ScrollSmoothDetailSettingsPopoverViewController.swift */; };
+		9967286E445C48A23A58C1D4 /* LogiTeardownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C41DCB8B0C33A0C3FB470D /* LogiTeardownTests.swift */; };
+		9B529DB759FACAE38044831E /* MouseAlertPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9841C13CC6C6664BE6C709 /* MouseAlertPolicyTests.swift */; };
+		9BFFF54593764795DD1F361D /* CGEvent+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E808044AC56FD6E042ECB1 /* CGEvent+Extensions.swift */; };
+		A04E9468FCADBB0D975A1F04 /* MouseAlertPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0826D469920DBB38C37DA7 /* MouseAlertPolicy.swift */; };
+		A17CD855FD601C7BC1176D28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EC19135EF35E36429F7FBF1 /* Assets.xcassets */; };
+		A1C4C9C32F5D3FA03C9EFA03 /* OpenTargetPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79782E77E1F218D852977EC6 /* OpenTargetPayload.swift */; };
+		A282F7436979A8CA6DA9576A /* LogiButtonDeliveryPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ED137790C14C3A9011A6C7 /* LogiButtonDeliveryPolicy.swift */; };
+		A30FB419FFC9C435936979AE /* ScrollEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF827EC8ADAF81A8EA223A /* ScrollEventTests.swift */; };
+		A39B3AA728B65A6E979D9F1F /* LogiSelfTestRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE8F98431F7B5A49D28B5AC /* LogiSelfTestRunner.swift */; };
+		A3C87130BFF0C1DF183E43A1 /* ScrollPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF225BD724CD9A9A4FA04F0 /* ScrollPhase.swift */; };
+		A534CDA23678EA31EA0FF226 /* SystemShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04146536C31B3816942D821F /* SystemShortcut.swift */; };
+		A5BF5A00498D9B7763289EC9 /* ToastPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2162EF295561B5346960ABCE /* ToastPanel.swift */; };
+		A61867DDDA62108AC21797DB /* ScrollReverseDetailSettingsPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF942227D16D3D1D473035E /* ScrollReverseDetailSettingsPopoverViewController.swift */; };
+		A75C6453B34200E593524460 /* ScrollActionPortTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EAA41B0B3161167847DB71 /* ScrollActionPortTests.swift */; };
+		AB56FE14C108ABFFB652F6CA /* LoginServiceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 10D2AF8220B8CCA74CE5D7ED /* LoginServiceKit */; };
+		AD21C93DF96554D42A22CD71 /* G502MouseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0582AC46CF0679AF88A5DAF /* G502MouseAdapter.swift */; };
+		AD7FE67A31EF58139C1CD4DA /* OnboardMouseProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AEFB414367231D777EB8B9 /* OnboardMouseProfile.swift */; };
+		AE381D54719A250B014D15B2 /* LogiDeviceSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08835939B3FB3957070E349 /* LogiDeviceSession.swift */; };
+		AFD1B2CE9E1EDBD5E45AB15F /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10491F06ECED9E4589987DC9 /* Application.swift */; };
+		B0110EB108DC7EF70CA87E4D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B274338EA5B63A7BEF88AC2 /* Logger.swift */; };
+		B1EE3FCE008036D9112A2E1B /* ScrollDispatchContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C4B25D02AD6DF3206DB31F /* ScrollDispatchContextTests.swift */; };
+		B2080DAAEEA30A62845E13AF /* PreferencesAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A39D735382212E0B5575987 /* PreferencesAboutViewController.swift */; };
+		B4F848C13080A0A9E188C549 /* LogiCenterPublicSurfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99857226FBC24FE032618FD /* LogiCenterPublicSurfaceTests.swift */; };
+		B8BE1388E7EFE1D146F527B1 /* ShortcutExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34384A1BFE4F92F9BD1CDD /* ShortcutExecutor.swift */; };
+		B9521C550F44E63814957A31 /* LogiBridgeDispatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E174FCE8C6AC3955417567 /* LogiBridgeDispatchTests.swift */; };
+		B9AD559C70533A618BA8083E /* LogiStandardMouseButtonAliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96FADAF107509ACBCB66D3F /* LogiStandardMouseButtonAliasTests.swift */; };
+		BB0C729F0181DB8E755E7F56 /* ButtonCapturePresentationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F644EE35A7384EA77A5CD /* ButtonCapturePresentationStatus.swift */; };
+		BD6F7BED6B85C734AAD7ACC7 /* LogiDivertReconciliationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A1CC480CD714A7A34F6D3 /* LogiDivertReconciliationTests.swift */; };
+		BE70B65D488F187894D648B4 /* LogiDivertPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9C9335D2055E0ED063BBB /* LogiDivertPlannerTests.swift */; };
+		BF8BFE4AA1F76A7AF7DF1100 /* SessionActivityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF0B3631F2F34628609BC8 /* SessionActivityStatus.swift */; };
+		C20F3D02612D655BF3F98CF4 /* LogiCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE9365E836F8368C6FC5D64 /* LogiCenter.swift */; };
+		C25FA88F966FADF176C7EA6D /* ToastContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0356E32D757074C4CE7892D9 /* ToastContentView.swift */; };
+		C397C0DF3927CE69A11024E5 /* EnhanceArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5EF87D79607ED77D7929EE /* EnhanceArray.swift */; };
+		C4097E005FA4D409EFE1AD2E /* LogiUsageBootstrapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F18C41D3FC6829AB07F800 /* LogiUsageBootstrapTests.swift */; };
+		C92827F9384154907D0B3D59 /* ChuuWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B7D20F7578291F27032DD /* ChuuWindow.swift */; };
+		C956C90373B074C90D801036 /* StatusItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4167B78F407DFE1C7B18BB0B /* StatusItemManager.swift */; };
+		CD21189AB40D1A05F15D3C87 /* BrailleSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934370CF67202DCB4D64D000 /* BrailleSpinner.swift */; };
+		CD4726D3B3546879632B8B40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862B292A4B6EFC05650479BE /* Main.storyboard */; };
+		CE3694234772518FE8E68AF8 /* LogiUsageBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E6FE661D01D7BAEA59F365 /* LogiUsageBootstrap.swift */; };
+		CE971517332DA99B7C5D5AB5 /* RecordedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08BF0279DDF652E4637D704 /* RecordedEvent.swift */; };
+		D12C8585A1279FE5CD351234 /* NSColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C645913203B9DA0753A0E11 /* NSColor+Extensions.swift */; };
+		D44BAA78D65391847BEDACEA /* UsageRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B649626DF5296E132123373 /* UsageRegistryTests.swift */; };
+		D4A9FBE3ABF376BE6CDCE886 /* LogiReportingResponseRoutingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DA967EFDEB834B93EB0F5 /* LogiReportingResponseRoutingTests.swift */; };
+		D59B907AC2885451B33E4857 /* LogiPersistenceCanaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34718E44A1008D92F1C27E /* LogiPersistenceCanaryTests.swift */; };
+		D6B18D0F1C446657034F07CD /* HoverIntentPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287CD978B08757CC8244CEFC /* HoverIntentPopoverController.swift */; };
+		D760F79C6018BA84029737CF /* LogiIntegrationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE96C5699112124D40BF56A /* LogiIntegrationBridge.swift */; };
+		D7AF7C297BA307C6D5A26982 /* HIDChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A9FD054735AB0AF7D77C9 /* HIDChannel.swift */; };
+		D88290117F76EA8430353333 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 299B03B038F549578046D95F /* DGCharts */; };
+		DA0570B472D44830C7F66C5B /* ActionDisplayResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679427752181F50988DA606B /* ActionDisplayResolver.swift */; };
+		DA50DE2E9EE7C6F061843043 /* ChuuWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 27898E4AA0536D916A0AB6FA /* ChuuWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DA9912C39DC701C47A44E5D1 /* ExtractRegexPatternArgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E516C750EDAB2721B08C12A /* ExtractRegexPatternArgTests.swift */; };
+		DAE562FB3263463831FBA9C6 /* LogiReceiverConnectionStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B51495049EFF62316DD2E7 /* LogiReceiverConnectionStateTests.swift */; };
+		DB308563305D9094F6D0DD24 /* UsageRegistryEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBA401D73FDE5286B9D4FC2 /* UsageRegistryEndToEndTests.swift */; };
+		DD33B08E746D8877F5225D01 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E3979D901AD383C91D830 /* PreferencesWindowController.swift */; };
+		DF1E39A8DC6BA7E0A3089BCA /* MonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DBA1A5CAB27269F93D19BA /* MonitorViewController.swift */; };
+		DFB58216959EEFA44020FF9A /* LogiFeatureActionDeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BFF172A4F571D62D5CAB6D /* LogiFeatureActionDeviceTests.swift */; };
+		E13798DE9C6220E6E7AF73F5 /* Chuu.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4CCCC4A2B01ACB118D349858 /* Chuu.xcstrings */; };
+		E1F41A75EFB79AE8AF54A944 /* ScrollOptionsContextProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A2B55D2D7E84558DE439A /* ScrollOptionsContextProviding.swift */; };
+		E341E27226AF95FDB2602DD3 /* ToastWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA39A78F048DCBAD9CACC9D /* ToastWindow.swift */; };
+		E4337058E6A7132BA2ACFF93 /* ScrollPosterConfigSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6204B93405D44F8BF09370CD /* ScrollPosterConfigSnapshotTests.swift */; };
+		E6721614784DC5F99212EABD /* PreferencesApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5141D4D74C7E4DBA2FD9CF /* PreferencesApplicationViewController.swift */; };
+		E762F57AC71C03316DB0E67D /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098B96AD09B0D0C03E461E8F /* Options.swift */; };
+		E7635DE8E8BC6E3764794E98 /* DraggingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBC3406BCA0438AA158DFDA /* DraggingImageView.swift */; };
+		E919BA7ACB8748039FF7945A /* LogiButtonDeliveryModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A855A1B5B5C5EE49A9D5958 /* LogiButtonDeliveryModeTests.swift */; };
+		EB4F6F1BA2CDAA1F5D543F83 /* LogiScrollForceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40073BF0C92016F105245B4 /* LogiScrollForceTests.swift */; };
+		EB71FD9B3DE9F9ACA9C5411B /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B1E41D36565A4A52706FA9 /* PrimaryButton.swift */; };
+		EB981C80C6B3C5AAFF0A4E07 /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFB2DE41C7DA5F57F071ACF /* ShortcutManager.swift */; };
+		EBBCA5770D00D91E4CB4E530 /* ScrollUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F5C8D733424274713C90AD /* ScrollUtils.swift */; };
+		ED6B80D7F63DFC5C160948AE /* MonitorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961C5775043B4DC84B9448CB /* MonitorWindowController.swift */; };
+		EF41E6794E597004E2C18613 /* PreferencesDonateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD339128987D8EDA47C87C7 /* PreferencesDonateViewController.swift */; };
+		F2F2F6DD9947290E6DF405A8 /* ToastVisibilityRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D106C4053C2D605093A64B9 /* ToastVisibilityRules.swift */; };
+		F344ECBD4291AF8B78DAF92B /* ButtonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6275E04EF5E77B9B11E63B /* ButtonUtils.swift */; };
+		F4749C81B1DAA413767784B8 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E932AD72F03CD18DA500DF25 /* UpdateManager.swift */; };
+		F5DC6A980AAE8B511BF21AC0 /* ConflictDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519D7875A8B7198A8B874C8C /* ConflictDetector.swift */; };
+		F7053231E27D634F0C7370F9 /* OptionsButtonsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7391EFE5A313783A75C5C /* OptionsButtonsLoaderTests.swift */; };
+		F750664C32960BCD9652617D /* MouseSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455D18EAB3B4F9DEDD4F113 /* MouseSnapshot.swift */; };
+		F863217F914A0DFB2CE1F8B8 /* LogiHapticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588A6C0E7FDE9A33F5F4547 /* LogiHapticTests.swift */; };
+		F8F517D47849B0C1CBDD229A /* LogiDeviceSessionSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591366B80A56977C44C22EAE /* LogiDeviceSessionSnapshot.swift */; };
+		FB450BEBB9B418032C7EF695 /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD357431C99D8DF8ADFF8081 /* Interceptor.swift */; };
+		FC0F74A922D3919431B9E39D /* LogiBoundaryEnforcementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B02255589112041B1654180 /* LogiBoundaryEnforcementTests.swift */; };
+		FC156D97BAC6DEAE0F3736DE /* ActivityPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598C6D79D70DB7E336753AC /* ActivityPopoverViewController.swift */; };
+		FC52E26DFAB2A730D7484E98 /* InterceptorTapLeakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD5360821EF902DDA49BBE /* InterceptorTapLeakTests.swift */; };
+		FCCBCB337C29511D35BC2FE1 /* UsageRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D38B7851F2FE603BA24F8B /* UsageRegistry.swift */; };
+		FECCC2E51E0732C10869E33A /* ButtonCapturePresentationStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E1EE7952C5CC898A82C63E /* ButtonCapturePresentationStatusTests.swift */; };
+		FF0D2946AF4DE7012926BF2E /* PreferencesContributorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191D0BFD34B85CA7361CB291 /* PreferencesContributorsViewController.swift */; };
+		FF21A0DD044621F828A843E7 /* ScrollPoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6884455D341C90B76D0F59F /* ScrollPoster.swift */; };
+		FF28DE6DDF47A2B05472BF6C /* ScrollEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6BEC81F93D8F8ADE5EE95 /* ScrollEvent.swift */; };
+		FF517168D846854C6C7CC96F /* LogiNoOpBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914085A88135DCCFF109E05 /* LogiNoOpBridge.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		03FF98FF16A85FC019FCDE3B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CF677FA8B48468790DD6372 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDC7B50105CB31DBFE6177CD;
+			remoteInfo = Chuu;
+		};
+		346046CD96F44A15165DE864 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CF677FA8B48468790DD6372 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F7E275301FF0C595FDA4DF77;
+			remoteInfo = ChuuWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D89B6D6896DE76EFDB0B3085 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DA50DE2E9EE7C6F061843043 /* ChuuWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		031A1CC480CD714A7A34F6D3 /* LogiDivertReconciliationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiDivertReconciliationTests.swift; sourceTree = "<group>"; };
+		0356E32D757074C4CE7892D9 /* ToastContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastContentView.swift; sourceTree = "<group>"; };
+		04146536C31B3816942D821F /* SystemShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemShortcut.swift; sourceTree = "<group>"; };
+		04DCA4BEEFF720B780064AAA /* MouseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseAdapter.swift; sourceTree = "<group>"; };
+		0598C6D79D70DB7E336753AC /* ActivityPopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPopoverViewController.swift; sourceTree = "<group>"; };
+		074A61B04FA0792032081F18 /* UsageSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageSource.swift; sourceTree = "<group>"; };
+		08E6FE661D01D7BAEA59F365 /* LogiUsageBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiUsageBootstrap.swift; sourceTree = "<group>"; };
+		0914085A88135DCCFF109E05 /* LogiNoOpBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiNoOpBridge.swift; sourceTree = "<group>"; };
+		098B96AD09B0D0C03E461E8F /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		0C9E493E6C41EFD8C9C47529 /* ScrollActionPort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollActionPort.swift; sourceTree = "<group>"; };
+		0CBAE68610050C196EDDF633 /* ActionDisplayRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionDisplayRenderer.swift; sourceTree = "<group>"; };
+		0E8E3979D901AD383C91D830 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		0F5EF87D79607ED77D7929EE /* EnhanceArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhanceArray.swift; sourceTree = "<group>"; };
+		10491F06ECED9E4589987DC9 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		12D2BF0243BE547ECF2631C4 /* ChuuBrandingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuuBrandingTests.swift; sourceTree = "<group>"; };
+		130497A279F73B61677212EE /* Interpolator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpolator.swift; sourceTree = "<group>"; };
+		17012FC1ADF5217F0432405E /* LogiExternalBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiExternalBridge.swift; sourceTree = "<group>"; };
+		178A5CFCEE195B10F68DA02D /* PreferencesScrollingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesScrollingViewController.swift; sourceTree = "<group>"; };
+		191D0BFD34B85CA7361CB291 /* PreferencesContributorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesContributorsViewController.swift; sourceTree = "<group>"; };
+		1983C626B0513096DD2EAD46 /* ScrollDispatchContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollDispatchContext.swift; sourceTree = "<group>"; };
+		1EAFD19001A0065B8FB0B6BF /* PreferencesButtonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesButtonsViewController.swift; sourceTree = "<group>"; };
+		20DCA70321D3EE11401C42D7 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Main.xcstrings; sourceTree = "<group>"; };
+		2162EF295561B5346960ABCE /* ToastPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastPanel.swift; sourceTree = "<group>"; };
+		23EAA41B0B3161167847DB71 /* ScrollActionPortTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollActionPortTests.swift; sourceTree = "<group>"; };
+		25679A11EC8CE0285B63C657 /* ToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManager.swift; sourceTree = "<group>"; };
+		25871BAA03EAE9FDD66ACF7A /* ChuuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuuModel.swift; sourceTree = "<group>"; };
+		27898E4AA0536D916A0AB6FA /* ChuuWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ChuuWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		27FDD77102DE10E3D5C34B41 /* KeyRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyRecorder.swift; sourceTree = "<group>"; };
+		287CD978B08757CC8244CEFC /* HoverIntentPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverIntentPopoverController.swift; sourceTree = "<group>"; };
+		2B02255589112041B1654180 /* LogiBoundaryEnforcementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiBoundaryEnforcementTests.swift; sourceTree = "<group>"; };
+		2B614926F70346948DB15413 /* RemovingRegexUTF16RangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovingRegexUTF16RangeTests.swift; sourceTree = "<group>"; };
+		2C05B515EF6E4B8429480DA5 /* LogiSelfTestWizard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiSelfTestWizard.swift; sourceTree = "<group>"; };
+		2EC19135EF35E36429F7FBF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3185B5FDA2114774A1455EAC /* LogiReportingDidCompleteEmptyPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiReportingDidCompleteEmptyPathTests.swift; sourceTree = "<group>"; };
+		34BA92A7C25190104B655ECA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		37CF224E23B0222D977306F7 /* MouseInteractionSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseInteractionSessionController.swift; sourceTree = "<group>"; };
+		3884AF4F1E43237FF6B93A90 /* MouseAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseAdapterTests.swift; sourceTree = "<group>"; };
+		39B1E41D36565A4A52706FA9 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		3B274338EA5B63A7BEF88AC2 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		3C54322876235751D116C417 /* PreferencesUpdatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesUpdatesViewController.swift; sourceTree = "<group>"; };
+		4167B78F407DFE1C7B18BB0B /* StatusItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemManager.swift; sourceTree = "<group>"; };
+		421920E958EB816D6474CB22 /* DivertPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivertPlanner.swift; sourceTree = "<group>"; };
+		48232E4549ED3F06126BF093 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		48BFF172A4F571D62D5CAB6D /* LogiFeatureActionDeviceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiFeatureActionDeviceTests.swift; sourceTree = "<group>"; };
+		4A39D735382212E0B5575987 /* PreferencesAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesAboutViewController.swift; sourceTree = "<group>"; };
+		4C34384A1BFE4F92F9BD1CDD /* ShortcutExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutExecutor.swift; sourceTree = "<group>"; };
+		4C645913203B9DA0753A0E11 /* NSColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+Extensions.swift"; sourceTree = "<group>"; };
+		4CCCC4A2B01ACB118D349858 /* Chuu.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Chuu.xcstrings; sourceTree = "<group>"; };
+		4FF225BD724CD9A9A4FA04F0 /* ScrollPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPhase.swift; sourceTree = "<group>"; };
+		519D7875A8B7198A8B874C8C /* ConflictDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictDetector.swift; sourceTree = "<group>"; };
+		52B7C0ECC3B7BDA8AF4168AE /* PreferencesTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTabViewController.swift; sourceTree = "<group>"; };
+		52ED137790C14C3A9011A6C7 /* LogiButtonDeliveryPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiButtonDeliveryPolicy.swift; sourceTree = "<group>"; };
+		5307FC024CD74C305427DD89 /* MouseHardwareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseHardwareService.swift; sourceTree = "<group>"; };
+		53E501434CFB5311CEB2EFAB /* ScrollTargetApplicationRulesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTargetApplicationRulesTests.swift; sourceTree = "<group>"; };
+		5484E02647241A6F08B5B2D5 /* Archieve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archieve.swift; sourceTree = "<group>"; };
+		551262E39EF4282B6B4FF850 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		55977E6741739696E1EFECF4 /* ButtonUtilsCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonUtilsCacheTests.swift; sourceTree = "<group>"; };
+		55FD5360821EF902DDA49BBE /* InterceptorTapLeakTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterceptorTapLeakTests.swift; sourceTree = "<group>"; };
+		571BDF53DA96B9AB86332B05 /* LogiBridgeDeviceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiBridgeDeviceTests.swift; sourceTree = "<group>"; };
+		579815EF1050A9F70A5EF4C4 /* ScrollSmoothDetailSettingsPopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollSmoothDetailSettingsPopoverViewController.swift; sourceTree = "<group>"; };
+		57F055D13DD64657B0176E7A /* G7MouseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7MouseAdapter.swift; sourceTree = "<group>"; };
+		591366B80A56977C44C22EAE /* LogiDeviceSessionSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiDeviceSessionSnapshot.swift; sourceTree = "<group>"; };
+		59534A67C40A601010A7662B /* Chuu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chuu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C0826D469920DBB38C37DA7 /* MouseAlertPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseAlertPolicy.swift; sourceTree = "<group>"; };
+		5EC91C227335DE8862E524EC /* KeyPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPopover.swift; sourceTree = "<group>"; };
+		609DA7B16660D55E5DF3C31F /* InputProcessorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputProcessorTests.swift; sourceTree = "<group>"; };
+		6204B93405D44F8BF09370CD /* ScrollPosterConfigSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPosterConfigSnapshotTests.swift; sourceTree = "<group>"; };
+		6231E0FB3978F2CC3C5BC5A7 /* ScrollHotkeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollHotkeyTests.swift; sourceTree = "<group>"; };
+		638E422B70C14869D2008E0B /* IntroductionWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionWindowController.swift; sourceTree = "<group>"; };
+		679427752181F50988DA606B /* ActionDisplayResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionDisplayResolver.swift; sourceTree = "<group>"; };
+		67BFBDCEA9C2F7DDBC426C7B /* ScrollPhaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPhaseTests.swift; sourceTree = "<group>"; };
+		6BE8F98431F7B5A49D28B5AC /* LogiSelfTestRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiSelfTestRunner.swift; sourceTree = "<group>"; };
+		6C2C37508B4AD30BB0F05B9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6FB73C6500BC314D48081FC4 /* InputEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputEvent.swift; sourceTree = "<group>"; };
+		6FE96C5699112124D40BF56A /* LogiIntegrationBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiIntegrationBridge.swift; sourceTree = "<group>"; };
+		6FFB2DE41C7DA5F57F071ACF /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
+		70E7391EFE5A313783A75C5C /* OptionsButtonsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsButtonsLoaderTests.swift; sourceTree = "<group>"; };
+		70F18C41D3FC6829AB07F800 /* LogiUsageBootstrapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiUsageBootstrapTests.swift; sourceTree = "<group>"; };
+		73AF1861F677DAAAB1DE29E1 /* ChuuProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuuProfileTests.swift; sourceTree = "<group>"; };
+		77891A2BCEDBDB90AB1C48CE /* LogiSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiSessionManager.swift; sourceTree = "<group>"; };
+		7864CE2968EBA2CB09245D02 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
+		79782E77E1F218D852977EC6 /* OpenTargetPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTargetPayload.swift; sourceTree = "<group>"; };
+		7A34718E44A1008D92F1C27E /* LogiPersistenceCanaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiPersistenceCanaryTests.swift; sourceTree = "<group>"; };
+		7C15C4088A49B6EDFF8A47A2 /* BrandTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTag.swift; sourceTree = "<group>"; };
+		7C8E74749AF7C74992C3195A /* FakeLogiExternalBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLogiExternalBridge.swift; sourceTree = "<group>"; };
+		7CB6BEC81F93D8F8ADE5EE95 /* ScrollEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollEvent.swift; sourceTree = "<group>"; };
+		7D5141D4D74C7E4DBA2FD9CF /* PreferencesApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesApplicationViewController.swift; sourceTree = "<group>"; };
+		81D439DD25DBA9ACA8DBFBD8 /* LogiDebugPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiDebugPanel.swift; sourceTree = "<group>"; };
+		8455D18EAB3B4F9DEDD4F113 /* MouseSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseSnapshot.swift; sourceTree = "<group>"; };
+		8588A6C0E7FDE9A33F5F4547 /* LogiHapticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiHapticTests.swift; sourceTree = "<group>"; };
+		85C9C9335D2055E0ED063BBB /* LogiDivertPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiDivertPlannerTests.swift; sourceTree = "<group>"; };
+		8638EF3DBF91D49E2EAE141B /* OpenTargetPayloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTargetPayloadTests.swift; sourceTree = "<group>"; };
+		89BA6AA76631E29C79B74F57 /* OpenTargetConfigPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTargetConfigPopover.swift; sourceTree = "<group>"; };
+		8A855A1B5B5C5EE49A9D5958 /* LogiButtonDeliveryModeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiButtonDeliveryModeTests.swift; sourceTree = "<group>"; };
+		8A8DD8EA2A1C813E17F350E0 /* LogiCIDDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiCIDDirectory.swift; sourceTree = "<group>"; };
+		8B649626DF5296E132123373 /* UsageRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageRegistryTests.swift; sourceTree = "<group>"; };
+		8CD7A2D8B6A16BF802974F46 /* PreferencesScrollingWithApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesScrollingWithApplicationViewController.swift; sourceTree = "<group>"; };
+		8CEDD195CC9987EEFE131DBE /* ChuuNavigationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuuNavigationTests.swift; sourceTree = "<group>"; };
+		8EA87460FD57871AA1A2442F /* InterpolatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterpolatorTests.swift; sourceTree = "<group>"; };
+		8F9FCEA7FBE8B38E06819380 /* ScrollCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollCore.swift; sourceTree = "<group>"; };
+		90B7FFB71E2C999C3260A374 /* ShortcutExecutorOpenTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutExecutorOpenTargetTests.swift; sourceTree = "<group>"; };
+		90D38B7851F2FE603BA24F8B /* UsageRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageRegistry.swift; sourceTree = "<group>"; };
+		915C096C13F473455F3235E0 /* ScrollFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollFilterTests.swift; sourceTree = "<group>"; };
+		926DA967EFDEB834B93EB0F5 /* LogiReportingResponseRoutingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiReportingResponseRoutingTests.swift; sourceTree = "<group>"; };
+		934370CF67202DCB4D64D000 /* BrailleSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrailleSpinner.swift; sourceTree = "<group>"; };
+		961C5775043B4DC84B9448CB /* MonitorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorWindowController.swift; sourceTree = "<group>"; };
+		976696063FB7070126746D17 /* FakeLogiDeviceSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLogiDeviceSession.swift; sourceTree = "<group>"; };
+		996166FA2BF6807286C6442B /* ExampleMouseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleMouseAdapter.swift; sourceTree = "<group>"; };
+		9CBA401D73FDE5286B9D4FC2 /* UsageRegistryEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageRegistryEndToEndTests.swift; sourceTree = "<group>"; };
+		9CF942227D16D3D1D473035E /* ScrollReverseDetailSettingsPopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollReverseDetailSettingsPopoverViewController.swift; sourceTree = "<group>"; };
+		9D106C4053C2D605093A64B9 /* ToastVisibilityRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastVisibilityRules.swift; sourceTree = "<group>"; };
+		9DBF99D5B1D502F5D64C47EF /* ScrollCoreHotkeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollCoreHotkeyTests.swift; sourceTree = "<group>"; };
+		9E516C750EDAB2721B08C12A /* ExtractRegexPatternArgTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractRegexPatternArgTests.swift; sourceTree = "<group>"; };
+		9EBF827EC8ADAF81A8EA223A /* ScrollEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollEventTests.swift; sourceTree = "<group>"; };
+		A08BF0279DDF652E4637D704 /* RecordedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedEvent.swift; sourceTree = "<group>"; };
+		A0E174FCE8C6AC3955417567 /* LogiBridgeDispatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiBridgeDispatchTests.swift; sourceTree = "<group>"; };
+		A14ED0DE0A89255EC8C56D6B /* ScrollPosterStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPosterStateTests.swift; sourceTree = "<group>"; };
+		A1C4B25D02AD6DF3206DB31F /* ScrollDispatchContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollDispatchContextTests.swift; sourceTree = "<group>"; };
+		A40073BF0C92016F105245B4 /* LogiScrollForceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiScrollForceTests.swift; sourceTree = "<group>"; };
+		A4ECC9B1C03BE29F0A1807B8 /* LogiReceiverCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiReceiverCatalog.swift; sourceTree = "<group>"; };
+		A6884455D341C90B76D0F59F /* ScrollPoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPoster.swift; sourceTree = "<group>"; };
+		A70E070054D548F6B85747A4 /* LogiControlReportingPacketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiControlReportingPacketTests.swift; sourceTree = "<group>"; };
+		A94751049534F3354AEE976B /* ButtonBindingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBindingTests.swift; sourceTree = "<group>"; };
+		AC1FB766869ED3BB204C11C8 /* MouseAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseAlerts.swift; sourceTree = "<group>"; };
+		AD6275E04EF5E77B9B11E63B /* ButtonUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonUtils.swift; sourceTree = "<group>"; };
+		ADEE926EDC5A89AB42342048 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		AEE9365E836F8368C6FC5D64 /* LogiCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiCenter.swift; sourceTree = "<group>"; };
+		B26BE2481A369AC68DD9F9D4 /* ButtonTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTableCellView.swift; sourceTree = "<group>"; };
+		B2AEFB414367231D777EB8B9 /* OnboardMouseProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardMouseProfile.swift; sourceTree = "<group>"; };
+		B510CF791D99D883C481A78A /* LogiConflictDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiConflictDetectorTests.swift; sourceTree = "<group>"; };
+		B56688688B8532A2BD1B7358 /* LogiCIDDirectoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiCIDDirectoryTests.swift; sourceTree = "<group>"; };
+		B5D3D616BE62DFD092B5EF78 /* MonitorLogStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorLogStore.swift; sourceTree = "<group>"; };
+		B9BF0B3631F2F34628609BC8 /* SessionActivityStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionActivityStatus.swift; sourceTree = "<group>"; };
+		BC8425EC65824142D856A821 /* WelcomeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeWindowController.swift; sourceTree = "<group>"; };
+		BCEE29E9D5ABD65F833D072D /* LogiButtonDeliveryMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiButtonDeliveryMode.swift; sourceTree = "<group>"; };
+		BD357431C99D8DF8ADFF8081 /* Interceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
+		BF23BCF145E91150735BBB43 /* ToastLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastLayout.swift; sourceTree = "<group>"; };
+		BFD339128987D8EDA47C87C7 /* PreferencesDonateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesDonateViewController.swift; sourceTree = "<group>"; };
+		C03B273AABEC3B84DEFCD621 /* ChuuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChuuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0C41DCB8B0C33A0C3FB470D /* LogiTeardownTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiTeardownTests.swift; sourceTree = "<group>"; };
+		C3924C9E2EA02FE765C55269 /* KeyCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCode.swift; sourceTree = "<group>"; };
+		C432EC2B799122D64C932F14 /* LogiForceSensingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiForceSensingTests.swift; sourceTree = "<group>"; };
+		C49AA0AF4FC2779A574CF71B /* InterceptorAutoRestartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterceptorAutoRestartTests.swift; sourceTree = "<group>"; };
+		C4DBA1A5CAB27269F93D19BA /* MonitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorViewController.swift; sourceTree = "<group>"; };
+		C7046BC83A0C59FC6B0ED6AB /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		C84D73F380D660F30F268768 /* LogiStandardMouseButtonAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiStandardMouseButtonAlias.swift; sourceTree = "<group>"; };
+		C90E6CDE59492FA4D39CAB08 /* ToastStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStorage.swift; sourceTree = "<group>"; };
+		CB4A521A68A2E6E9A1981508 /* ScrollFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollFilter.swift; sourceTree = "<group>"; };
+		CC1769CAE57BAF23980EC70B /* ModifierFlagsProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierFlagsProviding.swift; sourceTree = "<group>"; };
+		CFEFEF1180CA8D0DB30BC435 /* ChuuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuuView.swift; sourceTree = "<group>"; };
+		D04C43C3078EF92EF0CC67BC /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		D0691D3866019FDA9021C71B /* LogiCenterDeviceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiCenterDeviceIntegrationTests.swift; sourceTree = "<group>"; };
+		D08835939B3FB3957070E349 /* LogiDeviceSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiDeviceSession.swift; sourceTree = "<group>"; };
+		D48F644EE35A7384EA77A5CD /* ButtonCapturePresentationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCapturePresentationStatus.swift; sourceTree = "<group>"; };
+		D50A1085AC2DE52094F89B37 /* ButtonCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCore.swift; sourceTree = "<group>"; };
+		D96FADAF107509ACBCB66D3F /* LogiStandardMouseButtonAliasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiStandardMouseButtonAliasTests.swift; sourceTree = "<group>"; };
+		DA9841C13CC6C6664BE6C709 /* MouseAlertPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseAlertPolicyTests.swift; sourceTree = "<group>"; };
+		DB0217747C6279D95379507E /* KeyPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPreview.swift; sourceTree = "<group>"; };
+		DD4904A05C7CA0216B92216A /* MouseAdapterRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseAdapterRegistry.swift; sourceTree = "<group>"; };
+		DE2374B832B1B88282440F5C /* Chuu.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = Chuu.icon; sourceTree = "<group>"; };
+		E1E1EE7952C5CC898A82C63E /* ButtonCapturePresentationStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCapturePresentationStatusTests.swift; sourceTree = "<group>"; };
+		E1F5C8D733424274713C90AD /* ScrollUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollUtils.swift; sourceTree = "<group>"; };
+		E28EE929DFB5AB330BA70670 /* ChuuBatteryWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuuBatteryWidget.swift; sourceTree = "<group>"; };
+		E5E808044AC56FD6E042ECB1 /* CGEvent+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGEvent+Extensions.swift"; sourceTree = "<group>"; };
+		E8B51495049EFF62316DD2E7 /* LogiReceiverConnectionStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiReceiverConnectionStateTests.swift; sourceTree = "<group>"; };
+		E932AD72F03CD18DA500DF25 /* UpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
+		EAA39A78F048DCBAD9CACC9D /* ToastWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastWindow.swift; sourceTree = "<group>"; };
+		ED0B7D20F7578291F27032DD /* ChuuWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuuWindow.swift; sourceTree = "<group>"; };
+		ED98904554F3CE10EF88C151 /* OptionsChangePropagationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsChangePropagationTests.swift; sourceTree = "<group>"; };
+		F028863723C4A81A517A0B4D /* OptionsScrollDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsScrollDefaultsTests.swift; sourceTree = "<group>"; };
+		F038E6AAFF0EBD3E73BF07EB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F0582AC46CF0679AF88A5DAF /* G502MouseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G502MouseAdapter.swift; sourceTree = "<group>"; };
+		F38A9FD054735AB0AF7D77C9 /* HIDChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIDChannel.swift; sourceTree = "<group>"; };
+		F60D0D0A0A6C8C1816C059AF /* ChuuWindowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuuWindowTests.swift; sourceTree = "<group>"; };
+		F99857226FBC24FE032618FD /* LogiCenterPublicSurfaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiCenterPublicSurfaceTests.swift; sourceTree = "<group>"; };
+		F9BF1A80A8525BAFA365FC1E /* IntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
+		FBCE38FD87251BFF56F58B77 /* MouseInteractionSessionControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseInteractionSessionControllerTests.swift; sourceTree = "<group>"; };
+		FBE58823460A9410F9AEA862 /* InputProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputProcessor.swift; sourceTree = "<group>"; };
+		FC1EBADBC199137C4C2368B7 /* AdaptivePopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptivePopover.swift; sourceTree = "<group>"; };
+		FC9A2B55D2D7E84558DE439A /* ScrollOptionsContextProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollOptionsContextProviding.swift; sourceTree = "<group>"; };
+		FF53EF080E6C42108D401E99 /* PreferencesGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesGeneralViewController.swift; sourceTree = "<group>"; };
+		FFBC3406BCA0438AA158DFDA /* DraggingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggingImageView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		048C8C422E5D725A49F59DE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB56FE14C108ABFFB652F6CA /* LoginServiceKit in Frameworks */,
+				D88290117F76EA8430353333 /* DGCharts in Frameworks */,
+				19A4392029D404628CE74D02 /* Sparkle in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		008DFF9FC286AC434155696B /* Logi */ = {
+			isa = PBXGroup;
+			children = (
+				AEE9365E836F8368C6FC5D64 /* LogiCenter.swift */,
+				A8E67BFE8AEFEA38231BB704 /* Bridge */,
+				1C8F5839162AC129C8E607A7 /* Core */,
+				4E96FC96BDB5D150F68115BE /* Debug */,
+				08C78F868276A22864C7B783 /* Divert */,
+				F2940D3D076298FC0D21D81D /* Usage */,
+			);
+			path = Logi;
+			sourceTree = "<group>";
+		};
+		070C9BCAFF486E5505C1857D /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				C3924C9E2EA02FE765C55269 /* KeyCode.swift */,
+				5EC91C227335DE8862E524EC /* KeyPopover.swift */,
+				DB0217747C6279D95379507E /* KeyPreview.swift */,
+				27FDD77102DE10E3D5C34B41 /* KeyRecorder.swift */,
+			);
+			path = Keys;
+			sourceTree = "<group>";
+		};
+		08C78F868276A22864C7B783 /* Divert */ = {
+			isa = PBXGroup;
+			children = (
+				519D7875A8B7198A8B874C8C /* ConflictDetector.swift */,
+				421920E958EB816D6474CB22 /* DivertPlanner.swift */,
+				BCEE29E9D5ABD65F833D072D /* LogiButtonDeliveryMode.swift */,
+				52ED137790C14C3A9011A6C7 /* LogiButtonDeliveryPolicy.swift */,
+			);
+			path = Divert;
+			sourceTree = "<group>";
+		};
+		0FFD137941AA82C4B2D777F3 /* MCHOSE */ = {
+			isa = PBXGroup;
+			children = (
+				57F055D13DD64657B0176E7A /* G7MouseAdapter.swift */,
+			);
+			path = MCHOSE;
+			sourceTree = "<group>";
+		};
+		1C8F5839162AC129C8E607A7 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8A8DD8EA2A1C813E17F350E0 /* LogiCIDDirectory.swift */,
+				D08835939B3FB3957070E349 /* LogiDeviceSession.swift */,
+				591366B80A56977C44C22EAE /* LogiDeviceSessionSnapshot.swift */,
+				A4ECC9B1C03BE29F0A1807B8 /* LogiReceiverCatalog.swift */,
+				77891A2BCEDBDB90AB1C48CE /* LogiSessionManager.swift */,
+				B9BF0B3631F2F34628609BC8 /* SessionActivityStatus.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		41884D52B0BE557104BA98D6 /* WelcomeWindow */ = {
+			isa = PBXGroup;
+			children = (
+				D04C43C3078EF92EF0CC67BC /* WelcomeViewController.swift */,
+				BC8425EC65824142D856A821 /* WelcomeWindowController.swift */,
+			);
+			path = WelcomeWindow;
+			sourceTree = "<group>";
+		};
+		46D338C7513BEE2B405E747C /* ButtonsView */ = {
+			isa = PBXGroup;
+			children = (
+				0CBAE68610050C196EDDF633 /* ActionDisplayRenderer.swift */,
+				679427752181F50988DA606B /* ActionDisplayResolver.swift */,
+				0598C6D79D70DB7E336753AC /* ActivityPopoverViewController.swift */,
+				D48F644EE35A7384EA77A5CD /* ButtonCapturePresentationStatus.swift */,
+				B26BE2481A369AC68DD9F9D4 /* ButtonTableCellView.swift */,
+				89BA6AA76631E29C79B74F57 /* OpenTargetConfigPopover.swift */,
+				1EAFD19001A0065B8FB0B6BF /* PreferencesButtonsViewController.swift */,
+				A08BF0279DDF652E4637D704 /* RecordedEvent.swift */,
+			);
+			path = ButtonsView;
+			sourceTree = "<group>";
+		};
+		4713D4D3150F9C8151421281 /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				A563650E42B46323EBF32E6E /* IntroductionWindow */,
+				CDBB212A5211EEA33EBE6757 /* MonitorWindow */,
+				84572C30F63CF71B3EDCE108 /* PreferencesWindow */,
+				41884D52B0BE557104BA98D6 /* WelcomeWindow */,
+			);
+			path = Windows;
+			sourceTree = "<group>";
+		};
+		4B4FF00EB50068A41E7A0297 /* ButtonCore */ = {
+			isa = PBXGroup;
+			children = (
+				D50A1085AC2DE52094F89B37 /* ButtonCore.swift */,
+				AD6275E04EF5E77B9B11E63B /* ButtonUtils.swift */,
+				C84D73F380D660F30F268768 /* LogiStandardMouseButtonAlias.swift */,
+			);
+			path = ButtonCore;
+			sourceTree = "<group>";
+		};
+		4E96FC96BDB5D150F68115BE /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				934370CF67202DCB4D64D000 /* BrailleSpinner.swift */,
+				81D439DD25DBA9ACA8DBFBD8 /* LogiDebugPanel.swift */,
+				6BE8F98431F7B5A49D28B5AC /* LogiSelfTestRunner.swift */,
+				2C05B515EF6E4B8429480DA5 /* LogiSelfTestWizard.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		5577261196AEC9A53E929A85 /* DeviceControl */ = {
+			isa = PBXGroup;
+			children = (
+				25871BAA03EAE9FDD66ACF7A /* ChuuModel.swift */,
+				CFEFEF1180CA8D0DB30BC435 /* ChuuView.swift */,
+				ED0B7D20F7578291F27032DD /* ChuuWindow.swift */,
+				F38A9FD054735AB0AF7D77C9 /* HIDChannel.swift */,
+				5C0826D469920DBB38C37DA7 /* MouseAlertPolicy.swift */,
+				AC1FB766869ED3BB204C11C8 /* MouseAlerts.swift */,
+				5307FC024CD74C305427DD89 /* MouseHardwareService.swift */,
+			);
+			path = DeviceControl;
+			sourceTree = "<group>";
+		};
+		57FA21FEF300EAF015403FAD /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				6B4C0E8D24E10CF04D9C317A /* MouseAdapter */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
+		};
+		58D8D2591833C1343FCE1E60 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				59534A67C40A601010A7662B /* Chuu.app */,
+				C03B273AABEC3B84DEFCD621 /* ChuuTests.xctest */,
+				27898E4AA0536D916A0AB6FA /* ChuuWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6086C77C5D74EEFE458A92BD /* Logitech */ = {
+			isa = PBXGroup;
+			children = (
+				F0582AC46CF0679AF88A5DAF /* G502MouseAdapter.swift */,
+				B2AEFB414367231D777EB8B9 /* OnboardMouseProfile.swift */,
+			);
+			path = Logitech;
+			sourceTree = "<group>";
+		};
+		60C855E08FF9C5C80F1E714E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E5E808044AC56FD6E042ECB1 /* CGEvent+Extensions.swift */,
+				4C645913203B9DA0753A0E11 /* NSColor+Extensions.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		6160E9FD0BC41FE0C4BECF43 = {
+			isa = PBXGroup;
+			children = (
+				69FEE8F59FF583C719B7B3AC /* Chuu */,
+				DF9B7EA552CE7887BA7F0D07 /* ChuuTests */,
+				DC7E82CAB9522532008B56BC /* ChuuWidget */,
+				57FA21FEF300EAF015403FAD /* Examples */,
+				F7B1E3CBAB87352128D035FD /* Resources */,
+				7BB1A510EECFE3DD6BAD098A /* Shared */,
+				58D8D2591833C1343FCE1E60 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		690361A7C86B47541F090DB1 /* ApplicationView */ = {
+			isa = PBXGroup;
+			children = (
+				10491F06ECED9E4589987DC9 /* Application.swift */,
+				7D5141D4D74C7E4DBA2FD9CF /* PreferencesApplicationViewController.swift */,
+			);
+			path = ApplicationView;
+			sourceTree = "<group>";
+		};
+		69FEE8F59FF583C719B7B3AC /* Chuu */ = {
+			isa = PBXGroup;
+			children = (
+				6C2C37508B4AD30BB0F05B9D /* AppDelegate.swift */,
+				2EC19135EF35E36429F7FBF1 /* Assets.xcassets */,
+				48232E4549ED3F06126BF093 /* Localizable.xcstrings */,
+				4B4FF00EB50068A41E7A0297 /* ButtonCore */,
+				D2916612BBE1CB248E90FC30 /* Components */,
+				5577261196AEC9A53E929A85 /* DeviceControl */,
+				8AB674AD27B5611F48BEBE26 /* Devices */,
+				60C855E08FF9C5C80F1E714E /* Extension */,
+				AE0CF553B868279F1D2DE841 /* InputEvent */,
+				6C9CE9991A98FBD5EDBE6602 /* Integration */,
+				070C9BCAFF486E5505C1857D /* Keys */,
+				008DFF9FC286AC434155696B /* Logi */,
+				862B292A4B6EFC05650479BE /* Main.storyboard */,
+				7B3DF6D75E83C21B702DE48E /* Managers */,
+				878DB3E1A3AD5E4CCFD94CEF /* Options */,
+				C193C12F6EDFD1F29DAA9B9D /* ScrollCore */,
+				8A3ED68945A2F606C0770EDB /* Shortcut */,
+				7D4A3EA6193C858B1C563DFE /* Utils */,
+				4713D4D3150F9C8151421281 /* Windows */,
+			);
+			path = Chuu;
+			sourceTree = "<group>";
+		};
+		6B4C0E8D24E10CF04D9C317A /* MouseAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				996166FA2BF6807286C6442B /* ExampleMouseAdapter.swift */,
+			);
+			path = MouseAdapter;
+			sourceTree = "<group>";
+		};
+		6C9CE9991A98FBD5EDBE6602 /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				6FE96C5699112124D40BF56A /* LogiIntegrationBridge.swift */,
+				08E6FE661D01D7BAEA59F365 /* LogiUsageBootstrap.swift */,
+			);
+			path = Integration;
+			sourceTree = "<group>";
+		};
+		7B3DF6D75E83C21B702DE48E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				4167B78F407DFE1C7B18BB0B /* StatusItemManager.swift */,
+				E932AD72F03CD18DA500DF25 /* UpdateManager.swift */,
+				7864CE2968EBA2CB09245D02 /* WindowManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		7BB1A510EECFE3DD6BAD098A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4CCCC4A2B01ACB118D349858 /* Chuu.xcstrings */,
+				8455D18EAB3B4F9DEDD4F113 /* MouseSnapshot.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		7D4A3EA6193C858B1C563DFE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5484E02647241A6F08B5B2D5 /* Archieve.swift */,
+				34BA92A7C25190104B655ECA /* Constants.swift */,
+				0F5EF87D79607ED77D7929EE /* EnhanceArray.swift */,
+				BD357431C99D8DF8ADFF8081 /* Interceptor.swift */,
+				ADEE926EDC5A89AB42342048 /* Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7F2D15E78B96A2899DE7689C /* LogiTestDoubles */ = {
+			isa = PBXGroup;
+			children = (
+				976696063FB7070126746D17 /* FakeLogiDeviceSession.swift */,
+				7C8E74749AF7C74992C3195A /* FakeLogiExternalBridge.swift */,
+			);
+			path = LogiTestDoubles;
+			sourceTree = "<group>";
+		};
+		84572C30F63CF71B3EDCE108 /* PreferencesWindow */ = {
+			isa = PBXGroup;
+			children = (
+				52B7C0ECC3B7BDA8AF4168AE /* PreferencesTabViewController.swift */,
+				0E8E3979D901AD383C91D830 /* PreferencesWindowController.swift */,
+				D7F1B02D6BA68FFC07E80799 /* AboutView */,
+				690361A7C86B47541F090DB1 /* ApplicationView */,
+				46D338C7513BEE2B405E747C /* ButtonsView */,
+				F85257CEE11A400894FF66C4 /* GeneralView */,
+				9D9DDC28C7CE78C5E06B6580 /* ScrollingView */,
+				EE2608DDEE31CCA047CCD323 /* UpdateView */,
+			);
+			path = PreferencesWindow;
+			sourceTree = "<group>";
+		};
+		878DB3E1A3AD5E4CCFD94CEF /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				098B96AD09B0D0C03E461E8F /* Options.swift */,
+			);
+			path = Options;
+			sourceTree = "<group>";
+		};
+		8A3ED68945A2F606C0770EDB /* Shortcut */ = {
+			isa = PBXGroup;
+			children = (
+				CC1769CAE57BAF23980EC70B /* ModifierFlagsProviding.swift */,
+				79782E77E1F218D852977EC6 /* OpenTargetPayload.swift */,
+				0C9E493E6C41EFD8C9C47529 /* ScrollActionPort.swift */,
+				4C34384A1BFE4F92F9BD1CDD /* ShortcutExecutor.swift */,
+				6FFB2DE41C7DA5F57F071ACF /* ShortcutManager.swift */,
+				04146536C31B3816942D821F /* SystemShortcut.swift */,
+			);
+			path = Shortcut;
+			sourceTree = "<group>";
+		};
+		8AB674AD27B5611F48BEBE26 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				04DCA4BEEFF720B780064AAA /* MouseAdapter.swift */,
+				DD4904A05C7CA0216B92216A /* MouseAdapterRegistry.swift */,
+				6086C77C5D74EEFE458A92BD /* Logitech */,
+				0FFD137941AA82C4B2D777F3 /* MCHOSE */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
+		9D9DDC28C7CE78C5E06B6580 /* ScrollingView */ = {
+			isa = PBXGroup;
+			children = (
+				178A5CFCEE195B10F68DA02D /* PreferencesScrollingViewController.swift */,
+				8CD7A2D8B6A16BF802974F46 /* PreferencesScrollingWithApplicationViewController.swift */,
+				FC9A2B55D2D7E84558DE439A /* ScrollOptionsContextProviding.swift */,
+				9CF942227D16D3D1D473035E /* ScrollReverseDetailSettingsPopoverViewController.swift */,
+				579815EF1050A9F70A5EF4C4 /* ScrollSmoothDetailSettingsPopoverViewController.swift */,
+			);
+			path = ScrollingView;
+			sourceTree = "<group>";
+		};
+		A563650E42B46323EBF32E6E /* IntroductionWindow */ = {
+			isa = PBXGroup;
+			children = (
+				F9BF1A80A8525BAFA365FC1E /* IntroductionViewController.swift */,
+				638E422B70C14869D2008E0B /* IntroductionWindowController.swift */,
+			);
+			path = IntroductionWindow;
+			sourceTree = "<group>";
+		};
+		A8E67BFE8AEFEA38231BB704 /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				17012FC1ADF5217F0432405E /* LogiExternalBridge.swift */,
+				0914085A88135DCCFF109E05 /* LogiNoOpBridge.swift */,
+			);
+			path = Bridge;
+			sourceTree = "<group>";
+		};
+		AE0CF553B868279F1D2DE841 /* InputEvent */ = {
+			isa = PBXGroup;
+			children = (
+				6FB73C6500BC314D48081FC4 /* InputEvent.swift */,
+				FBE58823460A9410F9AEA862 /* InputProcessor.swift */,
+				37CF224E23B0222D977306F7 /* MouseInteractionSessionController.swift */,
+			);
+			path = InputEvent;
+			sourceTree = "<group>";
+		};
+		C193C12F6EDFD1F29DAA9B9D /* ScrollCore */ = {
+			isa = PBXGroup;
+			children = (
+				130497A279F73B61677212EE /* Interpolator.swift */,
+				8F9FCEA7FBE8B38E06819380 /* ScrollCore.swift */,
+				1983C626B0513096DD2EAD46 /* ScrollDispatchContext.swift */,
+				7CB6BEC81F93D8F8ADE5EE95 /* ScrollEvent.swift */,
+				CB4A521A68A2E6E9A1981508 /* ScrollFilter.swift */,
+				4FF225BD724CD9A9A4FA04F0 /* ScrollPhase.swift */,
+				A6884455D341C90B76D0F59F /* ScrollPoster.swift */,
+				E1F5C8D733424274713C90AD /* ScrollUtils.swift */,
+			);
+			path = ScrollCore;
+			sourceTree = "<group>";
+		};
+		CDBB212A5211EEA33EBE6757 /* MonitorWindow */ = {
+			isa = PBXGroup;
+			children = (
+				3B274338EA5B63A7BEF88AC2 /* Logger.swift */,
+				B5D3D616BE62DFD092B5EF78 /* MonitorLogStore.swift */,
+				C4DBA1A5CAB27269F93D19BA /* MonitorViewController.swift */,
+				961C5775043B4DC84B9448CB /* MonitorWindowController.swift */,
+			);
+			path = MonitorWindow;
+			sourceTree = "<group>";
+		};
+		D2916612BBE1CB248E90FC30 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FC1EBADBC199137C4C2368B7 /* AdaptivePopover.swift */,
+				7C15C4088A49B6EDFF8A47A2 /* BrandTag.swift */,
+				FFBC3406BCA0438AA158DFDA /* DraggingImageView.swift */,
+				287CD978B08757CC8244CEFC /* HoverIntentPopoverController.swift */,
+				39B1E41D36565A4A52706FA9 /* PrimaryButton.swift */,
+				DBDCD8948C8AB9F4B7C5B780 /* Toast */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D7F1B02D6BA68FFC07E80799 /* AboutView */ = {
+			isa = PBXGroup;
+			children = (
+				4A39D735382212E0B5575987 /* PreferencesAboutViewController.swift */,
+				191D0BFD34B85CA7361CB291 /* PreferencesContributorsViewController.swift */,
+				BFD339128987D8EDA47C87C7 /* PreferencesDonateViewController.swift */,
+			);
+			path = AboutView;
+			sourceTree = "<group>";
+		};
+		DBDCD8948C8AB9F4B7C5B780 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				F038E6AAFF0EBD3E73BF07EB /* README.md */,
+				C7046BC83A0C59FC6B0ED6AB /* Toast.swift */,
+				0356E32D757074C4CE7892D9 /* ToastContentView.swift */,
+				BF23BCF145E91150735BBB43 /* ToastLayout.swift */,
+				25679A11EC8CE0285B63C657 /* ToastManager.swift */,
+				2162EF295561B5346960ABCE /* ToastPanel.swift */,
+				C90E6CDE59492FA4D39CAB08 /* ToastStorage.swift */,
+				9D106C4053C2D605093A64B9 /* ToastVisibilityRules.swift */,
+				EAA39A78F048DCBAD9CACC9D /* ToastWindow.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
+		DC7E82CAB9522532008B56BC /* ChuuWidget */ = {
+			isa = PBXGroup;
+			children = (
+				E28EE929DFB5AB330BA70670 /* ChuuBatteryWidget.swift */,
+			);
+			path = ChuuWidget;
+			sourceTree = "<group>";
+		};
+		DF9B7EA552CE7887BA7F0D07 /* ChuuTests */ = {
+			isa = PBXGroup;
+			children = (
+				A94751049534F3354AEE976B /* ButtonBindingTests.swift */,
+				E1E1EE7952C5CC898A82C63E /* ButtonCapturePresentationStatusTests.swift */,
+				55977E6741739696E1EFECF4 /* ButtonUtilsCacheTests.swift */,
+				12D2BF0243BE547ECF2631C4 /* ChuuBrandingTests.swift */,
+				8CEDD195CC9987EEFE131DBE /* ChuuNavigationTests.swift */,
+				73AF1861F677DAAAB1DE29E1 /* ChuuProfileTests.swift */,
+				F60D0D0A0A6C8C1816C059AF /* ChuuWindowTests.swift */,
+				9E516C750EDAB2721B08C12A /* ExtractRegexPatternArgTests.swift */,
+				609DA7B16660D55E5DF3C31F /* InputProcessorTests.swift */,
+				C49AA0AF4FC2779A574CF71B /* InterceptorAutoRestartTests.swift */,
+				55FD5360821EF902DDA49BBE /* InterceptorTapLeakTests.swift */,
+				8EA87460FD57871AA1A2442F /* InterpolatorTests.swift */,
+				2B02255589112041B1654180 /* LogiBoundaryEnforcementTests.swift */,
+				571BDF53DA96B9AB86332B05 /* LogiBridgeDeviceTests.swift */,
+				A0E174FCE8C6AC3955417567 /* LogiBridgeDispatchTests.swift */,
+				8A855A1B5B5C5EE49A9D5958 /* LogiButtonDeliveryModeTests.swift */,
+				D0691D3866019FDA9021C71B /* LogiCenterDeviceIntegrationTests.swift */,
+				F99857226FBC24FE032618FD /* LogiCenterPublicSurfaceTests.swift */,
+				B56688688B8532A2BD1B7358 /* LogiCIDDirectoryTests.swift */,
+				B510CF791D99D883C481A78A /* LogiConflictDetectorTests.swift */,
+				A70E070054D548F6B85747A4 /* LogiControlReportingPacketTests.swift */,
+				85C9C9335D2055E0ED063BBB /* LogiDivertPlannerTests.swift */,
+				031A1CC480CD714A7A34F6D3 /* LogiDivertReconciliationTests.swift */,
+				48BFF172A4F571D62D5CAB6D /* LogiFeatureActionDeviceTests.swift */,
+				C432EC2B799122D64C932F14 /* LogiForceSensingTests.swift */,
+				8588A6C0E7FDE9A33F5F4547 /* LogiHapticTests.swift */,
+				7A34718E44A1008D92F1C27E /* LogiPersistenceCanaryTests.swift */,
+				E8B51495049EFF62316DD2E7 /* LogiReceiverConnectionStateTests.swift */,
+				3185B5FDA2114774A1455EAC /* LogiReportingDidCompleteEmptyPathTests.swift */,
+				926DA967EFDEB834B93EB0F5 /* LogiReportingResponseRoutingTests.swift */,
+				A40073BF0C92016F105245B4 /* LogiScrollForceTests.swift */,
+				D96FADAF107509ACBCB66D3F /* LogiStandardMouseButtonAliasTests.swift */,
+				C0C41DCB8B0C33A0C3FB470D /* LogiTeardownTests.swift */,
+				70F18C41D3FC6829AB07F800 /* LogiUsageBootstrapTests.swift */,
+				3884AF4F1E43237FF6B93A90 /* MouseAdapterTests.swift */,
+				DA9841C13CC6C6664BE6C709 /* MouseAlertPolicyTests.swift */,
+				FBCE38FD87251BFF56F58B77 /* MouseInteractionSessionControllerTests.swift */,
+				8638EF3DBF91D49E2EAE141B /* OpenTargetPayloadTests.swift */,
+				70E7391EFE5A313783A75C5C /* OptionsButtonsLoaderTests.swift */,
+				ED98904554F3CE10EF88C151 /* OptionsChangePropagationTests.swift */,
+				F028863723C4A81A517A0B4D /* OptionsScrollDefaultsTests.swift */,
+				2B614926F70346948DB15413 /* RemovingRegexUTF16RangeTests.swift */,
+				23EAA41B0B3161167847DB71 /* ScrollActionPortTests.swift */,
+				9DBF99D5B1D502F5D64C47EF /* ScrollCoreHotkeyTests.swift */,
+				A1C4B25D02AD6DF3206DB31F /* ScrollDispatchContextTests.swift */,
+				9EBF827EC8ADAF81A8EA223A /* ScrollEventTests.swift */,
+				915C096C13F473455F3235E0 /* ScrollFilterTests.swift */,
+				6231E0FB3978F2CC3C5BC5A7 /* ScrollHotkeyTests.swift */,
+				67BFBDCEA9C2F7DDBC426C7B /* ScrollPhaseTests.swift */,
+				6204B93405D44F8BF09370CD /* ScrollPosterConfigSnapshotTests.swift */,
+				A14ED0DE0A89255EC8C56D6B /* ScrollPosterStateTests.swift */,
+				53E501434CFB5311CEB2EFAB /* ScrollTargetApplicationRulesTests.swift */,
+				90B7FFB71E2C999C3260A374 /* ShortcutExecutorOpenTargetTests.swift */,
+				9CBA401D73FDE5286B9D4FC2 /* UsageRegistryEndToEndTests.swift */,
+				8B649626DF5296E132123373 /* UsageRegistryTests.swift */,
+				7F2D15E78B96A2899DE7689C /* LogiTestDoubles */,
+			);
+			path = ChuuTests;
+			sourceTree = "<group>";
+		};
+		EE2608DDEE31CCA047CCD323 /* UpdateView */ = {
+			isa = PBXGroup;
+			children = (
+				3C54322876235751D116C417 /* PreferencesUpdatesViewController.swift */,
+			);
+			path = UpdateView;
+			sourceTree = "<group>";
+		};
+		F2940D3D076298FC0D21D81D /* Usage */ = {
+			isa = PBXGroup;
+			children = (
+				90D38B7851F2FE603BA24F8B /* UsageRegistry.swift */,
+				074A61B04FA0792032081F18 /* UsageSource.swift */,
+			);
+			path = Usage;
+			sourceTree = "<group>";
+		};
+		F7B1E3CBAB87352128D035FD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DE2374B832B1B88282440F5C /* Chuu.icon */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F85257CEE11A400894FF66C4 /* GeneralView */ = {
+			isa = PBXGroup;
+			children = (
+				FF53EF080E6C42108D401E99 /* PreferencesGeneralViewController.swift */,
+			);
+			path = GeneralView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EDC7B50105CB31DBFE6177CD /* Chuu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CA3F4E9C438114122859C36 /* Build configuration list for PBXNativeTarget "Chuu" */;
+			buildPhases = (
+				64CBA7796EB89C3023C264EB /* Sources */,
+				83A060996249665ECAC922C8 /* Resources */,
+				048C8C422E5D725A49F59DE3 /* Frameworks */,
+				D89B6D6896DE76EFDB0B3085 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1AD7DA73A89643FFAF620860 /* PBXTargetDependency */,
+			);
+			name = Chuu;
+			packageProductDependencies = (
+				10D2AF8220B8CCA74CE5D7ED /* LoginServiceKit */,
+				299B03B038F549578046D95F /* DGCharts */,
+				B232D7BC064B5C3351098F13 /* Sparkle */,
+			);
+			productName = Chuu;
+			productReference = 59534A67C40A601010A7662B /* Chuu.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F3826E1813923C81B0F698D2 /* ChuuTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C00143B291C5CCEF397A767 /* Build configuration list for PBXNativeTarget "ChuuTests" */;
+			buildPhases = (
+				4E578AA0ED9ADF9BB3415092 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				358A54E6D2FDD9D0808436C4 /* PBXTargetDependency */,
+			);
+			name = ChuuTests;
+			packageProductDependencies = (
+			);
+			productName = ChuuTests;
+			productReference = C03B273AABEC3B84DEFCD621 /* ChuuTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F7E275301FF0C595FDA4DF77 /* ChuuWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FD1549051F559E6EBEB3C2B /* Build configuration list for PBXNativeTarget "ChuuWidget" */;
+			buildPhases = (
+				E078C8E2603E56300D33B1AE /* Sources */,
+				896B5AE90D9832EA0078A47C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChuuWidget;
+			packageProductDependencies = (
+			);
+			productName = ChuuWidget;
+			productReference = 27898E4AA0536D916A0AB6FA /* ChuuWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3CF677FA8B48468790DD6372 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					EDC7B50105CB31DBFE6177CD = {
+						DevelopmentTeam = MA4UNJ3J25;
+						ProvisioningStyle = Automatic;
+					};
+					F3826E1813923C81B0F698D2 = {
+						DevelopmentTeam = MA4UNJ3J25;
+						ProvisioningStyle = Automatic;
+					};
+					F7E275301FF0C595FDA4DF77 = {
+						DevelopmentTeam = MA4UNJ3J25;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 6C36D05078BE46169D644D24 /* Build configuration list for PBXProject "Chuu" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				cs,
+				de,
+				el,
+				en,
+				fr,
+				ja,
+				ko,
+				mul,
+				ru,
+				th,
+				tr,
+				uk,
+				"zh-Hans",
+				"zh-Hant",
+				"zh-Hant-HK",
+				"zh-Hant-TW",
+			);
+			mainGroup = 6160E9FD0BC41FE0C4BECF43;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D595920EAF4A7F94749A47B8 /* XCRemoteSwiftPackageReference "Charts" */,
+				11B859BBD45E28F5F1916570 /* XCRemoteSwiftPackageReference "LoginServiceKit" */,
+				F0BA3F5581143293402C589A /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 58D8D2591833C1343FCE1E60 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EDC7B50105CB31DBFE6177CD /* Chuu */,
+				F3826E1813923C81B0F698D2 /* ChuuTests */,
+				F7E275301FF0C595FDA4DF77 /* ChuuWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		83A060996249665ECAC922C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A17CD855FD601C7BC1176D28 /* Assets.xcassets in Resources */,
+				187F8CFFE3F4D018EBB8AB95 /* Chuu.icon in Resources */,
+				E13798DE9C6220E6E7AF73F5 /* Chuu.xcstrings in Resources */,
+				2BA52E34C1D2534540399846 /* Localizable.xcstrings in Resources */,
+				CD4726D3B3546879632B8B40 /* Main.storyboard in Resources */,
+				680C3CAA3DCB776EF440340F /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		896B5AE90D9832EA0078A47C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E0DABCDAFFD50A5036476DF /* Chuu.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4E578AA0ED9ADF9BB3415092 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55A061CDFC6D578CA8295E7B /* ButtonBindingTests.swift in Sources */,
+				FECCC2E51E0732C10869E33A /* ButtonCapturePresentationStatusTests.swift in Sources */,
+				7BA80EE6D695DEE4F879AE69 /* ButtonUtilsCacheTests.swift in Sources */,
+				4B28B0293F14C3A30E709795 /* ChuuBrandingTests.swift in Sources */,
+				11F0215131EA52CD7BEAAF59 /* ChuuNavigationTests.swift in Sources */,
+				4AF017EB376554032F55B6E4 /* ChuuProfileTests.swift in Sources */,
+				11BF8448AAA3AB3E4C4B2D21 /* ChuuWindowTests.swift in Sources */,
+				60F16EE142222108B15C03A1 /* ExampleMouseAdapter.swift in Sources */,
+				DA9912C39DC701C47A44E5D1 /* ExtractRegexPatternArgTests.swift in Sources */,
+				1DA1EC6042310A6A371E3B9B /* FakeLogiDeviceSession.swift in Sources */,
+				1B405CFF289A81CACB6627B5 /* FakeLogiExternalBridge.swift in Sources */,
+				4EB08F40706CB10F369381CA /* InputProcessorTests.swift in Sources */,
+				68FD51B0F7C0F456C74F3347 /* InterceptorAutoRestartTests.swift in Sources */,
+				FC52E26DFAB2A730D7484E98 /* InterceptorTapLeakTests.swift in Sources */,
+				74C58676026E36B839B23245 /* InterpolatorTests.swift in Sources */,
+				FC0F74A922D3919431B9E39D /* LogiBoundaryEnforcementTests.swift in Sources */,
+				658C7979DB0CF9F226DC85C6 /* LogiBridgeDeviceTests.swift in Sources */,
+				B9521C550F44E63814957A31 /* LogiBridgeDispatchTests.swift in Sources */,
+				E919BA7ACB8748039FF7945A /* LogiButtonDeliveryModeTests.swift in Sources */,
+				71CDC572AACEEF4763B41E64 /* LogiCIDDirectoryTests.swift in Sources */,
+				8633FF069EC9EEFC6C6F4E1C /* LogiCenterDeviceIntegrationTests.swift in Sources */,
+				B4F848C13080A0A9E188C549 /* LogiCenterPublicSurfaceTests.swift in Sources */,
+				785C745CB1EA4B45B425451F /* LogiConflictDetectorTests.swift in Sources */,
+				8F6B294FCCD4F19065D6CE20 /* LogiControlReportingPacketTests.swift in Sources */,
+				BE70B65D488F187894D648B4 /* LogiDivertPlannerTests.swift in Sources */,
+				BD6F7BED6B85C734AAD7ACC7 /* LogiDivertReconciliationTests.swift in Sources */,
+				DFB58216959EEFA44020FF9A /* LogiFeatureActionDeviceTests.swift in Sources */,
+				55C0C522D04E777B93059081 /* LogiForceSensingTests.swift in Sources */,
+				F863217F914A0DFB2CE1F8B8 /* LogiHapticTests.swift in Sources */,
+				D59B907AC2885451B33E4857 /* LogiPersistenceCanaryTests.swift in Sources */,
+				DAE562FB3263463831FBA9C6 /* LogiReceiverConnectionStateTests.swift in Sources */,
+				57D5FC2DF5CB58C9B3F2D3EF /* LogiReportingDidCompleteEmptyPathTests.swift in Sources */,
+				D4A9FBE3ABF376BE6CDCE886 /* LogiReportingResponseRoutingTests.swift in Sources */,
+				EB4F6F1BA2CDAA1F5D543F83 /* LogiScrollForceTests.swift in Sources */,
+				B9AD559C70533A618BA8083E /* LogiStandardMouseButtonAliasTests.swift in Sources */,
+				9967286E445C48A23A58C1D4 /* LogiTeardownTests.swift in Sources */,
+				C4097E005FA4D409EFE1AD2E /* LogiUsageBootstrapTests.swift in Sources */,
+				70B0A662B74C32FAF4560729 /* MouseAdapterTests.swift in Sources */,
+				9B529DB759FACAE38044831E /* MouseAlertPolicyTests.swift in Sources */,
+				4F2004AB438E24588B142E3B /* MouseInteractionSessionControllerTests.swift in Sources */,
+				7C096643A617984BAC5D5DE2 /* OpenTargetPayloadTests.swift in Sources */,
+				F7053231E27D634F0C7370F9 /* OptionsButtonsLoaderTests.swift in Sources */,
+				1E745C1B2F4E805EC2BF3872 /* OptionsChangePropagationTests.swift in Sources */,
+				1592DF39F714D8B11192CFD9 /* OptionsScrollDefaultsTests.swift in Sources */,
+				28B315C68E572E7E729B0E50 /* RemovingRegexUTF16RangeTests.swift in Sources */,
+				A75C6453B34200E593524460 /* ScrollActionPortTests.swift in Sources */,
+				4103B260A9A415F6BE3D67CA /* ScrollCoreHotkeyTests.swift in Sources */,
+				B1EE3FCE008036D9112A2E1B /* ScrollDispatchContextTests.swift in Sources */,
+				A30FB419FFC9C435936979AE /* ScrollEventTests.swift in Sources */,
+				897D01582A1202DF8CE4CFC0 /* ScrollFilterTests.swift in Sources */,
+				346667398601021B1B998E5D /* ScrollHotkeyTests.swift in Sources */,
+				4675E6785A23C999B736DF68 /* ScrollPhaseTests.swift in Sources */,
+				E4337058E6A7132BA2ACFF93 /* ScrollPosterConfigSnapshotTests.swift in Sources */,
+				69E8416A758F5D4802A2066F /* ScrollPosterStateTests.swift in Sources */,
+				0EBE9AB4B6CD33C552ECE7AB /* ScrollTargetApplicationRulesTests.swift in Sources */,
+				8B6C477D9B533D8298D3F705 /* ShortcutExecutorOpenTargetTests.swift in Sources */,
+				DB308563305D9094F6D0DD24 /* UsageRegistryEndToEndTests.swift in Sources */,
+				D44BAA78D65391847BEDACEA /* UsageRegistryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64CBA7796EB89C3023C264EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88739C0A21834E8C19CC36A6 /* ActionDisplayRenderer.swift in Sources */,
+				DA0570B472D44830C7F66C5B /* ActionDisplayResolver.swift in Sources */,
+				FC156D97BAC6DEAE0F3736DE /* ActivityPopoverViewController.swift in Sources */,
+				79B2DD4176088ABD46F8F7EE /* AdaptivePopover.swift in Sources */,
+				1CE2BB06BF25F4D348162913 /* AppDelegate.swift in Sources */,
+				AFD1B2CE9E1EDBD5E45AB15F /* Application.swift in Sources */,
+				57FC265CD447F9F3AA6A54E7 /* Archieve.swift in Sources */,
+				CD21189AB40D1A05F15D3C87 /* BrailleSpinner.swift in Sources */,
+				62FD20293916111ED7BF9316 /* BrandTag.swift in Sources */,
+				BB0C729F0181DB8E755E7F56 /* ButtonCapturePresentationStatus.swift in Sources */,
+				8CA5358A3F5AB5FC512EB8E6 /* ButtonCore.swift in Sources */,
+				13D45DB594DF74BBFA416351 /* ButtonTableCellView.swift in Sources */,
+				F344ECBD4291AF8B78DAF92B /* ButtonUtils.swift in Sources */,
+				9BFFF54593764795DD1F361D /* CGEvent+Extensions.swift in Sources */,
+				85AD58F4F4C677AB7CEF6858 /* ChuuModel.swift in Sources */,
+				3C73E376084E07D6FEF4B016 /* ChuuView.swift in Sources */,
+				C92827F9384154907D0B3D59 /* ChuuWindow.swift in Sources */,
+				F5DC6A980AAE8B511BF21AC0 /* ConflictDetector.swift in Sources */,
+				2027E56228CA6DBB025AF1B1 /* Constants.swift in Sources */,
+				8ECD0E1F52ECDCB8F6546CD3 /* DivertPlanner.swift in Sources */,
+				E7635DE8E8BC6E3764794E98 /* DraggingImageView.swift in Sources */,
+				C397C0DF3927CE69A11024E5 /* EnhanceArray.swift in Sources */,
+				AD21C93DF96554D42A22CD71 /* G502MouseAdapter.swift in Sources */,
+				4B8B1B0F4D355D8379FEBA9B /* G7MouseAdapter.swift in Sources */,
+				D7AF7C297BA307C6D5A26982 /* HIDChannel.swift in Sources */,
+				D6B18D0F1C446657034F07CD /* HoverIntentPopoverController.swift in Sources */,
+				0E452B76936B170D53B902F7 /* InputEvent.swift in Sources */,
+				882931C50076C646D5C9E511 /* InputProcessor.swift in Sources */,
+				FB450BEBB9B418032C7EF695 /* Interceptor.swift in Sources */,
+				33F1937A10CC26A664A74CC9 /* Interpolator.swift in Sources */,
+				0AEE635DA6CD2B6F64AFA702 /* IntroductionViewController.swift in Sources */,
+				6E96528F7FB12C8A7824B2F6 /* IntroductionWindowController.swift in Sources */,
+				5CD4D70B7CE78131AD5F0371 /* KeyCode.swift in Sources */,
+				268ECBD055B9E57F33FEFCFA /* KeyPopover.swift in Sources */,
+				8F20B77391BACA06B85B906E /* KeyPreview.swift in Sources */,
+				6D02BC3173BC833C377AC3A9 /* KeyRecorder.swift in Sources */,
+				B0110EB108DC7EF70CA87E4D /* Logger.swift in Sources */,
+				1AB0B1F1EE5AE4685C039C05 /* LogiButtonDeliveryMode.swift in Sources */,
+				A282F7436979A8CA6DA9576A /* LogiButtonDeliveryPolicy.swift in Sources */,
+				436984E2882A3B789CA8F761 /* LogiCIDDirectory.swift in Sources */,
+				C20F3D02612D655BF3F98CF4 /* LogiCenter.swift in Sources */,
+				1E823B9BE98887E76E791AB9 /* LogiDebugPanel.swift in Sources */,
+				AE381D54719A250B014D15B2 /* LogiDeviceSession.swift in Sources */,
+				F8F517D47849B0C1CBDD229A /* LogiDeviceSessionSnapshot.swift in Sources */,
+				0101958978723DFA8189D2E4 /* LogiExternalBridge.swift in Sources */,
+				D760F79C6018BA84029737CF /* LogiIntegrationBridge.swift in Sources */,
+				FF517168D846854C6C7CC96F /* LogiNoOpBridge.swift in Sources */,
+				9605DF5E2DE39E85387A2536 /* LogiReceiverCatalog.swift in Sources */,
+				A39B3AA728B65A6E979D9F1F /* LogiSelfTestRunner.swift in Sources */,
+				3F4701D5BC4F680C34695DF9 /* LogiSelfTestWizard.swift in Sources */,
+				8BACCF74882538D14B7C3545 /* LogiSessionManager.swift in Sources */,
+				51B7C54456135F289AC9E8F6 /* LogiStandardMouseButtonAlias.swift in Sources */,
+				CE3694234772518FE8E68AF8 /* LogiUsageBootstrap.swift in Sources */,
+				4ED9581D7E011EBBDF7B6B65 /* ModifierFlagsProviding.swift in Sources */,
+				82CB5D964984A20969C9BCA2 /* MonitorLogStore.swift in Sources */,
+				DF1E39A8DC6BA7E0A3089BCA /* MonitorViewController.swift in Sources */,
+				ED6B80D7F63DFC5C160948AE /* MonitorWindowController.swift in Sources */,
+				38184765744A106307426D46 /* MouseAdapter.swift in Sources */,
+				0F600ED6DDDC29DE5F25AD26 /* MouseAdapterRegistry.swift in Sources */,
+				A04E9468FCADBB0D975A1F04 /* MouseAlertPolicy.swift in Sources */,
+				914A47A7541AC9C13A58B96B /* MouseAlerts.swift in Sources */,
+				1BA468534D354882FB218B7B /* MouseHardwareService.swift in Sources */,
+				1A4AA782433C5929B5DCF961 /* MouseInteractionSessionController.swift in Sources */,
+				F750664C32960BCD9652617D /* MouseSnapshot.swift in Sources */,
+				D12C8585A1279FE5CD351234 /* NSColor+Extensions.swift in Sources */,
+				AD7FE67A31EF58139C1CD4DA /* OnboardMouseProfile.swift in Sources */,
+				085E03541304A13B621C839D /* OpenTargetConfigPopover.swift in Sources */,
+				A1C4C9C32F5D3FA03C9EFA03 /* OpenTargetPayload.swift in Sources */,
+				E762F57AC71C03316DB0E67D /* Options.swift in Sources */,
+				B2080DAAEEA30A62845E13AF /* PreferencesAboutViewController.swift in Sources */,
+				E6721614784DC5F99212EABD /* PreferencesApplicationViewController.swift in Sources */,
+				15A6D8D03951853CCE534028 /* PreferencesButtonsViewController.swift in Sources */,
+				FF0D2946AF4DE7012926BF2E /* PreferencesContributorsViewController.swift in Sources */,
+				EF41E6794E597004E2C18613 /* PreferencesDonateViewController.swift in Sources */,
+				7C489C2AA1D7BE0C46FDC88C /* PreferencesGeneralViewController.swift in Sources */,
+				67FCEF695D36E9B845F0176F /* PreferencesScrollingViewController.swift in Sources */,
+				23FF2EE1390882C76E63C2E5 /* PreferencesScrollingWithApplicationViewController.swift in Sources */,
+				32447DF2BF0248076DD4E0D4 /* PreferencesTabViewController.swift in Sources */,
+				994D1A194A731D8298417F4E /* PreferencesUpdatesViewController.swift in Sources */,
+				DD33B08E746D8877F5225D01 /* PreferencesWindowController.swift in Sources */,
+				EB71FD9B3DE9F9ACA9C5411B /* PrimaryButton.swift in Sources */,
+				CE971517332DA99B7C5D5AB5 /* RecordedEvent.swift in Sources */,
+				4F4368D0C21FD05DF6DDE0E9 /* ScrollActionPort.swift in Sources */,
+				18FF961C6F1425A53DDF015C /* ScrollCore.swift in Sources */,
+				5460BFE6C74B59915C4F3EC9 /* ScrollDispatchContext.swift in Sources */,
+				FF28DE6DDF47A2B05472BF6C /* ScrollEvent.swift in Sources */,
+				41B6DBC71949A10A1A02C107 /* ScrollFilter.swift in Sources */,
+				E1F41A75EFB79AE8AF54A944 /* ScrollOptionsContextProviding.swift in Sources */,
+				A3C87130BFF0C1DF183E43A1 /* ScrollPhase.swift in Sources */,
+				FF21A0DD044621F828A843E7 /* ScrollPoster.swift in Sources */,
+				A61867DDDA62108AC21797DB /* ScrollReverseDetailSettingsPopoverViewController.swift in Sources */,
+				995ACA42DF51BF91F635FCE8 /* ScrollSmoothDetailSettingsPopoverViewController.swift in Sources */,
+				EBBCA5770D00D91E4CB4E530 /* ScrollUtils.swift in Sources */,
+				BF8BFE4AA1F76A7AF7DF1100 /* SessionActivityStatus.swift in Sources */,
+				B8BE1388E7EFE1D146F527B1 /* ShortcutExecutor.swift in Sources */,
+				EB981C80C6B3C5AAFF0A4E07 /* ShortcutManager.swift in Sources */,
+				C956C90373B074C90D801036 /* StatusItemManager.swift in Sources */,
+				A534CDA23678EA31EA0FF226 /* SystemShortcut.swift in Sources */,
+				6722055F7BE7F6384123C446 /* Toast.swift in Sources */,
+				C25FA88F966FADF176C7EA6D /* ToastContentView.swift in Sources */,
+				24120C22017C29F91CADFD58 /* ToastLayout.swift in Sources */,
+				443BEC8AE7005977DF4B669A /* ToastManager.swift in Sources */,
+				A5BF5A00498D9B7763289EC9 /* ToastPanel.swift in Sources */,
+				6A141B866B3849E475D1AA8B /* ToastStorage.swift in Sources */,
+				F2F2F6DD9947290E6DF405A8 /* ToastVisibilityRules.swift in Sources */,
+				E341E27226AF95FDB2602DD3 /* ToastWindow.swift in Sources */,
+				F4749C81B1DAA413767784B8 /* UpdateManager.swift in Sources */,
+				FCCBCB337C29511D35BC2FE1 /* UsageRegistry.swift in Sources */,
+				6488E97F566295A11DCD395B /* UsageSource.swift in Sources */,
+				2044F2F78D418BC8E8C306CA /* Utils.swift in Sources */,
+				319C3F285A52E3768B2EECE2 /* WelcomeViewController.swift in Sources */,
+				06DF5F742AA4551E23D8D159 /* WelcomeWindowController.swift in Sources */,
+				7F18B5EEF691C8DDA6F5D427 /* WindowManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E078C8E2603E56300D33B1AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14CC5CC58A84C6E78A464EC8 /* ChuuBatteryWidget.swift in Sources */,
+				2599BA0F35165B8C3B4A812A /* MouseSnapshot.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1AD7DA73A89643FFAF620860 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F7E275301FF0C595FDA4DF77 /* ChuuWidget */;
+			targetProxy = 346046CD96F44A15165DE864 /* PBXContainerItemProxy */;
+		};
+		358A54E6D2FDD9D0808436C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EDC7B50105CB31DBFE6177CD /* Chuu */;
+			targetProxy = 03FF98FF16A85FC019FCDE3B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		862B292A4B6EFC05650479BE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				551262E39EF4282B6B4FF850 /* Base */,
+				20DCA70321D3EE11401C42D7 /* mul */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		12334DC9B195CF4055920EE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Configuration/ChuuWidget.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "Configuration/ChuuWidget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = moe.khan.MouseControl.BatteryWidget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		48213AD88D9ED284A7E89249 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = Chuu;
+				CODE_SIGN_ENTITLEMENTS = Configuration/Chuu.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				EXECUTABLE_NAME = MouseControl;
+				INFOPLIST_FILE = "Configuration/Chuu-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = moe.khan.MouseControl;
+				PRODUCT_MODULE_NAME = Chuu;
+				PRODUCT_NAME = Chuu;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Debug;
+		};
+		5C04228EC57536F1D0403874 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = MA4UNJ3J25;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		6499D0B561728DEA3502E8A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = moe.khan.MouseControl.Tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chuu.app/Contents/MacOS/MouseControl";
+			};
+			name = Debug;
+		};
+		6ED32FFC9018DD26F9B89B31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = moe.khan.MouseControl.Tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chuu.app/Contents/MacOS/MouseControl";
+			};
+			name = Release;
+		};
+		9F0BFF0D9ECDB7E2AB0652A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = MA4UNJ3J25;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B55AF529561A073E36B114A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = Chuu;
+				CODE_SIGN_ENTITLEMENTS = Configuration/Chuu.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				EXECUTABLE_NAME = MouseControl;
+				INFOPLIST_FILE = "Configuration/Chuu-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = moe.khan.MouseControl;
+				PRODUCT_MODULE_NAME = Chuu;
+				PRODUCT_NAME = Chuu;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Release;
+		};
+		C8F685D995675F61BD0D2CFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Configuration/ChuuWidget.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "Configuration/ChuuWidget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = moe.khan.MouseControl.BatteryWidget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C00143B291C5CCEF397A767 /* Build configuration list for PBXNativeTarget "ChuuTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6499D0B561728DEA3502E8A2 /* Debug */,
+				6ED32FFC9018DD26F9B89B31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4CA3F4E9C438114122859C36 /* Build configuration list for PBXNativeTarget "Chuu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48213AD88D9ED284A7E89249 /* Debug */,
+				B55AF529561A073E36B114A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4FD1549051F559E6EBEB3C2B /* Build configuration list for PBXNativeTarget "ChuuWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8F685D995675F61BD0D2CFF /* Debug */,
+				12334DC9B195CF4055920EE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6C36D05078BE46169D644D24 /* Build configuration list for PBXProject "Chuu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F0BFF0D9ECDB7E2AB0652A2 /* Debug */,
+				5C04228EC57536F1D0403874 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		11B859BBD45E28F5F1916570 /* XCRemoteSwiftPackageReference "LoginServiceKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Clipy/LoginServiceKit";
+			requirement = {
+				kind = exactVersion;
+				version = 2.4.0;
+			};
+		};
+		D595920EAF4A7F94749A47B8 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = exactVersion;
+				version = 5.1.0;
+			};
+		};
+		F0BA3F5581143293402C589A /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		10D2AF8220B8CCA74CE5D7ED /* LoginServiceKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 11B859BBD45E28F5F1916570 /* XCRemoteSwiftPackageReference "LoginServiceKit" */;
+			productName = LoginServiceKit;
+		};
+		299B03B038F549578046D95F /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D595920EAF4A7F94749A47B8 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
+		B232D7BC064B5C3351098F13 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0BA3F5581143293402C589A /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 3CF677FA8B48468790DD6372 /* Project object */;
+}

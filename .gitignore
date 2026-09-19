@@ -37,10 +37,10 @@ yarn.lock
 bun.lockb
 
 # Optional vendor-owned renders used only by the local development install.
-Mos/Assets.xcassets/G502Top.imageset/
-Mos/Assets.xcassets/G502Side.imageset/
-Mos/Assets.xcassets/G502RenderTop.imageset/
-Mos/Assets.xcassets/G502RenderSide.imageset/
-Mos/Assets.xcassets/G7.imageset/
+Chuu/Assets.xcassets/G502Top.imageset/
+Chuu/Assets.xcassets/G502Side.imageset/
+Chuu/Assets.xcassets/G502RenderTop.imageset/
+Chuu/Assets.xcassets/G502RenderSide.imageset/
+Chuu/Assets.xcassets/G7.imageset/
 Configuration/Local.xcconfig
 *.xcarchive

@@ -7,9 +7,9 @@ if [[ "$MODE" != "--build" ]]; then pkill -x MouseControl 2>/dev/null || true; f
 CONFIGURATION=Debug
 if [[ "$MODE" == "--install" ]]; then CONFIGURATION=Release; fi
 xcodegen generate --spec project.yml
-xcodebuild -project MouseControl.xcodeproj -scheme Debug -configuration "$CONFIGURATION" \
-  -destination 'platform=macOS' -derivedDataPath build/MouseControl build
-APP="$PWD/build/MouseControl/Build/Products/$CONFIGURATION/Chuu.app"
+xcodebuild -project Chuu.xcodeproj -scheme Chuu -configuration "$CONFIGURATION" \
+  -destination 'platform=macOS' -derivedDataPath build/Chuu build
+APP="$PWD/build/Chuu/Build/Products/$CONFIGURATION/Chuu.app"
 if [[ "$MODE" == "--build" ]]; then printf '\nBuilt: %s\n' "$APP"; exit 0; fi
 if [[ "$MODE" == "--install" ]]; then
   DEST="$HOME/Applications/Chuu.app"

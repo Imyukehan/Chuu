@@ -1,4 +1,4 @@
-name: MouseControl
+name: Chuu
 options:
   createIntermediateGroups: true
   developmentLanguage: en
@@ -24,13 +24,13 @@ packages:
     url: https://github.com/sparkle-project/Sparkle
     from: 2.0.0
 targets:
-  Mos:
+  Chuu:
     type: application
     productName: Chuu
     platform: macOS
     deploymentTarget: '14.0'
     sources:
-      - path: Mos
+      - path: Chuu
         excludes: [Info.plist, '*.entitlements']
       - path: Shared
       - path: Resources/Chuu.icon
@@ -40,15 +40,15 @@ targets:
       base:
         PRODUCT_NAME: Chuu
         EXECUTABLE_NAME: MouseControl
-        PRODUCT_MODULE_NAME: Mos_Debug
+        PRODUCT_MODULE_NAME: Chuu
         PRODUCT_BUNDLE_IDENTIFIER: moe.khan.MouseControl
-        CODE_SIGN_ENTITLEMENTS: Configuration/MouseControl.entitlements
+        CODE_SIGN_ENTITLEMENTS: Configuration/Chuu.entitlements
         ASSETCATALOG_COMPILER_APPICON_NAME: Chuu
         COMBINE_HIDPI_IMAGES: YES
         ENABLE_HARDENED_RUNTIME: YES
         SWIFT_EMIT_LOC_STRINGS: NO
     info:
-      path: Configuration/MouseControl-Info.plist
+      path: Configuration/Chuu-Info.plist
       properties:
         CFBundleDisplayName: Chuu
         CFBundleShortVersionString: '$(MARKETING_VERSION)'
@@ -67,33 +67,35 @@ targets:
       - package: Charts
         product: DGCharts
       - package: Sparkle
-      - target: MouseBatteryWidget
+      - target: ChuuWidget
         embed: true
-  MouseBatteryWidget:
+  ChuuWidget:
     type: app-extension
     platform: macOS
     deploymentTarget: '14.0'
-    sources: [MouseBatteryWidget, Shared]
+    sources: [ChuuWidget, Shared]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: moe.khan.MouseControl.BatteryWidget
-        CODE_SIGN_ENTITLEMENTS: Configuration/MouseBatteryWidget.entitlements
+        CODE_SIGN_ENTITLEMENTS: Configuration/ChuuWidget.entitlements
         SKIP_INSTALL: YES
         ENABLE_HARDENED_RUNTIME: YES
         APPLICATION_EXTENSION_API_ONLY: YES
     info:
-      path: Configuration/MouseBatteryWidget-Info.plist
+      path: Configuration/ChuuWidget-Info.plist
       properties:
         CFBundleDisplayName: Chuu
         CFBundleShortVersionString: '$(MARKETING_VERSION)'
         CFBundleVersion: '$(CURRENT_PROJECT_VERSION)'
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
-  MosTests:
+  ChuuTests:
     type: bundle.unit-test
     platform: macOS
     deploymentTarget: '14.0'
-    sources: [MosTests]
+    sources:
+      - path: ChuuTests
+      - path: Examples/MouseAdapter/ExampleMouseAdapter.swift
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: moe.khan.MouseControl.Tests
@@ -101,14 +103,27 @@ targets:
         TEST_HOST: '$(BUILT_PRODUCTS_DIR)/Chuu.app/Contents/MacOS/MouseControl'
         BUNDLE_LOADER: '$(TEST_HOST)'
     dependencies:
-      - target: Mos
+      - target: Chuu
 schemes:
-  Debug:
+  Chuu:
     build:
       targets:
-        Mos: all
+        Chuu: all
     run:
       config: Debug
     test:
       config: Debug
-      targets: [MosTests]
+      targets: [ChuuTests]
+      environmentVariables:
+        LOGI_REAL_DEVICE: '0'
+  ChuuHardwareTests:
+    build:
+      targets:
+        Chuu: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets: [ChuuTests]
+      environmentVariables:
+        LOGI_REAL_DEVICE: '1'
