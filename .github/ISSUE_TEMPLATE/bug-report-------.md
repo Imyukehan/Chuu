@@ -1,6 +1,6 @@
 ---
 name: Bug report | 故障报告
-about: Report a reproducible Mos bug | 报告可复现的 Mos 问题
+about: Report a reproducible Chuu bug | 报告可复现的 Chuu 问题
 title: ''
 labels: bug
 assignees: ''
@@ -23,7 +23,7 @@ assignees: ''
 
 ## Environment | 环境信息
 
-- Mos version | Mos 版本:
+- Chuu version | Chuu 版本:
 - macOS version | macOS 版本:
 - Mac model / chip | 机型 / 芯片:
 - Mouse / trackpad model | 鼠标 / 触控板型号:
@@ -32,7 +32,7 @@ assignees: ''
 - Accessibility permission granted | 是否已授予辅助功能权限: Yes / No
 - Other input, mouse, keyboard, or window-management tools | 其他输入、鼠标、键盘或窗口管理工具:
 
-## Mos Settings Involved | 涉及的 Mos 设置
+## Chuu Settings Involved | 涉及的 Chuu 设置
 
 - [ ] Smooth scrolling | 平滑滚动
 - [ ] Reverse scrolling | 反转滚动方向

@@ -1,6 +1,6 @@
-# Localization Guide for Mos
+# Localization Guide for Chuu
 
-This guide describes how Mos handles localisation, how to extend it, and how to
+This guide describes how Chuu handles localisation, how to extend it, and how to
 keep every language in sync with app features such as the Buttons panel,
 per-application settings, Logi actions, and the shortcut catalog.
 
@@ -8,22 +8,23 @@ per-application settings, Logi actions, and the shortcut catalog.
 
 ## 1. String Catalog Layout
 
-Mos ships Xcode’s string catalogs instead of legacy `.strings` files. There are **two catalogs** and they must remain separate:
+Chuu uses three Xcode string catalogs. Keep their scopes separate:
 
 | File | Scope | Notes |
 |------|-------|-------|
-| `Mos/Localizable.xcstrings` | Strings referenced from Swift (`NSLocalizedString`) | Keys are either human-readable phrases (`"Auth"`, `"Current Version"`) **or** camelCase identifiers that mirror code constants (e.g. `appExpose`, `categoryFunctionKeys`, shortcut identifiers in `SystemShortcut.Shortcut`). Do not rename identifiers; Swift enums and persistence depend on them. |
-| `Mos/mul.lproj/Main.xcstrings` | Interface Builder (storyboards / XIBs) | Keys are Interface Builder Object IDs (`2AK-Pu-mot.title`). Xcode regenerates them on build. Never hand-edit Object IDs. |
+| `Chuu/Localizable.xcstrings` | Strings referenced from Swift (`NSLocalizedString`) | Keys are either human-readable phrases (`"Auth"`, `"Current Version"`) **or** camelCase identifiers that mirror code constants (e.g. `appExpose`, `categoryFunctionKeys`, shortcut identifiers in `SystemShortcut.Shortcut`). Do not rename identifiers; Swift enums and persistence depend on them. |
+| `Chuu/mul.lproj/Main.xcstrings` | Interface Builder (storyboards / XIBs) | Keys are Interface Builder Object IDs (`2AK-Pu-mot.title`). Xcode regenerates them on build. Never hand-edit Object IDs. |
+| `Shared/Chuu.xcstrings` | Chuu device UI and widget | Use `NSLocalizedString(key, tableName: "Chuu", comment: ...)`. Shared between the app and widget. |
 
 `mul.lproj` is the canonical bundle for storyboard strings because we support many locales. Xcode fans out per-language nibs at build time, so do **not** split `Main.xcstrings` into multiple folders manually.
 
-The project still targets macOS 10.13, so always use `NSLocalizedString(_:comment:)` in Swift rather than `String(localized:)`.
+The project targets macOS 14. Follow the existing `NSLocalizedString` convention so the correct catalog is selected.
 
 ---
 
 ## 2. Current Language Coverage
 
-Both catalogs expose the same set of locales:
+The two inherited catalogs expose these locales; the shared Chuu catalog currently has English and Simplified Chinese:
 
 `cs`, `de`, `el`, `en`, `fr`, `ja`, `ko`, `ru`, `th`, `tr`, `uk`, `zh-Hans`, `zh-Hant`, `zh-Hant-HK`, `zh-Hant-TW`
 
@@ -32,7 +33,7 @@ To verify coverage and catch untranslated rows:
 ```bash
 python3 - <<'PY'
 import json, pathlib
-catalog = json.loads(pathlib.Path("Mos/Localizable.xcstrings").read_text())
+catalog = json.loads(pathlib.Path("Chuu/Localizable.xcstrings").read_text())
 dupes = [(k, lang) for k, row in catalog["strings"].items()
          for lang, unit in row["localizations"].items()
          if lang != "en" and unit["stringUnit"]["value"] == row["localizations"]["en"]["stringUnit"]["value"]]
@@ -40,7 +41,7 @@ print(f"{len(dupes)} duplicate values (same as English). Sample:", dupes[:10])
 PY
 ```
 
-Run the same script against `Mos/mul.lproj/Main.xcstrings` if you suspect orphaned storyboard strings. A “duplicate” is acceptable when the official term matches English (e.g. “Launchpad”), but treat the report as a to-do list for translators.
+Run the same script against `Chuu/mul.lproj/Main.xcstrings` if you suspect orphaned storyboard strings. A “duplicate” is acceptable when the official term matches English (e.g. “Launchpad”), but treat the report as a to-do list for translators.
 
 Feature work often adds strings across the Buttons panel, shortcut catalog,
 onboarding, per-app settings, Monitor window, and Preferences UI. Make sure
@@ -73,7 +74,7 @@ Keep modifier symbols intact and append translated names only if the locale expe
 
 ### Proper Nouns
 
-- App name “Mos”, brand names (GitHub, macOS) and contributor credits remain unchanged.
+- Display the app name as “Chuu”. Keep hardware brand names, upstream attribution and contributor credits unchanged; do not rename persisted shortcut or localization keys for branding.
 - System features (Mission Control, Spotlight) use Apple’s official localisation.
 
 ### Numbers & Symbols
@@ -140,16 +141,16 @@ button.title = NSLocalizedString("Auth", comment: "Authorization button title")
 
 ```bash
 # Pretty-print a catalog for manual diffing
-jq '.' Mos/Localizable.xcstrings | less
+jq '.' Chuu/Localizable.xcstrings | less
 
 # Validate catalog JSON
-python3 -m json.tool Mos/Localizable.xcstrings >/dev/null
-python3 -m json.tool Mos/mul.lproj/Main.xcstrings >/dev/null
+python3 -m json.tool Chuu/Localizable.xcstrings >/dev/null
+python3 -m json.tool Chuu/mul.lproj/Main.xcstrings >/dev/null
 
 # Compare locale coverage between the two catalogs
 python3 - <<'PY'
 import json, pathlib
-for path in ("Mos/Localizable.xcstrings", "Mos/mul.lproj/Main.xcstrings"):
+for path in ("Chuu/Localizable.xcstrings", "Chuu/mul.lproj/Main.xcstrings"):
     catalog = json.loads(pathlib.Path(path).read_text())
     locales = sorted({lang for row in catalog["strings"].values()
                      for lang in row.get("localizations", {})})
@@ -157,10 +158,10 @@ for path in ("Mos/Localizable.xcstrings", "Mos/mul.lproj/Main.xcstrings"):
 PY
 
 # Export catalogs for external translators (creates XLIFF)
-xcodebuild -exportLocalizations -project Mos.xcodeproj -localizationPath build/localizations
+xcodebuild -exportLocalizations -project Chuu.xcodeproj -localizationPath build/localizations
 
 # Reimport translated XLIFF back into the project
-xcodebuild -importLocalizations -project Mos.xcodeproj -localizationPath build/localizations
+xcodebuild -importLocalizations -project Chuu.xcodeproj -localizationPath build/localizations
 ```
 
 ---

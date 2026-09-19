@@ -7,11 +7,11 @@
 - 新行为优先落到可测试的纯逻辑、planner、packet builder、formatter 或 bridge 层。
 - bugfix 优先补回归测试；测试应覆盖旧失败路径。
 - 不为了测试暴露宽泛 API。优先使用小型 internal helper、protocol、test double 或现有 seam。
-- 新增测试文件必须确认加入 `MosTests` target。
+- 新增测试文件必须确认加入 `ChuuTests` target。
 
 ## 热路径
 
-`Mos/ScrollCore/`、输入事件处理和 HID 回调路径要避免：
+`Chuu/ScrollCore/`、输入事件处理和 HID 回调路径要避免：
 
 - 不必要的对象分配或数组复制。
 - 同步 I/O、重日志、频繁 NotificationCenter 广播。
@@ -28,15 +28,15 @@
 
 - HID++ packet 构造和 divert/reconcile 决策应保持可单测。
 - 普通应用层不要直接引用 Logi 内部 session、packet、feature 实现。
-- 涉及 `Mos/Logi/` 或 `Mos/Integration/` 边界时运行 `scripts/qa/lint-logi-boundary.sh`。
+- 涉及 `Chuu/Logi/` 或 `Chuu/Integration/` 边界时运行 `scripts/qa/lint-logi-boundary.sh`。
 - 真实设备逻辑必须由 `LOGI_REAL_DEVICE=1` gate 隔离。
 
 ## UI 与本地化
 
-- Swift 文案使用 `NSLocalizedString(_:comment:)`；因为 Mos 最低支持 macOS 10.13，不要使用 `String(localized:)`。
-- `Mos/Localizable.xcstrings` 和 `Mos/mul.lproj/Main.xcstrings` 保持分离。
+- Swift 文案使用 `NSLocalizedString(_:comment:)`；因为 Chuu 最低支持 macOS 14，不要使用 `String(localized:)`。
+- `Chuu/Localizable.xcstrings` 和 `Chuu/mul.lproj/Main.xcstrings` 保持分离。
 - 不重命名已被代码、持久化或 Interface Builder 使用的 key。
-- UI 改动检查长文本、Light/Dark Mode、Auto Layout 和 macOS 10.13 fallback。
+- UI 改动检查长文本、Light/Dark Mode、Auto Layout 和 macOS 14 fallback。
 
 ## 发布
 

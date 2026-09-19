@@ -1,6 +1,6 @@
 ---
 name: Feature request | 功能请求
-about: Propose a focused improvement for Mos | 为 Mos 提出聚焦的改进
+about: Propose a focused improvement for Chuu | 为 Chuu 提出聚焦的改进
 title: ''
 labels: enhancement
 assignees: ''
@@ -27,14 +27,14 @@ report instead.
 - [ ] Larger feature or module | 较大的新增功能或模块
 
 Large new features, modules, or architectural rewrites should start in
-[Discussions](https://github.com/Caldis/Mos/discussions) before a pull request.
+[Issues](https://github.com/Imyukehan/Chuu/issues) before a pull request.
 
 较大的新增功能、模块或架构调整，请先在
-[Discussions](https://github.com/Caldis/Mos/discussions) 中发起讨论。
+[Issues](https://github.com/Imyukehan/Chuu/issues) 中发起讨论。
 
 ## Environment | 环境信息
 
-- Mos version | Mos 版本:
+- Chuu version | Chuu 版本:
 - macOS version | macOS 版本:
 - Mouse / trackpad model, if relevant | 相关鼠标 / 触控板型号:
 - Affected application, if relevant | 相关应用:

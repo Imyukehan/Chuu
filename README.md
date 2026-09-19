@@ -1,51 +1,66 @@
 # Chuu
 
-一个正在开发中的 macOS 鼠标管理 App，基于 [Mos](https://github.com/Caldis/Mos)，把电量、板载按键、平滑滚动和应用设置放在一起。
+English | [简体中文](README.zh-CN.md)
 
-**开发中，尚未发布稳定安装包。** 目前主要在个人使用的 G502 X PLUS 和 MCHOSE G7 上验证，不代表支持全部罗技或迈从鼠标。
+A native macOS mouse companion for battery status, onboard buttons, smooth scrolling, and per-app settings. Built on [Mos](https://github.com/Caldis/Mos).
 
-![Chuu 首页：白色 G502 X PLUS、电量和按键设置](docs/images/home.png)
+**Work in progress. No stable release or notarized installer yet.**
 
-截图来自本机开发版；鼠标产品图归 Logitech 所有，公开源码不附带厂商原始图片，缺少图片时使用通用鼠标图标。
+![Chuu with a white G502 X PLUS, battery status and button controls](docs/images/home.png)
 
-## 已有功能
+The screenshot is from a local development build. The Logitech product artwork is vendor-owned and is not included in the source. Builds without optional artwork use a generic mouse symbol.
 
-- 原生半透明窗口、菜单栏入口和 Liquid Glass 图标。
-- G502 X PLUS：2.4 GHz 电量、充电状态、板载按键映射、RGB 开关。
-- MCHOSE G7：2.4 GHz 电量读取。
-- WidgetKit 电量小组件；后台定时读取并请求更新。
-- 保留 Mos 的平滑滚动、快捷操作和按应用设置。
-- 鼠标页集中管理板载按键与全局快捷操作，普通鼠标使用通用外观。
-- 连接电量浮窗；可在“通用”中预览或关闭。
-- 可选的 20% 低电量通知，充至 25% 后重新启用下一次提醒。
+## Features
 
-电量读取需要 Chuu 在后台运行；WidgetKit 的实际刷新时间由系统安排。第三方 Qi 充电底座不一定会上报充电状态。板载写入会先备份，再读回校验。
+- Native translucent window, menu-bar entry, and Liquid Glass app icon.
+- Battery status in the app and a WidgetKit widget.
+- Compact connection popup and optional low-battery notifications at 20%.
+- G502 X PLUS onboard button mapping and RGB toggle, with backup and read-back verification.
+- Smooth scrolling, global button shortcuts, and per-app settings inherited from Mos.
+- Closing the window hides the Dock icon while Chuu continues running in the background.
 
-关闭主窗口会隐藏 Dock 图标，但继续在后台运行。菜单里的“退出 Chuu”才会停止滚动、按键和电量读取；再次打开 App 可回到主窗口。
+The app polls battery status every 30 seconds while running and awake. Widget refresh timing is controlled by macOS. Third-party Qi charging modules may not report charging status. A connected receiver does not necessarily mean its mouse is awake; routine wireless timeouts do not trigger repeated connection popups.
 
-## 构建
+## Supported Mice
 
-运行需要 macOS 14+。当前开发环境为 Xcode 27.1，项目使用 XcodeGen；旧版 SDK 未验证。
+| Model | Tested connection | Battery | Onboard buttons | RGB |
+| --- | --- | --- | --- | --- |
+| Logitech G502 X PLUS | 2.4 GHz, receiver `046D:C547` | Yes | Yes, validated onboard format only | On/off |
+| MCHOSE G7 | 2.4 GHz, receiver `A8A5:2255` | Yes | Not implemented | Not implemented |
+| Other standard HID mice | USB / Bluetooth | Requires an adapter | Not implemented | Not implemented |
 
-1. 安装 Xcode 和 XcodeGen。
-2. 按 [构建说明](docs/build.md) 配置自己的签名团队和 App Group。
-3. 打开 `MouseControl.xcodeproj`，选择 `Debug` scheme，运行 Chuu。
+**The author currently owns only a few mice, so hardware coverage is limited. Contributions for additional brands and models are welcome.** Sharing a brand, receiver family, or product name does not imply compatibility. Include your exact model, firmware, connection mode, interface IDs, sanitized response fixtures, and real-device results with an adapter contribution.
 
-也可以使用：
+Start with the [mouse adapter guide](docs/mouse-adapters.md), [compiled test-only example](Examples/MouseAdapter/ExampleMouseAdapter.swift), and [contribution guide](CONTRIBUTING.md).
+
+## Build
+
+Requires macOS 14+ to run. Current development uses Xcode 27.1 and XcodeGen; older SDKs are not verified. Liquid Glass is used where the OS supports it.
+
+1. Install Xcode and XcodeGen.
+2. Configure your signing team and App Group using the [build guide](docs/build.md).
+3. Generate and open `Chuu.xcodeproj`, select the **Chuu** scheme, and run.
 
 ```sh
-./script/build_and_run.sh --build    # 仅构建
-./script/build_and_run.sh --install  # 安装到 ~/Applications/Chuu.app
+xcodegen generate --spec project.yml
+open Chuu.xcodeproj
+
+./script/build_and_run.sh --build    # Build only
+./script/build_and_run.sh --install  # Install to ~/Applications/Chuu.app
 ```
 
-滚动和快捷操作需要辅助功能权限。不要同时运行其他会接管相同鼠标按键的工具。
+Scrolling and shortcuts require Accessibility permission. Avoid running multiple tools that intercept the same buttons. Quitting Chuu stops input processing and battery polling; closing its window does not.
 
-## 下一步
+## Project Layout
 
-这版先验证页面合并和提醒体验。连接浮窗识别接收器热插拔、首次成功连接；接收器一直插着时，不把无线查询超时后的恢复当成重连，避免鼠标日常休眠反复弹窗。普通鼠标只显示可确认的连接信息，不代表已经支持其电量或板载协议。
+- `Chuu/`: application, input engine, device controls, and vendor adapters.
+- `Chuu/Devices/<Vendor>/`: model-specific battery readers and hardware operations.
+- `ChuuWidget/` and `Shared/`: widget, shared snapshots, and localization.
+- `ChuuTests/` and `Examples/MouseAdapter/`: regression tests and a fixture-only adapter example.
+- `project.yml`: source of truth for `Chuu.xcodeproj` and target membership.
 
-低电量通知需要在“通用”中开启并允许通知。后续计划是配置导入导出、更多设备协议和手势操作，见 [交互方案与同类工具调研](docs/interaction-proposal.md)。
+See [architecture and compatibility](docs/architecture.md) for extension points and deliberately preserved identifiers. Configuration import/export, more device protocols, and gestures are future work.
 
-## 致谢与许可
+## Credits and License
 
-Chuu 是 [Caldis/Mos](https://github.com/Caldis/Mos) 的非商业开发分支，保留上游历史和 [CC BY-NC 4.0](LICENSE) 许可，并非 MIT 项目，也不是 Mos 或硬件厂商的官方产品。第三方素材说明见 [NOTICES](NOTICES.md)。
+Chuu is a noncommercial fork of [Caldis/Mos](https://github.com/Caldis/Mos), retaining its history and [CC BY-NC 4.0 license](LICENSE). It is not an MIT-licensed project and is not affiliated with Mos or hardware vendors. See [NOTICES](NOTICES.md) for third-party material and [archived upstream documentation](docs/upstream/README.md).

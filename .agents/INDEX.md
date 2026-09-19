@@ -6,17 +6,18 @@
 
 | 任务 | 必读 | 视情况读取 |
 |------|------|------------|
-| 任意代码改动 | `.agents/docs/code-map.md`, `.agents/docs/testing.md`, `.agents/docs/quality-gates.md` | 相关源码、相关 `MosTests/*` |
+| 任意代码改动 | `.agents/docs/code-map.md`, `.agents/docs/testing.md`, `.agents/docs/quality-gates.md` | 相关源码、相关 `ChuuTests/*` |
 | bugfix | `.agents/docs/testing.md`, `.agents/docs/quality-gates.md` | 历史 issue/plan、相关回归测试 |
-| UI / 文案 / 本地化 | `LOCALIZATION.md`, `.agents/docs/quality-gates.md` | `Mos/mul.lproj/Main.xcstrings`, `Mos/Localizable.xcstrings` |
-| Logi / HID / 真实设备 | `.agents/docs/code-map.md`, `.agents/docs/testing.md`, `.agents/docs/quality-gates.md` | `Mos/Logi/*`, `Mos/Integration/*`, `scripts/qa/lint-logi-boundary.sh` |
-| 准备发布 / 更新 appcast / notarization | `.agents/skills/release-preparation/SKILL.md` | `release/appcast.xml`, `CHANGELOG.md`, `Mos.xcodeproj/project.pbxproj` |
+| UI / 文案 / 本地化 | `LOCALIZATION.md`, `.agents/docs/quality-gates.md` | `Chuu/mul.lproj/Main.xcstrings`, `Chuu/Localizable.xcstrings` |
+| Logi / HID / 真实设备 | `.agents/docs/code-map.md`, `.agents/docs/testing.md`, `.agents/docs/quality-gates.md` | `Chuu/Logi/*`, `Chuu/Integration/*`, `scripts/qa/lint-logi-boundary.sh` |
+| 准备发布 / 更新 appcast / notarization | `.agents/skills/release-preparation/SKILL.md` | `docs/build.md`, `project.yml`；上游 release 工具不是 Chuu 发布入口 |
 | 处理社区 PR / 发版后回访 issue | `.agents/skills/community-pr-loop/SKILL.md` | 相关 PR diff、`docs/plans/2026-05-03-logi-ble-hidpp-divert-postmortem.md` |
 | agent 配置 / skill 调整 | `AGENTS.md`, `.agents/INDEX.md`, `.agents/skills/README.md` | `.claude/skills`, `.codex/skills` 兼容入口 |
 
 ## 当前事实来源
 
-- 构建、scheme、target、test plan：以 `Mos.xcodeproj` 和 `MosTests/*.xctestplan` 为准。
+- 构建、scheme、target：以 `project.yml` 和生成的 `Chuu.xcodeproj` 为准。默认 scheme 为 `Chuu`；硬件测试另用 `ChuuHardwareTests`。
+- 新鼠标适配：`docs/mouse-adapters.md`、`docs/architecture.md`、`Examples/MouseAdapter/ExampleMouseAdapter.swift`。
 - 模块边界：以源码和 `.agents/docs/code-map.md` 为准。
 - 本地化：以 `LOCALIZATION.md` 和两个 `.xcstrings` 为准。
 - 发布：以 `.agents/skills/release-preparation/SKILL.md` 为准。

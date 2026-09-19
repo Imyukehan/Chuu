@@ -5,8 +5,8 @@ The upstream CC BY-NC 4.0 license and attribution remain in place.
 
 ## Build
 
-The fork uses `project.yml` and the generated `MouseControl.xcodeproj`.
-The original `Mos.xcodeproj` is retained for upstream comparison, not the fork's build entry point.
+The fork uses `project.yml` and the generated `Chuu.xcodeproj`.
+The old Xcode projects are available in Git history. Use the `Chuu` scheme and the current [architecture](docs/architecture.md) and [adapter guide](docs/mouse-adapters.md).
 Xcode, XcodeGen and the local Apple Development signing identity are required.
 
 ```sh
@@ -69,9 +69,9 @@ The imagery is a static product render, not a live representation of RGB state o
 
 ```sh
 scripts/qa/lint-logi-boundary.sh
-xcodebuild -project MouseControl.xcodeproj -scheme Debug -configuration Debug \
-  -destination 'platform=macOS' -derivedDataPath build/MouseControl \
-  test -only-testing:MosTests/MouseControlProfileTests
+xcodebuild -project Chuu.xcodeproj -scheme Chuu -configuration Debug \
+  -destination 'platform=macOS' -derivedDataPath build/Chuu \
+  test -only-testing:ChuuTests/ChuuProfileTests
 ```
 
 Stop the running fork before tests. Tests use the same development signature; do not disable code signing.
@@ -80,7 +80,7 @@ Fixtures and unit tests never write to physical devices.
 ### Verified On 2026-09-18
 
 - Signed universal Release app installed at `~/Applications/Mouse Control.app`; nested signature verification passed.
-- Five `MouseControlProfileTests` passed; Logi boundary lint and whitespace checks passed.
+- Five `ChuuProfileTests` passed; Logi boundary lint and whitespace checks passed.
 - Real G502 X PLUS: app displayed 82%, 2.4 GHz, the existing Mouse 5/6/7 mappings and stored RGB-off state.
 - Native top/side device views and embedded scrolling pane were inspected in the running app.
 - Accessibility/device-control permission was confirmed enabled in System Settings.
