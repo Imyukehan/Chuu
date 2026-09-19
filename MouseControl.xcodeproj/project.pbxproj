@@ -242,7 +242,6 @@
 		1B5DC9170E42F30DE9BB3FC4 /* Interpolator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpolator.swift; sourceTree = "<group>"; };
 		1C64F52F2F74EBE8E536C786 /* ButtonCapturePresentationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCapturePresentationStatus.swift; sourceTree = "<group>"; };
 		21AC3B0E24F6E783A055A872 /* AdaptivePopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptivePopover.swift; sourceTree = "<group>"; };
-		22EF82E2B4911CE489278900 /* Mos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23028E995AE52558CA2BE535 /* LogiTeardownTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiTeardownTests.swift; sourceTree = "<group>"; };
 		238E365F660D68900E159E2D /* OnboardMouseProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardMouseProfile.swift; sourceTree = "<group>"; };
 		281E1364E393B0E651A5FE6E /* LogiFeatureActionDeviceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiFeatureActionDeviceTests.swift; sourceTree = "<group>"; };
@@ -389,6 +388,7 @@
 		F6D2A11C86D77C217F9E325B /* LogiCIDDirectoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiCIDDirectoryTests.swift; sourceTree = "<group>"; };
 		F816874879599EB34463FBC0 /* HIDChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIDChannel.swift; sourceTree = "<group>"; };
 		F9DAA76CC58D9F4CC7C7092A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAB80136D95611F992AF0060 /* Chuu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chuu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC729014074860318F6CBAC0 /* InputEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputEvent.swift; sourceTree = "<group>"; };
 		FE110054DDB4A875C1B07520 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Main.xcstrings; sourceTree = "<group>"; };
 		FF6EAA8A2C1AA2994C90BF8B /* PreferencesDonateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesDonateViewController.swift; sourceTree = "<group>"; };
@@ -747,7 +747,7 @@
 		C1D2915EBB55FB5BC1E8D9DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				22EF82E2B4911CE489278900 /* Mos.app */,
+				FAB80136D95611F992AF0060 /* Chuu.app */,
 				016FBEF3808CECC86B7046C0 /* MosTests.xctest */,
 				43073E980A09007D0B4457F9 /* MouseBatteryWidget.appex */,
 			);
@@ -918,7 +918,7 @@
 				AC6C33EF5789BE096E6C05F8 /* Sparkle */,
 			);
 			productName = Mos;
-			productReference = 22EF82E2B4911CE489278900 /* Mos.app */;
+			productReference = FAB80136D95611F992AF0060 /* Chuu.app */;
 			productType = "com.apple.product-type.application";
 		};
 		965EA6514E983B0E68124F74 /* MouseBatteryWidget */ = {

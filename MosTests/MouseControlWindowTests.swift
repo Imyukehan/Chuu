@@ -16,4 +16,33 @@ final class MouseControlWindowTests: XCTestCase {
         XCTAssertTrue(window.collectionBehavior.contains(.fullScreenNone))
         XCTAssertFalse(try XCTUnwrap(window.standardWindowButton(.zoomButton)).isEnabled)
     }
+
+    @MainActor
+    func testClosingMainWindowHidesDockEvenWithTransientPanel() {
+        let previousPolicy = NSApp.activationPolicy()
+        let previousFlag = Utils.isDockIconVisible
+        let panel = NSPanel(contentRect: NSRect(x: 0, y: 0, width: 40, height: 40),
+                            styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
+        panel.isReleasedWhenClosed = false
+        defer {
+            panel.close()
+            NSApp.setActivationPolicy(previousPolicy)
+            Utils.isDockIconVisible = previousFlag
+        }
+        panel.orderFront(nil)
+        XCTAssertTrue(panel.isVisible)
+        NSApp.setActivationPolicy(.regular)
+        Utils.isDockIconVisible = true
+        MouseControlWindow.shared.windowWillClose(Notification(name: NSWindow.willCloseNotification))
+        XCTAssertEqual(NSApp.activationPolicy(), .accessory)
+        XCTAssertFalse(Utils.isDockIconVisible)
+        Utils.showDockIcon()
+        XCTAssertEqual(NSApp.activationPolicy(), .regular)
+        XCTAssertTrue(Utils.isDockIconVisible)
+    }
+
+    @MainActor
+    func testClosingLastWindowKeepsBackgroundAppRunning() {
+        XCTAssertFalse(AppDelegate().applicationShouldTerminateAfterLastWindowClosed(NSApp))
+    }
 }

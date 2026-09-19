@@ -142,6 +142,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     // 用户双击打开应用程序
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        false
+    }
+
     func application(_ application: NSApplication, open urls: [URL]) {
         if #available(macOS 14.0, *), urls.contains(where: { $0.scheme == "mousecontrol" }) {
             MouseControlWindow.shared.present()

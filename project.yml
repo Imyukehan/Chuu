@@ -26,6 +26,7 @@ packages:
 targets:
   Mos:
     type: application
+    productName: Chuu
     platform: macOS
     deploymentTarget: '14.0'
     sources:

@@ -105,10 +105,9 @@ final class MouseControlWindow: NSWindowController, NSWindowDelegate, NSToolbarD
     }
 
     func windowWillClose(_ notification: Notification) {
-        if NSApp.windows.filter({ $0.isVisible && $0 != window }).isEmpty {
-            NSApp.setActivationPolicy(.accessory)
-            Utils.isDockIconVisible = false
-        }
+        // Status-item and transient panels are not reasons to keep a Dock icon.
+        NSApp.setActivationPolicy(.accessory)
+        Utils.isDockIconVisible = false
     }
 }
 
