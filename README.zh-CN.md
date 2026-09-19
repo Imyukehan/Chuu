@@ -6,6 +6,8 @@
 
 **开发中，尚未发布稳定安装包。** 目前主要在个人使用的 G502 X PLUS 和 MCHOSE G7 上验证，不代表支持全部罗技或迈从鼠标。
 
+[未公证测试包](https://github.com/Imyukehan/Chuu/releases) 由 GitHub Actions 自动构建，首次启动可能需要系统授权，这种签名方式下的小组件功能未经验证。流程说明见[自动打包文档](docs/ci-releases.md)。
+
 ![Chuu 首页：白色 G502 X PLUS、电量和按键设置](docs/images/home.png)
 
 截图来自本机开发版；公开源码不附带可选的设备外观素材，缺少素材时使用通用鼠标图标。

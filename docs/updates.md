@@ -14,7 +14,7 @@ Use **Sparkle 2 + GitHub Releases + GitHub Pages**:
 - GitHub Pages hosts an `appcast.xml` describing versions, minimum OS versions, download URLs, signatures and release notes.
 - Sparkle checks the appcast, presents available updates, verifies downloads, installs and relaunches. No custom update server is required.
 
-The repository's inherited `release/`, website and workflow files are upstream history, not an active Chuu publishing pipeline. Review their destinations before adopting any of them.
+The repository's inherited `release/`, website and `pages.yml` workflow are upstream history, not Chuu's publishing pipeline. The separate [test-release workflow](ci-releases.md) publishes unnotarized test packages only; it does not generate or publish a Sparkle feed.
 
 ## First Release Checklist
 

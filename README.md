@@ -4,7 +4,7 @@ English | [简体中文](README.zh-CN.md)
 
 A native macOS mouse companion for battery status, onboard buttons, smooth scrolling, and per-app settings. Built on [Mos](https://github.com/Caldis/Mos).
 
-**Work in progress. No stable release or notarized installer yet.**
+**Work in progress. No stable release or notarized installer yet.** [Unnotarized test packages](https://github.com/Imyukehan/Chuu/releases) are built by GitHub Actions; first launch may require approval, and widget operation is not validated with this signing mode. See [automated packaging](docs/ci-releases.md).
 
 ![Chuu with a white G502 X PLUS, battery status and button controls](docs/images/home.png)
 

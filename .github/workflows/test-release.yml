@@ -1,0 +1,119 @@
+name: Build Test Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing version tag (v0.1.1, for example)'
+        required: true
+        type: string
+      publish:
+        description: 'Publish a new unnotarized GitHub prerelease'
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: xcode-27
+    timeout-minutes: 45
+    outputs:
+      tag: ${{ steps.package.outputs.tag }}
+      commit: ${{ steps.package.outputs.commit }}
+    steps:
+      - name: Check out packaging tools
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Validate tag input
+        env:
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
+            echo 'Expected an existing vMAJOR.MINOR.PATCH tag.' >&2
+            exit 1
+          }
+      - name: Check out exact tagged source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: refs/tags/${{ inputs.tag || github.ref_name }}
+          path: source
+          persist-credentials: false
+      - name: Prepare build tools
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: '1'
+        run: |
+          xcodebuild -version
+          if ! command -v xcodegen >/dev/null; then
+            brew install xcodegen
+          fi
+          xcodegen --version
+      - name: Test packaging guards
+        run: |
+          bash -n scripts/ci/package-test-build.sh
+          python3 -B -m unittest discover -s scripts/ci -p '*_tests.py'
+      - name: Build and verify universal test package
+        id: package
+        env:
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: bash scripts/ci/package-test-build.sh "$PWD/source" "$TAG" "$PWD/dist"
+      - name: Upload package and checksums
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: chuu-test-package
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: chuu-build-log
+          path: source/build/ci-build.log
+          if-no-files-found: ignore
+          retention-days: 7
+
+  publish:
+    needs: build
+    if: github.repository == 'Imyukehan/Chuu' && (github.event_name == 'push' || inputs.publish)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Download verified package
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          name: chuu-test-package
+          path: dist
+      - name: Verify downloaded checksums
+        working-directory: dist
+        run: sha256sum --check SHA256SUMS
+      - name: Publish unnotarized prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ needs.build.outputs.tag }}
+          SOURCE_COMMIT: ${{ needs.build.outputs.commit }}
+        run: |
+          current=$(gh api "repos/$GH_REPO/commits/$TAG" --jq .sha)
+          [[ "$current" == "$SOURCE_COMMIT" ]] || {
+            echo 'Tag moved after the build; refusing to publish.' >&2
+            exit 1
+          }
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo 'This release already exists. Existing assets will not be overwritten; use a new version tag.' >&2
+            exit 1
+          fi
+          gh release create "$TAG" dist/*.zip dist/SHA256SUMS dist/build-info.json \
+            --verify-tag --prerelease --latest=false \
+            --title "Chuu $TAG (Unnotarized test build)" \
+            --notes-file dist/release-notes.md

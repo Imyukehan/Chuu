@@ -1,0 +1,5 @@
+# GitHub's hosted Xcode 27 public-preview label is not yet in actionlint's built-in list.
+# This extends the lint allowlist only; the workflow does not use a self-hosted runner.
+self-hosted-runner:
+  labels:
+    - xcode-27
