@@ -7,7 +7,7 @@
     },
     "Shortcuts (all mice)": {
       "extractionState": "manual",
-      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Shortcuts (all mice)"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "快捷操作 · 所有鼠标"}}}
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Shortcuts"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "快捷操作"}}}
     },
     "Connection popup": {
       "extractionState": "manual",

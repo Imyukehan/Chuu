@@ -85,10 +85,8 @@ struct ChuuView: View {
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .opacity(device.online ? 1 : 0.45)
                         if device.model == "g502x" {
-                            Picker("", selection: $sideView) {
-                                Text(tr("Top")).tag(false)
-                                Text(tr("Side")).tag(true)
-                            }.pickerStyle(.segmented).labelsHidden().controlSize(.large).frame(width: 152)
+                            ChuuModePicker(titles: [tr("Top"), tr("Side")], isSecondSelected: $sideView)
+                                .frame(width: 152, height: 32)
                                 .padding(.bottom, 28)
                         }
                     }
@@ -110,10 +108,9 @@ struct ChuuView: View {
     private func buttonSettings(for device: MouseSnapshot) -> some View {
         VStack(spacing: 12) {
             if device.model == "g502x" {
-                Picker("", selection: $showShortcuts) {
-                    Text(tr("Onboard buttons")).tag(false)
-                    Text(tr("Shortcuts (all mice)")).tag(true)
-                }.pickerStyle(.segmented).labelsHidden().controlSize(.large)
+                ChuuModePicker(titles: [tr("Onboard buttons"), tr("Shortcuts (all mice)")],
+                               isSecondSelected: $showShortcuts)
+                    .frame(width: 290, height: 32)
             } else {
                 Text(tr("Shortcuts (all mice)")).font(.headline)
             }

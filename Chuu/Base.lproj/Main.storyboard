@@ -220,11 +220,11 @@
         <scene sceneID="BTN-SC-123">
             <objects>
                 <viewController title="Buttons" storyboardIdentifier="buttons" id="BTN-VC-123" customClass="PreferencesButtonsViewController" customModule="Chuu" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" blendingMode="behindWindow" material="toolTip" state="followsWindowActiveState" id="BTN-VW-123">
+                    <view key="view" id="BTN-VW-123">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="321"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <visualEffectView blendingMode="behindWindow" material="toolTip" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="2W2-hM-ME3">
+                            <view translatesAutoresizingMaskIntoConstraints="NO" id="2W2-hM-ME3">
                                 <rect key="frame" x="0.0" y="291" width="450" height="30"/>
                                 <subviews>
                                     <textField wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="c5F-kF-CwS">
@@ -258,8 +258,8 @@
                                     <constraint firstItem="Wa1-F9-Eyt" firstAttribute="leading" secondItem="2W2-hM-ME3" secondAttribute="leading" id="lQj-um-iK7"/>
                                     <constraint firstItem="xNC-sb-7wF" firstAttribute="centerY" secondItem="2W2-hM-ME3" secondAttribute="centerY" id="vl7-7z-Qn5"/>
                                 </constraints>
-                            </visualEffectView>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="ftV-jh-kjD">
+                            </view>
+                            <scrollView borderType="none" drawsBackground="NO" autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="ftV-jh-kjD">
                                 <rect key="frame" x="0.0" y="31" width="450" height="260"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="9qm-Wz-Rwq">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="260"/>
@@ -523,7 +523,7 @@
                             <constraint firstAttribute="bottom" secondItem="uuZ-tE-wlr" secondAttribute="bottom" constant="38" id="vG8-OX-AKv"/>
                             <constraint firstAttribute="trailing" secondItem="y2I-TF-AaH" secondAttribute="trailing" id="w3a-c5-36o"/>
                         </constraints>
-                    </visualEffectView>
+                    </view>
                     <connections>
                         <outlet property="activityIndicator" destination="LgI-AC-ind" id="LgI-ol-001"/>
                         <outlet property="addButton" destination="xql-gm-0mI" id="E6H-zi-qsW"/>

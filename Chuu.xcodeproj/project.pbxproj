@@ -43,6 +43,7 @@
 		32447DF2BF0248076DD4E0D4 /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B7C0ECC3B7BDA8AF4168AE /* PreferencesTabViewController.swift */; };
 		33F1937A10CC26A664A74CC9 /* Interpolator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130497A279F73B61677212EE /* Interpolator.swift */; };
 		346667398601021B1B998E5D /* ScrollHotkeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6231E0FB3978F2CC3C5BC5A7 /* ScrollHotkeyTests.swift */; };
+		35520452A9ED1AB19C4DD1CD /* ChuuModePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2968735574FDA5B026B8321 /* ChuuModePickerTests.swift */; };
 		38184765744A106307426D46 /* MouseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA4BEEFF720B780064AAA /* MouseAdapter.swift */; };
 		3C73E376084E07D6FEF4B016 /* ChuuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEFEF1180CA8D0DB30BC435 /* ChuuView.swift */; };
 		3F4701D5BC4F680C34695DF9 /* LogiSelfTestWizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C05B515EF6E4B8429480DA5 /* LogiSelfTestWizard.swift */; };
@@ -83,6 +84,7 @@
 		74C58676026E36B839B23245 /* InterpolatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA87460FD57871AA1A2442F /* InterpolatorTests.swift */; };
 		785C745CB1EA4B45B425451F /* LogiConflictDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B510CF791D99D883C481A78A /* LogiConflictDetectorTests.swift */; };
 		79B2DD4176088ABD46F8F7EE /* AdaptivePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1EBADBC199137C4C2368B7 /* AdaptivePopover.swift */; };
+		7B1CAC8E519316FD279EA1AC /* ChuuModePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075D6FA5512481CAEFF1945B /* ChuuModePicker.swift */; };
 		7BA80EE6D695DEE4F879AE69 /* ButtonUtilsCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55977E6741739696E1EFECF4 /* ButtonUtilsCacheTests.swift */; };
 		7C096643A617984BAC5D5DE2 /* OpenTargetPayloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8638EF3DBF91D49E2EAE141B /* OpenTargetPayloadTests.swift */; };
 		7C489C2AA1D7BE0C46FDC88C /* PreferencesGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF53EF080E6C42108D401E99 /* PreferencesGeneralViewController.swift */; };
@@ -231,6 +233,7 @@
 		04DCA4BEEFF720B780064AAA /* MouseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseAdapter.swift; sourceTree = "<group>"; };
 		0598C6D79D70DB7E336753AC /* ActivityPopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPopoverViewController.swift; sourceTree = "<group>"; };
 		074A61B04FA0792032081F18 /* UsageSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageSource.swift; sourceTree = "<group>"; };
+		075D6FA5512481CAEFF1945B /* ChuuModePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuuModePicker.swift; sourceTree = "<group>"; };
 		08E6FE661D01D7BAEA59F365 /* LogiUsageBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiUsageBootstrap.swift; sourceTree = "<group>"; };
 		0914085A88135DCCFF109E05 /* LogiNoOpBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiNoOpBridge.swift; sourceTree = "<group>"; };
 		098B96AD09B0D0C03E461E8F /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
@@ -343,6 +346,7 @@
 		A0E174FCE8C6AC3955417567 /* LogiBridgeDispatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiBridgeDispatchTests.swift; sourceTree = "<group>"; };
 		A14ED0DE0A89255EC8C56D6B /* ScrollPosterStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPosterStateTests.swift; sourceTree = "<group>"; };
 		A1C4B25D02AD6DF3206DB31F /* ScrollDispatchContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollDispatchContextTests.swift; sourceTree = "<group>"; };
+		A2968735574FDA5B026B8321 /* ChuuModePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuuModePickerTests.swift; sourceTree = "<group>"; };
 		A40073BF0C92016F105245B4 /* LogiScrollForceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiScrollForceTests.swift; sourceTree = "<group>"; };
 		A4ECC9B1C03BE29F0A1807B8 /* LogiReceiverCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiReceiverCatalog.swift; sourceTree = "<group>"; };
 		A6884455D341C90B76D0F59F /* ScrollPoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPoster.swift; sourceTree = "<group>"; };
@@ -539,6 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				25871BAA03EAE9FDD66ACF7A /* ChuuModel.swift */,
+				075D6FA5512481CAEFF1945B /* ChuuModePicker.swift */,
 				CFEFEF1180CA8D0DB30BC435 /* ChuuView.swift */,
 				ED0B7D20F7578291F27032DD /* ChuuWindow.swift */,
 				F38A9FD054735AB0AF7D77C9 /* HIDChannel.swift */,
@@ -857,6 +862,7 @@
 				E1E1EE7952C5CC898A82C63E /* ButtonCapturePresentationStatusTests.swift */,
 				55977E6741739696E1EFECF4 /* ButtonUtilsCacheTests.swift */,
 				12D2BF0243BE547ECF2631C4 /* ChuuBrandingTests.swift */,
+				A2968735574FDA5B026B8321 /* ChuuModePickerTests.swift */,
 				8CEDD195CC9987EEFE131DBE /* ChuuNavigationTests.swift */,
 				73AF1861F677DAAAB1DE29E1 /* ChuuProfileTests.swift */,
 				F60D0D0A0A6C8C1816C059AF /* ChuuWindowTests.swift */,
@@ -1106,6 +1112,7 @@
 				FECCC2E51E0732C10869E33A /* ButtonCapturePresentationStatusTests.swift in Sources */,
 				7BA80EE6D695DEE4F879AE69 /* ButtonUtilsCacheTests.swift in Sources */,
 				4B28B0293F14C3A30E709795 /* ChuuBrandingTests.swift in Sources */,
+				35520452A9ED1AB19C4DD1CD /* ChuuModePickerTests.swift in Sources */,
 				11F0215131EA52CD7BEAAF59 /* ChuuNavigationTests.swift in Sources */,
 				4AF017EB376554032F55B6E4 /* ChuuProfileTests.swift in Sources */,
 				11BF8448AAA3AB3E4C4B2D21 /* ChuuWindowTests.swift in Sources */,
@@ -1181,6 +1188,7 @@
 				13D45DB594DF74BBFA416351 /* ButtonTableCellView.swift in Sources */,
 				F344ECBD4291AF8B78DAF92B /* ButtonUtils.swift in Sources */,
 				9BFFF54593764795DD1F361D /* CGEvent+Extensions.swift in Sources */,
+				7B1CAC8E519316FD279EA1AC /* ChuuModePicker.swift in Sources */,
 				85AD58F4F4C677AB7CEF6858 /* ChuuModel.swift in Sources */,
 				3C73E376084E07D6FEF4B016 /* ChuuView.swift in Sources */,
 				C92827F9384154907D0B3D59 /* ChuuWindow.swift in Sources */,
