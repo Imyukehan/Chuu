@@ -31,8 +31,8 @@ xcodebuild -project Chuu.xcodeproj -scheme Chuu -configuration Release \
 
 APP="$SOURCE/build/TestRelease/Build/Products/Release/Chuu.app"
 codesign --verify --deep --strict "$APP"
-lipo -verify_arch arm64 x86_64 "$APP/Contents/MacOS/MouseControl"
-lipo -verify_arch arm64 x86_64 "$APP/Contents/PlugIns/ChuuWidget.appex/Contents/MacOS/ChuuWidget"
+lipo "$APP/Contents/MacOS/MouseControl" -verify_arch arm64 x86_64
+lipo "$APP/Contents/PlugIns/ChuuWidget.appex/Contents/MacOS/ChuuWidget" -verify_arch arm64 x86_64
 python3 "$TOOLS/test_release_metadata.py" "$APP" "$TAG" "$COMMIT" "$OUTPUT"
 
 STAGE=$(mktemp -d "${TMPDIR:-/tmp}/chuu-test-package.XXXXXX")
