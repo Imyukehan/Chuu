@@ -13,20 +13,28 @@ APP="$PWD/build/MouseControl/Build/Products/$CONFIGURATION/Chuu.app"
 if [[ "$MODE" == "--build" ]]; then printf '\nBuilt: %s\n' "$APP"; exit 0; fi
 if [[ "$MODE" == "--install" ]]; then
   DEST="$HOME/Applications/Chuu.app"
+  BACKUP="$HOME/Library/Application Support/moe.khan.MouseControl/InstallBackup/Chuu.app"
   mkdir -p "$HOME/Applications"
+  codesign --verify --deep --strict "$APP"
+  # Keep one rollback copy outside Applications, never an accumulating list.
+  if [[ -e "$BACKUP" ]]; then
+    IDENTIFIER=$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$BACKUP/Contents/Info.plist")
+    [[ "$IDENTIFIER" == "moe.khan.MouseControl" ]] || { printf 'Unrelated app at backup path.\n' >&2; exit 1; }
+    swift -e 'import Foundation; try FileManager.default.trashItem(at: URL(fileURLWithPath: CommandLine.arguments[1]), resultingItemURL: nil)' "$BACKUP"
+  fi
   if [[ -e "$DEST" ]]; then
     IDENTIFIER=$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$DEST/Contents/Info.plist")
     [[ "$IDENTIFIER" == "moe.khan.MouseControl" ]] || { printf 'Unrelated app at install path.\n' >&2; exit 1; }
-    mv "$DEST" "$DEST.previous-$(date +%Y%m%d-%H%M%S)"
+    mkdir -p "$(dirname "$BACKUP")"
+    mv "$DEST" "$BACKUP"
   fi
-  ditto "$APP" "$DEST"
-  codesign --verify --deep --strict "$DEST"
-  LEGACY="$HOME/Applications/Mouse Control.app"
-  if [[ -d "$LEGACY" ]]; then
-    LEGACY_ID=$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$LEGACY/Contents/Info.plist")
-    if [[ "$LEGACY_ID" == "moe.khan.MouseControl" ]]; then
-      mv "$LEGACY" "$LEGACY.previous-$(date +%Y%m%d-%H%M%S)"
+  if ! ditto "$APP" "$DEST" || ! codesign --verify --deep --strict "$DEST"; then
+    if [[ -e "$DEST" ]]; then
+      swift -e 'import Foundation; try FileManager.default.trashItem(at: URL(fileURLWithPath: CommandLine.arguments[1]), resultingItemURL: nil)' "$DEST"
     fi
+    if [[ -e "$BACKUP" ]]; then mv "$BACKUP" "$DEST"; fi
+    printf 'Installation failed; previous app restored.\n' >&2
+    exit 1
   fi
   APP="$DEST"
 fi
