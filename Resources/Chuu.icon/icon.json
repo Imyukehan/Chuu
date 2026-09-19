@@ -1,0 +1,94 @@
+{
+  "features" : [
+    "refractivity"
+  ],
+  "fill" : {
+    "automatic-gradient" : "extended-srgb:0.82000,0.89000,0.86000,1.00000"
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "fill-specializations" : [
+            {
+              "appearance" : "dark",
+              "value" : {
+                "solid" : "extended-srgb:0.30000,0.91000,0.70000,1.00000"
+              }
+            }
+          ],
+          "image-name" : "wheel.svg",
+          "name" : "Mint battery wheel"
+        }
+      ],
+      "name" : "Battery wheel",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.25
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.12
+      }
+    },
+    {
+      "layers" : [
+        {
+          "fill-specializations" : [
+            {
+              "appearance" : "dark",
+              "value" : {
+                "solid" : "extended-srgb:0.11000,0.16000,0.15000,1.00000"
+              }
+            }
+          ],
+          "glass" : false,
+          "image-name" : "seams.svg",
+          "name" : "Recessed button divisions"
+        }
+      ],
+      "name" : "Button divisions",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0
+      },
+      "translucency" : {
+        "enabled" : false,
+        "value" : 0
+      }
+    },
+    {
+      "layers" : [
+        {
+          "fill-specializations" : [
+            {
+              "appearance" : "dark",
+              "value" : {
+                "solid" : "extended-srgb:0.67000,0.76000,0.73000,1.00000"
+              }
+            }
+          ],
+          "image-name" : "shell.svg",
+          "name" : "Pearl glass shell"
+        }
+      ],
+      "name" : "Frosted mouse",
+      "refractivity" : {
+        "depth" : 0.2,
+        "enabled" : true,
+        "strength" : 0.5
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.35
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.18
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : "shared"
+  }
+}

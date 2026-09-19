@@ -108,6 +108,9 @@ internal class LogiSessionManager {
         // 读取设备信息
         let vendorId = IOHIDDeviceGetProperty(device, kIOHIDVendorIDKey as CFString) as? Int ?? 0
         let productId = IOHIDDeviceGetProperty(device, kIOHIDProductIDKey as CFString) as? Int ?? 0
+        // The Mouse Control adapter owns this LIGHTSPEED receiver's vendor channel.
+        // Ordinary mouse events still pass through the unchanged MOS input engine.
+        if Bundle.main.bundleIdentifier == "moe.khan.MouseControl", productId == 0xC547 { return }
         let productName = IOHIDDeviceGetProperty(device, kIOHIDProductKey as CFString) as? String ?? "Unknown"
         let usagePage = IOHIDDeviceGetProperty(device, kIOHIDPrimaryUsagePageKey as CFString) as? Int ?? 0
         let usage = IOHIDDeviceGetProperty(device, kIOHIDPrimaryUsageKey as CFString) as? Int ?? 0

@@ -523,7 +523,7 @@ class LogiDebugPanel: NSObject {
 
     private class func autoLogHeader() -> String {
         return [
-            "# Mos HID++ debug log",
+            "# Chuu HID++ debug log",
             "# Session started: \(fullTimestamp())",
             "# Latest file: \(autoLogLatestFileName)",
             "",

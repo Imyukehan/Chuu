@@ -35,3 +35,10 @@ build/*.zip
 pnpm-lock.yaml
 yarn.lock
 bun.lockb
+
+# Optional vendor-owned renders used only by the local development install.
+Mos/Assets.xcassets/G502Top.imageset/
+Mos/Assets.xcassets/G502Side.imageset/
+Mos/Assets.xcassets/G7.imageset/
+Configuration/Local.xcconfig
+*.xcarchive

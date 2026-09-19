@@ -125,7 +125,7 @@
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Xzk-6e-mKA">
                                 <rect key="frame" x="171" y="71" width="259" height="14"/>
-                                <buttonCell key="cell" type="check" title="Launch Mos at Login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xoR-7p-3qj">
+                                <buttonCell key="cell" type="check" title="Launch Chuu at Login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xoR-7p-3qj">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -164,9 +164,9 @@
                                     <segue destination="3aa-uW-Wet" kind="popover" popoverAnchorView="sTG-Fn-P3P" popoverBehavior="t" preferredEdge="maxY" id="QkR-g6-VEC"/>
                                 </connections>
                             </button>
-                            <textField wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gt2-mv-Ris" userLabel="Launch On Login Description">
+                            <textField hidden="YES" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gt2-mv-Ris" userLabel="Launch On Login Description">
                                 <rect key="frame" x="169" y="20" width="264" height="11"/>
-                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Re-run Mos again to show the hidden Icon" id="bB5-2R-9Da">
+                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Re-run Chuu again to show the hidden Icon" id="bB5-2R-9Da">
                                     <font key="font" metaFont="miniSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -927,7 +927,7 @@
                         <subviews>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGW-PK-8DX">
                                 <rect key="frame" x="10" y="10" width="204" height="42"/>
-                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" title="The allow list mode will make Mos only apply to apps within the application list." id="v26-RK-BtL">
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" title="The allow list mode will make Chuu only apply to apps within the application list." id="v26-RK-BtL">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1117,7 +1117,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="45l-vw-E0o" userLabel="Dash Key Description">
+                            <textField identifier="mouseControl.help.dash" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="45l-vw-E0o" userLabel="Dash Key Description">
                                 <rect key="frame" x="169" y="353" width="263" height="11"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Increase scrolling speed on long pages" id="Z59-tN-QjE">
                                     <font key="font" metaFont="miniSystem"/>
@@ -1136,7 +1136,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="gSx-dp-Tvn" userLabel="Toggle Key Description">
+                            <textField identifier="mouseControl.help.toggle" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="gSx-dp-Tvn" userLabel="Toggle Key Description">
                                 <rect key="frame" x="169" y="300" width="263" height="11"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Change vertical scrolling to horizontal scrolling" id="KnM-kA-wn5">
                                     <font key="font" metaFont="miniSystem"/>
@@ -1155,7 +1155,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="1eQ-Un-ZLh" userLabel="Block Key Description">
+                            <textField identifier="mouseControl.help.block" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="1eQ-Un-ZLh" userLabel="Block Key Description">
                                 <rect key="frame" x="169" y="247" width="158" height="11"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Temporarily block smooth scrolling" id="iki-Jk-qSr">
                                     <font key="font" metaFont="miniSystem"/>
@@ -1219,7 +1219,7 @@
                                     <action selector="scrollStepStepperChange:" target="iW5-CD-5OC" id="LSH-W5-eWh"/>
                                 </connections>
                             </stepper>
-                            <textField wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ET3-bp-TfD" userLabel="Scroll Step Description">
+                            <textField identifier="mouseControl.help.step" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ET3-bp-TfD" userLabel="Scroll Step Description">
                                 <rect key="frame" x="169" y="174" width="263" height="11"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Sets the minimum scroll distance" id="Jan-OY-m70">
                                     <font key="font" metaFont="miniSystem"/>
@@ -1274,7 +1274,7 @@
                                     <action selector="scrollSpeedStepperChange:" target="iW5-CD-5OC" id="kbJ-4c-Epc"/>
                                 </connections>
                             </stepper>
-                            <textField wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U62-ME-IJk" userLabel="Scroll Speed Description">
+                            <textField identifier="mouseControl.help.speed" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U62-ME-IJk" userLabel="Scroll Speed Description">
                                 <rect key="frame" x="169" y="119" width="263" height="11"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Sets scrolling acceleration" id="B3O-iI-E7v">
                                     <font key="font" metaFont="miniSystem"/>
@@ -1326,7 +1326,7 @@
                                     <action selector="scrollDurationStepperChange:" target="iW5-CD-5OC" id="cvd-fX-2VH"/>
                                 </connections>
                             </stepper>
-                            <textField wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sat-Nx-2q9" userLabel="Scroll Duration Description">
+                            <textField identifier="mouseControl.help.duration" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sat-Nx-2q9" userLabel="Scroll Duration Description">
                                 <rect key="frame" x="169" y="64" width="263" height="11"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Sets the duration of the scroll animation" id="DsD-EW-zCH">
                                     <font key="font" metaFont="miniSystem"/>
@@ -1778,7 +1778,7 @@
                                     <constraint firstAttribute="height" constant="83" id="3Ih-IA-IFu"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="Yzz-YW-b1q"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Mos" id="2AK-Pu-mot">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Chuu" id="2AK-Pu-mot">
                                     <font key="font" metaFont="systemUltraLight" size="70"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2731,7 +2731,7 @@ mouseEventWindowUnderMousePointerThatCanHandleThisEvent: 0.0</string>
                         <subviews>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lw5-DQ-yJl">
                                 <rect key="frame" x="10" y="10" width="297" height="14"/>
-                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" title="You need to re-run Mos to change the settings" id="cIk-j1-vYt">
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" title="You need to re-run Chuu to change the settings" id="cIk-j1-vYt">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -2828,7 +2828,7 @@ mouseEventWindowUnderMousePointerThatCanHandleThisEvent: 0.0</string>
                             </textField>
                             <textField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="MEd-Ts-wNq">
                                 <rect key="frame" x="123" y="179" width="95" height="59"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" alignment="center" title="Mos" id="YHn-dn-A4n">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" alignment="center" title="Chuu" id="YHn-dn-A4n">
                                     <font key="font" metaFont="systemUltraLight" size="50"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2929,7 +2929,7 @@ Pick up your mouse, we just have a few thing that you need to check.</string>
                                         <textFieldCell key="cell" alignment="left" id="1su-Cm-MUc">
                                             <font key="font" metaFont="system"/>
                                             <string key="title">After the update, macOS sometimes fails to authorize correctly.
-Remove Mos from the list first, and then re-add Mos to authorize. (You can also drag the icon above directly)</string>
+Remove Chuu from the list first, and then re-add Chuu to authorize. (You can also drag the icon above directly)</string>
                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>

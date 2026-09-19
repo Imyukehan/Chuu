@@ -98,193 +98,193 @@
       }
     },
     "1su-Cm-MUc.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"After the update, macOS sometimes fails to authorize correctly.\\nRemove Mos from the list first, and then re-add Mos to authorize. (You can also drag the icon above directly)\"; ObjectID = \"1su-Cm-MUc\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"After the update, macOS sometimes fails to authorize correctly.\\nRemove Chuu from the list first, and then re-add Chuu to authorize. (You can also drag the icon above directly)\"; ObjectID = \"1su-Cm-MUc\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Po aktualizaci systému macOS se někdy může stát, že autorizace není rozpoznána.\nOdeberte Mos ze seznamu a poté jej znovu přidejte. (Ikonu můžete také přetáhnout přímo.)"
+            "value" : "Po aktualizaci systému macOS se někdy může stát, že autorizace není rozpoznána.\nOdeberte Chuu ze seznamu a poté jej znovu přidejte. (Ikonu můžete také přetáhnout přímo.)"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "macOS kann manchmal aktualisierte App-Berechtigungen nicht verarbeiten.\nVersuchen Sie zunächst, Mos aus der Liste zu entfernen und dann erneut zu autorisieren, indem Sie das Mos-Symbol oben in die Bedienungshilfen-Liste ziehen."
+            "value" : "macOS kann manchmal aktualisierte App-Berechtigungen nicht verarbeiten.\nVersuchen Sie zunächst, Chuu aus der Liste zu entfernen und dann erneut zu autorisieren, indem Sie das Chuu-Symbol oben in die Bedienungshilfen-Liste ziehen."
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Το macOS μερικές φορές αποτυγχάνει να διαχειριστεί ενημερωμένες άδειες εφαρμογής.\nΔοκιμάστε να αφαιρέσετε πρώτα το Mos από τη λίστα και στη συνέχεια να εξουσιοδοτήσετε ξανά σύροντας το εικονίδιο Mos παραπάνω στη λίστα προσβασιμότητας."
+            "value" : "Το macOS μερικές φορές αποτυγχάνει να διαχειριστεί ενημερωμένες άδειες εφαρμογής.\nΔοκιμάστε να αφαιρέσετε πρώτα το Chuu από τη λίστα και στη συνέχεια να εξουσιοδοτήσετε ξανά σύροντας το εικονίδιο Chuu παραπάνω στη λίστα προσβασιμότητας."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "After the update, macOS sometimes fails to authorize correctly.\nRemove Mos from the list first, and then re-add Mos to authorize. (You can also drag the icon above directly)"
+            "value" : "After the update, macOS sometimes fails to authorize correctly.\nRemove Chuu from the list first, and then re-add Chuu to authorize. (You can also drag the icon above directly)"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Après la mise à jour, macOS échoue parfois à autoriser correctement l’application.\nRetirez d’abord Mos de la liste, puis ajoutez-la de nouveau pour l’autoriser.\n(Vous pouvez aussi faire glisser l’icône ci-dessus directement.)"
+            "value" : "Après la mise à jour, macOS échoue parfois à autoriser correctement l’application.\nRetirez d’abord Chuu de la liste, puis ajoutez-la de nouveau pour l’autoriser.\n(Vous pouvez aussi faire glisser l’icône ci-dessus directement.)"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "アプリ更新後、macOSはアクセスの許可に失敗することがあります。\nリストからMosを削除してから、Mosを追加し直して再認証してください。（上のMosアイコンをリストに直接ドラッグできます）"
+            "value" : "アプリ更新後、macOSはアクセスの許可に失敗することがあります。\nリストからChuuを削除してから、Chuuを追加し直して再認証してください。（上のChuuアイコンをリストに直接ドラッグできます）"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "macOS가 업데이트된 앱 권한을 처리하지 못하는 경우가 있습니다.\n먼저 목록에서 Mos를 제거한 다음, 위의 Mos 아이콘을 손쉬운 사용 목록으로 드래그하여 다시 인증하십시오."
+            "value" : "macOS가 업데이트된 앱 권한을 처리하지 못하는 경우가 있습니다.\n먼저 목록에서 Chuu를 제거한 다음, 위의 Chuu 아이콘을 손쉬운 사용 목록으로 드래그하여 다시 인증하십시오."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "macOS иногда не может обработать обновленные разрешения приложения.\nПопробуйте сначала удалить Mos из списка, затем повторно авторизовать, перетащив значок Mos выше в список универсального доступа."
+            "value" : "macOS иногда не может обработать обновленные разрешения приложения.\nПопробуйте сначала удалить Chuu из списка, затем повторно авторизовать, перетащив значок Chuu выше в список универсального доступа."
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "หลังอัปเดต บางครั้ง macOS อาจไม่สามารถอนุญาตสิทธิ์ได้อย่างถูกต้อง\nให้ลบ Mos ออกจากรายการก่อน แล้วเพิ่ม Mos กลับเข้าไปใหม่เพื่ออนุญาตสิทธิ์อีกครั้ง (หรือจะลากไอคอนด้านบนไปวางโดยตรงก็ได้)"
+            "value" : "หลังอัปเดต บางครั้ง macOS อาจไม่สามารถอนุญาตสิทธิ์ได้อย่างถูกต้อง\nให้ลบ Chuu ออกจากรายการก่อน แล้วเพิ่ม Chuu กลับเข้าไปใหม่เพื่ออนุญาตสิทธิ์อีกครั้ง (หรือจะลากไอคอนด้านบนไปวางโดยตรงก็ได้)"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "macOS bazen güncellenmiş uygulama izinlerini işleyemez.\nÖnce Mos'u listeden kaldırmayı deneyin, ardından yukarıdaki Mos simgesini erişilebilirlik listesine sürükleyerek yeniden yetkilendirin."
+            "value" : "macOS bazen güncellenmiş uygulama izinlerini işleyemez.\nÖnce Chuu'u listeden kaldırmayı deneyin, ardından yukarıdaki Chuu simgesini erişilebilirlik listesine sürükleyerek yeniden yetkilendirin."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "macOS іноді не може обробити оновлені дозволи програми.\nСпробуйте спочатку видалити Mos зі списку, потім повторно авторизувати, перетягнувши значок Mos вище до списку доступності."
+            "value" : "macOS іноді не може обробити оновлені дозволи програми.\nСпробуйте спочатку видалити Chuu зі списку, потім повторно авторизувати, перетягнувши значок Chuu вище до списку доступності."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "macOS 有时无法处理更新的应用权限。\n请先从列表中移除 Mos，然后将上方的 Mos 图标拖到辅助功能列表中以重新授权。"
+            "value" : "macOS 有时无法处理更新的应用权限。\n请先从列表中移除 Chuu，然后将上方的 Chuu 图标拖到辅助功能列表中以重新授权。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "macOS 有時無法處理更新的應用程式權限。\n請先從列表中移除 Mos，然後將上方的 Mos 圖示拖移到輔助使用列表中以重新授權。"
+            "value" : "macOS 有時無法處理更新的應用程式權限。\n請先從列表中移除 Chuu，然後將上方的 Chuu 圖示拖移到輔助使用列表中以重新授權。"
           }
         },
         "zh-Hant-HK" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "macOS 有時無法處理更新的應用程式權限。\n請先從列表中移除 Mos，然後將上方的 Mos 圖示拖移到輔助使用列表中以重新授權。"
+            "value" : "macOS 有時無法處理更新的應用程式權限。\n請先從列表中移除 Chuu，然後將上方的 Chuu 圖示拖移到輔助使用列表中以重新授權。"
           }
         },
         "zh-Hant-TW" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "macOS 有時無法處理更新的應用程式權限。\n請先從列表中移除 Mos，然後將上方的 Mos 圖示拖移到輔助使用列表中以重新授權。"
+            "value" : "macOS 有時無法處理更新的應用程式權限。\n請先從列表中移除 Chuu，然後將上方的 Chuu 圖示拖移到輔助使用列表中以重新授權。"
           }
         }
       }
     },
     "2AK-Pu-mot.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Mos\"; ObjectID = \"2AK-Pu-mot\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Chuu\"; ObjectID = \"2AK-Pu-mot\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "zh-Hant-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "zh-Hant-TW" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         }
       }
@@ -2220,97 +2220,97 @@
       }
     },
     "bB5-2R-9Da.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Re-run Mos again to show the hidden Icon\"; ObjectID = \"bB5-2R-9Da\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Re-run Chuu again to show the hidden Icon\"; ObjectID = \"bB5-2R-9Da\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skrytou ikonu zobrazíte opětovným spuštěním aplikace Mos"
+            "value" : "Skrytou ikonu zobrazíte opětovným spuštěním aplikace Chuu"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos neustarten, um das ausgeblendete Symbol zu zeigen"
+            "value" : "Chuu neustarten, um das ausgeblendete Symbol zu zeigen"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Εκτελέστε ξανά το Mos για εμφάνιση του κρυφού εικονιδίου"
+            "value" : "Εκτελέστε ξανά το Chuu για εμφάνιση του κρυφού εικονιδίου"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Re-run Mos again to show the hidden Icon"
+            "value" : "Re-run Chuu again to show the hidden Icon"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Relancez Mos pour afficher l’icône masquée"
+            "value" : "Relancez Chuu pour afficher l’icône masquée"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "アイコンを再表示するには、Mosを再実行してください"
+            "value" : "アイコンを再表示するには、Chuuを再実行してください"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "숨겨진 아이콘을 표시하려면 Mos를 다시 실행하세요"
+            "value" : "숨겨진 아이콘을 표시하려면 Chuu를 다시 실행하세요"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перезапустите Mos, чтобы иконка вновь появилась"
+            "value" : "Перезапустите Chuu, чтобы иконка вновь появилась"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เปิด Mos อีกครั้งเพื่อแสดงไอคอนที่ซ่อนอยู่"
+            "value" : "เปิด Chuu อีกครั้งเพื่อแสดงไอคอนที่ซ่อนอยู่"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gizli Simgeyi görmek için Mos'u tekrar çalıştırın"
+            "value" : "Gizli Simgeyi görmek için Chuu'u tekrar çalıştırın"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перезапустіть Mos знову, щоб показати прихований значок"
+            "value" : "Перезапустіть Chuu знову, щоб показати прихований значок"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "再次运行 Mos 以显示状态栏图标"
+            "value" : "再次运行 Chuu 以显示状态栏图标"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重新執行 Mos 即可重新顯示狀態列圖示"
+            "value" : "重新執行 Chuu 即可重新顯示狀態列圖示"
           }
         },
         "zh-Hant-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重新執行 Mos 即可重新顯示狀態列圖示"
+            "value" : "重新執行 Chuu 即可重新顯示狀態列圖示"
           }
         },
         "zh-Hant-TW" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重新執行 Mos 即可重新顯示狀態列圖示"
+            "value" : "重新執行 Chuu 即可重新顯示狀態列圖示"
           }
         }
       }
@@ -2988,97 +2988,97 @@
       }
     },
     "cIk-j1-vYt.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"You need to re-run Mos to change the settings\"; ObjectID = \"cIk-j1-vYt\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"You need to re-run Chuu to change the settings\"; ObjectID = \"cIk-j1-vYt\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Musíte znovu spustit Mos, aby se projevila změna nastavení"
+            "value" : "Musíte znovu spustit Chuu, aby se projevila změna nastavení"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Starten Sie Mos neu, um die Konfiguration zu ändern"
+            "value" : "Starten Sie Chuu neu, um die Konfiguration zu ändern"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Εκτελέστε ξανά το Mos για να αλλάξετε τις ρυθμίσεις"
+            "value" : "Εκτελέστε ξανά το Chuu για να αλλάξετε τις ρυθμίσεις"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You need to re-run Mos to change the settings"
+            "value" : "You need to re-run Chuu to change the settings"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vous devez relancer Mos pour prendre en compte ce paramétrage"
+            "value" : "Vous devez relancer Chuu pour prendre en compte ce paramétrage"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mosを再起動して設定を適用してください"
+            "value" : "Chuuを再起動して設定を適用してください"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Mos를 다시 실행하여 설정을 변경하세요"
+            "value" : "Chuu를 다시 실행하여 설정을 변경하세요"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Перезапустите Mos для изменения конфигурации"
+            "value" : "Перезапустите Chuu для изменения конфигурации"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "คุณต้องเปิด Mos ใหม่เพื่อเปลี่ยนการตั้งค่านี้"
+            "value" : "คุณต้องเปิด Chuu ใหม่เพื่อเปลี่ยนการตั้งค่านี้"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Yapılandırmayı değiştirmek için Mos'u yeniden çalıştırın"
+            "value" : "Yapılandırmayı değiştirmek için Chuu'u yeniden çalıştırın"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Перезапустіть Mos для зміни конфігурації"
+            "value" : "Перезапустіть Chuu для зміни конфігурації"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重新运行 Mos 以更改配置"
+            "value" : "重新运行 Chuu 以更改配置"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "重新執行 Mos 以更改設定"
+            "value" : "重新執行 Chuu 以更改設定"
           }
         },
         "zh-Hant-HK" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "重新執行 Mos 以更改設定"
+            "value" : "重新執行 Chuu 以更改設定"
           }
         },
         "zh-Hant-TW" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "重新執行 Mos 以更改設定"
+            "value" : "重新執行 Chuu 以更改設定"
           }
         }
       }
@@ -9935,96 +9935,96 @@
       }
     },
     "v26-RK-BtL.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"The allow list mode will make Mos only apply to apps within the application list.\"; ObjectID = \"v26-RK-BtL\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"The allow list mode will make Chuu only apply to apps within the application list.\"; ObjectID = \"v26-RK-BtL\";",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "V režimu povolených aplikací bude Mos aktivní pouze pro aplikace v tomto seznamu"
+            "value" : "V režimu povolených aplikací bude Chuu aktivní pouze pro aplikace v tomto seznamu"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Allowlistmodus bewirkt, dass Mos nur für Anwendungen innerhalb der Ausnahmeliste gilt."
+            "value" : "Der Allowlistmodus bewirkt, dass Chuu nur für Anwendungen innerhalb der Ausnahmeliste gilt."
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The allow list mode will make Mos only apply to apps within the application list."
+            "value" : "The allow list mode will make Chuu only apply to apps within the application list."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The allowlist mode will make Mos only apply to apps within the application list."
+            "value" : "The allowlist mode will make Chuu only apply to apps within the application list."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le mode liste autorisée fait que Mos ne s’applique qu’aux apps de la liste."
+            "value" : "Le mode liste autorisée fait que Chuu ne s’applique qu’aux apps de la liste."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "許可リストモードは、このリストにあるアプリのみにMosを適用します。"
+            "value" : "許可リストモードは、このリストにあるアプリのみにChuuを適用します。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이 모드는 Mos가 제외 목록 안의 앱만 설정하게 해줍니다."
+            "value" : "이 모드는 Chuu가 제외 목록 안의 앱만 설정하게 해줍니다."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Режим белого списка заставит Mos применяться только к приложениям из списка исключений."
+            "value" : "Режим белого списка заставит Chuu применяться только к приложениям из списка исключений."
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "โหมดรายการอนุญาตจะทำให้ Mos ทำงานเฉพาะกับแอปที่อยู่ในรายการแอปเท่านั้น"
+            "value" : "โหมดรายการอนุญาตจะทำให้ Chuu ทำงานเฉพาะกับแอปที่อยู่ในรายการแอปเท่านั้น"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beyaz liste modu, Mos'ın yalnızca istisna listesindeki uygulamalar için geçerli olmasını sağlar."
+            "value" : "Beyaz liste modu, Chuu'ın yalnızca istisna listesindeki uygulamalar için geçerli olmasını sağlar."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Режим списку дозволених застосує Mos лише до програм у списку винятків."
+            "value" : "Режим списку дозволених застосує Chuu лише до програм у списку винятків."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "启用白名单模式后, Mos 仅会对包含在例外列表内的程序启用, 其他的则不受任何影响"
+            "value" : "启用白名单模式后, Chuu 仅会对包含在例外列表内的程序启用, 其他的则不受任何影响"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "啟用白名單模式後，Mos 只會對例外列表中的應用程式啟用，其他不受影響"
+            "value" : "啟用白名單模式後，Chuu 只會對例外列表中的應用程式啟用，其他不受影響"
           }
         },
         "zh-Hant-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "啟用白名單模式後，Mos 只會對列表中的應用程式啟用，其他不受影響"
+            "value" : "啟用白名單模式後，Chuu 只會對列表中的應用程式啟用，其他不受影響"
           }
         },
         "zh-Hant-TW" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "啟用白名單模式後，Mos 只會對列表中的應用程式啟用，其他不受影響"
+            "value" : "啟用白名單模式後，Chuu 只會對列表中的應用程式啟用，其他不受影響"
           }
         }
       }
@@ -11253,7 +11253,7 @@
       }
     },
     "xoR-7p-3qj.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Launch Mos at Login\"; ObjectID = \"xoR-7p-3qj\";",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Launch Chuu at Login\"; ObjectID = \"xoR-7p-3qj\";",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -11539,97 +11539,97 @@
       }
     },
     "YHn-dn-A4n.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Mos\"; ObjectID = \"YHn-dn-A4n\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Chuu\"; ObjectID = \"YHn-dn-A4n\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "zh-Hant-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         },
         "zh-Hant-TW" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mos"
+            "value" : "Chuu"
           }
         }
       }

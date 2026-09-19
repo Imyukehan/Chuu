@@ -17,7 +17,9 @@ class StatusItemManager: NSMenu, NSMenuDelegate {
     override func awakeFromNib() {
         NSLog("Module initialized: StatusItemManager")
         // 设置图标/行为
-        item.button?.image = #imageLiteral(resourceName: "AppStatusBarIcon")
+        item.button?.image = #imageLiteral(resourceName: "ChuuStatusIcon")
+        item.button?.toolTip = "Chuu"
+        item.button?.setAccessibilityLabel("Chuu")
         // 设置事件响应
         item.menu = self
         item.menu?.delegate = self
@@ -34,6 +36,10 @@ extension StatusItemManager {
         onMenuClick()
     }
     @objc func onMenuClick()  {
+        if #available(macOS 14.0, *) {
+            buildNormalMenu()
+            return
+        }
         if let event = NSApp.currentEvent {
             // 无辅助功能选项显示要求权限菜单
             guard AXIsProcessTrusted() else {
@@ -96,6 +102,10 @@ extension StatusItemManager {
             menu.removeAllItems()
             // Preferences
             Utils.addMenuItem(to: menu, title: NSLocalizedString("Preferences", comment: ""), icon: #imageLiteral(resourceName: "SF.gauge"), action: #selector(preferencesClick))
+            if #available(macOS 14.0, *) {
+                menu.addItem(withTitle: NSLocalizedString("About", tableName: "MouseControl", comment: "About menu"),
+                             action: #selector(aboutClick), keyEquivalent: "").target = self
+            }
             // Quit
             Utils.addMenuItemWithSeparator(to: menu, title: NSLocalizedString("Quit", comment: ""), icon: #imageLiteral(resourceName: "SF.escape"), action: #selector(quitClick))
         }
@@ -110,10 +120,22 @@ extension StatusItemManager {
         Toast.showTestPanel()
     }
     @objc func preferencesClick() {
-        WindowManager.shared.showWindow(withIdentifier: WINDOW_IDENTIFIER.preferencesWindowController)
+        if #available(macOS 14.0, *) {
+            MouseControlWindow.shared.present()
+        } else {
+            WindowManager.shared.showWindow(withIdentifier: WINDOW_IDENTIFIER.preferencesWindowController)
+        }
     }
     @objc func quitClick() {
         NSApplication.shared.terminate(self)
+    }
+
+    @objc func aboutClick() {
+        NSApp.activate(ignoringOtherApps: true)
+        NSApp.orderFrontStandardAboutPanel(options: [
+            .applicationName: "Chuu",
+            .credits: NSAttributedString(string: "Based on Mos by Caldis · CC BY-NC 4.0\nPersonal development fork\nProduct imagery © Logitech / MCHOSE")
+        ])
     }
 }
 

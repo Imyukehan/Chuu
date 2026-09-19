@@ -1,0 +1,113 @@
+name: MouseControl
+options:
+  createIntermediateGroups: true
+  developmentLanguage: en
+configs:
+  Debug: debug
+  Release: release
+settings:
+  base:
+    SWIFT_VERSION: '5.0'
+    DEVELOPMENT_TEAM: MA4UNJ3J25
+    CODE_SIGN_IDENTITY: Apple Development
+    CODE_SIGN_STYLE: Automatic
+    MARKETING_VERSION: '0.1.0'
+    CURRENT_PROJECT_VERSION: 1
+packages:
+  LoginServiceKit:
+    url: https://github.com/Clipy/LoginServiceKit
+    exactVersion: 2.4.0
+  Charts:
+    url: https://github.com/danielgindi/Charts
+    exactVersion: 5.1.0
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: 2.0.0
+targets:
+  Mos:
+    type: application
+    platform: macOS
+    deploymentTarget: '14.0'
+    sources:
+      - path: Mos
+        excludes: [Info.plist, '*.entitlements']
+      - path: Shared
+      - path: Resources/Chuu.icon
+        type: file
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_NAME: Chuu
+        EXECUTABLE_NAME: MouseControl
+        PRODUCT_MODULE_NAME: Mos_Debug
+        PRODUCT_BUNDLE_IDENTIFIER: moe.khan.MouseControl
+        CODE_SIGN_ENTITLEMENTS: Configuration/MouseControl.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: Chuu
+        COMBINE_HIDPI_IMAGES: YES
+        ENABLE_HARDENED_RUNTIME: YES
+        SWIFT_EMIT_LOC_STRINGS: NO
+    info:
+      path: Configuration/MouseControl-Info.plist
+      properties:
+        CFBundleDisplayName: Chuu
+        CFBundleShortVersionString: '$(MARKETING_VERSION)'
+        CFBundleVersion: '$(CURRENT_PROJECT_VERSION)'
+        NSMainStoryboardFile: Main
+        NSPrincipalClass: NSApplication
+        LSUIElement: true
+        LSApplicationCategoryType: public.app-category.utilities
+        NSHumanReadableCopyright: 'Based on Mos © Caldis. CC BY-NC 4.0. Personal development fork.'
+        NSAppleEventsUsageDescription: Chuu uses accessibility for scrolling and button shortcuts.
+        CFBundleURLTypes:
+          - CFBundleURLName: moe.khan.MouseControl
+            CFBundleURLSchemes: [mousecontrol]
+    dependencies:
+      - package: LoginServiceKit
+      - package: Charts
+        product: DGCharts
+      - package: Sparkle
+      - target: MouseBatteryWidget
+        embed: true
+  MouseBatteryWidget:
+    type: app-extension
+    platform: macOS
+    deploymentTarget: '14.0'
+    sources: [MouseBatteryWidget, Shared]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: moe.khan.MouseControl.BatteryWidget
+        CODE_SIGN_ENTITLEMENTS: Configuration/MouseBatteryWidget.entitlements
+        SKIP_INSTALL: YES
+        ENABLE_HARDENED_RUNTIME: YES
+        APPLICATION_EXTENSION_API_ONLY: YES
+    info:
+      path: Configuration/MouseBatteryWidget-Info.plist
+      properties:
+        CFBundleDisplayName: Chuu
+        CFBundleShortVersionString: '$(MARKETING_VERSION)'
+        CFBundleVersion: '$(CURRENT_PROJECT_VERSION)'
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+  MosTests:
+    type: bundle.unit-test
+    platform: macOS
+    deploymentTarget: '14.0'
+    sources: [MosTests]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: moe.khan.MouseControl.Tests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: '$(BUILT_PRODUCTS_DIR)/Chuu.app/Contents/MacOS/MouseControl'
+        BUNDLE_LOADER: '$(TEST_HOST)'
+    dependencies:
+      - target: Mos
+schemes:
+  Debug:
+    build:
+      targets:
+        Mos: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets: [MosTests]

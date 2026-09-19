@@ -26,6 +26,7 @@ final class UpdateManager: NSObject {
 extension UpdateManager {
 
     func scheduleCheckOnAppStartIfNeeded() {
+        guard Bundle.main.bundleIdentifier?.hasPrefix("com.caldis.Mos") == true else { return }
         guard Options.shared.update.checkOnAppStart else { return }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
@@ -34,10 +35,12 @@ extension UpdateManager {
     }
 
     func checkForUpdates() {
+        guard Bundle.main.bundleIdentifier?.hasPrefix("com.caldis.Mos") == true else { return }
         updaterController.checkForUpdates(nil)
     }
 
     func checkForUpdatesInBackground() {
+        guard Bundle.main.bundleIdentifier?.hasPrefix("com.caldis.Mos") == true else { return }
         updaterController.updater.checkForUpdatesInBackground()
     }
 }
@@ -48,4 +51,3 @@ extension UpdateManager: SPUUpdaterDelegate {
         Options.shared.update.includingBetaVersion ? ["beta"] : []
     }
 }
-
