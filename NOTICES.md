@@ -23,6 +23,11 @@ Local prototype image sources:
 - [Logitech G502 X PLUS, white, top](https://resource.logitechg.com/content/dam/gaming/en/products/g502x-plus/gallery/g502x-plus-gallery-2-white.png)
 - [Logitech G502 X PLUS, white, side](https://resource.logitechg.com/content/dam/gaming/en/products/g502x-plus/gallery/g502x-plus-gallery-4-white.png)
 - [MCHOSE G7](https://www.mchose.com.cn/gmouse/_next/static/media/G7_white.f3231821.png)
+- [G502 X PLUS white driver render, front](https://assets.openlogi.org/v1/devices/g502x_plus/images/device/e0e9dacc-b5c0-4434-8b8d-410a7aa81d2f)
+- [G502 X PLUS white driver render, side](https://assets.openlogi.org/v1/devices/g502x_plus/images/device/22c9ac7a-43ed-48b7-8771-72ca4ae2a6bb)
+
+The last two optional PNG files were located through the [OpenLogi asset manifest](https://assets.openlogi.org/v1/devices/g502x_plus/manifest.json).
+The asset index identifies Logitech runtime caches as their source. OpenLogi's code license does not establish redistribution rights for these vendor assets. They are ignored by Git and used only in the local prototype; no OpenLogi code or brand assets were copied.
 
 ## Dependencies And References
 
