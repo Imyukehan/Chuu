@@ -1,3 +1,39 @@
+# Chuu Changelog
+
+## 0.1.1 - 2026-09-19
+
+Development source milestone. Build `20260919.1`; no notarized installer or active in-app update feed is published with this tag.
+
+### Changes
+
+- Combine onboard button settings and global shortcuts on the mouse page, with native glass mode controls.
+- Add a compact top-right connection capsule, Retina thumbnails, and optional low-battery notifications.
+- Add standard macOS application menus, About, Settings and Check for Updates. Unconfigured development builds offer the GitHub Releases page instead of checking the upstream feed.
+- Remove inherited backgrounds from scrolling, application, general and shortcut panes so they share the window material when inactive. Remove the forced light appearance from the application table header.
+- Unify the Xcode project, source and test names under Chuu while preserving installed-user identifiers and settings. Add vendor/model adapter boundaries, a fixture example and contribution documentation.
+- Make English the default README, retain Chinese, and document third-party artwork separately from the About window.
+
+Validation: 609 tests, 3 skipped, 0 failures; light/dark interface and inactive-pane checks completed before the version bump.
+
+### 中文
+
+开发中的源码版本，构建号 `20260919.1`。此标签不包含已公证安装包，也未启用应用内更新源。
+
+- 鼠标页合并板载按键与快捷操作，切换控件采用原生玻璃样式。
+- 加入右上角连接胶囊、Retina 缩略图及可选的低电量提醒。
+- 补齐 macOS 标准应用菜单、关于、设置和检查更新入口；未配置更新源时提供 GitHub Releases 入口，不检查上游更新源。
+- 清除滚动、应用、通用和快捷操作页的遗留背景，修复失焦时的底色差异，并移除应用表头强制浅色样式。
+- 统一 Chuu 工程、源码和测试命名，保留现有安装标识与设置；补充厂商/型号适配接口、模拟示例和贡献文档。
+- README 默认英文并保留中文，第三方素材说明从关于窗口移至文档。
+
+验证：版本号更新前已完成 609 项测试，3 项跳过、0 失败，并检查浅色、深色及失焦界面。
+
+---
+
+## Archived Mos History
+
+The entries below describe upstream Mos releases, not Chuu versions.
+
 # [4.2.0](https://github.com/Caldis/Mos/releases/tag/4.2.0)
 
 ## 新功能
