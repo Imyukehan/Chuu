@@ -8,8 +8,10 @@ struct MouseSnapshot: Codable, Equatable, Identifiable {
     var charging: Bool
     var online: Bool
     var updatedAt: Date
+    var transport: String? = nil
 
-    var imageName: String { model == "g502x" ? "G502Top" : "G7" }
+    var imageName: String { model == "g502x" ? "G502Top" : model == "g7" ? "G7" : "" }
+    var connectionLabel: String { transport ?? (["g502x", "g7"].contains(model) ? "2.4 GHz" : "USB") }
     func isFresh(at date: Date) -> Bool { date.timeIntervalSince(updatedAt) < 30 * 60 }
 }
 

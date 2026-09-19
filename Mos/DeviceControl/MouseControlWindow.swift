@@ -4,14 +4,13 @@ import SwiftUI
 @available(macOS 14.0, *)
 final class MouseControlNavigation: ObservableObject {
     enum Page: String, CaseIterable {
-        case device, scrolling, buttons, application, general
+        case device, scrolling, application, general
 
         var title: String {
             let key: String
             switch self {
             case .device: key = "Mouse"
             case .scrolling: key = "Scrolling"
-            case .buttons: key = "Buttons"
             case .application: key = "Application"
             case .general: key = "General"
             }
@@ -34,6 +33,13 @@ final class MouseControlWindow: NSWindowController, NSWindowDelegate, NSToolbarD
     private let navigation: MouseControlNavigation
 
     private init() {
+        #if DEBUG
+        // Process-only launch argument for visual QA; never changes system appearance.
+        if let appearance = UserDefaults.standard.string(forKey: "ChuuPreviewAppearance"),
+           ["dark", "light"].contains(appearance) {
+            NSApp.appearance = NSAppearance(named: appearance == "dark" ? .darkAqua : .aqua)
+        }
+        #endif
         let navigation = MouseControlNavigation()
         self.navigation = navigation
         let contentSize = NSSize(width: 1060, height: 700)
@@ -96,7 +102,12 @@ final class MouseControlWindow: NSWindowController, NSWindowDelegate, NSToolbarD
         navigation.select(index: sender.selectedIndex)
     }
 
-    func present() {
+    func present(deviceID: String? = nil) {
+        if let deviceID {
+            MouseControlModel.shared.selectedID = deviceID
+            navigation.select(index: 0)
+            (window?.toolbar?.items.first(where: { $0.itemIdentifier == Self.navigationID }) as? NSToolbarItemGroup)?.selectedIndex = 0
+        }
         MouseControlModel.shared.start()
         Utils.showDockIcon()
         showWindow(nil)

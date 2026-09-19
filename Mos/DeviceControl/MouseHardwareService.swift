@@ -4,8 +4,14 @@ import IOKit.hid
 enum MouseHardwareService {
     static func scan() throws -> [MouseSnapshot] {
         try MouseDeviceDiscovery.withDevices { devices in
-            devices.compactMap { device in
+            var seen = Set<String>()
+            return devices.compactMap { device -> MouseSnapshot? in
                 let model = MouseDeviceDiscovery.model(device)
+                if model == "generic" {
+                    guard let snapshot = MouseDeviceDiscovery.genericSnapshot(device), seen.insert(snapshot.id).inserted else { return nil }
+                    return snapshot
+                }
+                guard !MouseDeviceDiscovery.isMouseInterface(device) else { return nil }
                 var snapshot = MouseSnapshot(id: MouseDeviceDiscovery.id(device), model: model,
                                              name: model == "g502x" ? "G502 X PLUS" : "MCHOSE G7",
                                              battery: nil, charging: false, online: false, updatedAt: Date())
@@ -34,13 +40,13 @@ enum MouseHardwareService {
                     NSLog("MouseControl read %@: %@", snapshot.id, error.localizedDescription)
                 }
                 return snapshot
-            }.sorted { $0.id < $1.id }
+            }.sorted { ($0.model == "generic" ? 1 : 0, $0.id) < ($1.model == "generic" ? 1 : 0, $1.id) }
         }
     }
 
     private static func withG502<T>(id: String, _ body: (G502MouseAdapter) throws -> T) throws -> T {
         try MouseDeviceDiscovery.withDevices { devices in
-            guard let device = devices.first(where: { MouseDeviceDiscovery.id($0) == id }),
+            guard let device = devices.first(where: { !MouseDeviceDiscovery.isMouseInterface($0) && MouseDeviceDiscovery.id($0) == id }),
                   MouseDeviceDiscovery.model(device) == "g502x" else { throw MouseHardwareError.unavailable }
             return try body(G502MouseAdapter(channel: MouseHIDChannel(device: device)))
         }

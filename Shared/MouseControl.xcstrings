@@ -1,6 +1,42 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Onboard buttons": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Onboard buttons"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "板载按键"}}}
+    },
+    "Shortcuts (all mice)": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Shortcuts (all mice)"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "快捷操作 · 所有鼠标"}}}
+    },
+    "Connection popup": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Connection popup"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "连接提示"}}}
+    },
+    "Preview connection popup": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Preview connection popup"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "预览连接提示"}}}
+    },
+    "Low battery alert (20%)": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Low battery alert (20%)"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "低电量提醒（20%）"}}}
+    },
+    "Allow notifications in System Settings": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Allow notifications in System Settings"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "请在系统设置中允许 Chuu 发送通知"}}}
+    },
+    "Battery low: %d%%": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Battery low: %d%%"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "电量偏低：%d%%"}}}
+    },
+    "Battery unavailable": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Battery unavailable"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "电量不可用"}}}
+    },
+    "Close": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Close"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "关闭"}}}
+    },
     "Mouse": {
       "extractionState": "manual",
       "localizations": {

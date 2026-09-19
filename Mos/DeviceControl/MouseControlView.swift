@@ -5,9 +5,10 @@ import AppKit
 struct MouseControlView: View {
     @ObservedObject var model: MouseControlModel
     @ObservedObject var navigation: MouseControlNavigation
-    @State private var selectedButton = 4
+    @State private var selectedButton = 0
     @State private var sideView = false
     @State private var assignment = -1
+    @State private var showShortcuts = false
 
     private let buttonNames = ["Left click", "Right click", "Middle click", "Back", "DPI shift", "Forward",
                                "Tilt left", "Tilt right", "Profile cycle", "DPI +", "DPI -"]
@@ -22,8 +23,15 @@ struct MouseControlView: View {
                         Button(tr("Enable Accessibility")) { Utils.requireAccessibilityPermissions() }
                             .buttonStyle(.borderedProminent)
                     }
-                    MosPreferencesPane(identifier: navigation.page.rawValue).id(navigation.page)
-                        .frame(maxWidth: 840, maxHeight: .infinity)
+                    if navigation.page == .general {
+                        Spacer(minLength: 0)
+                        MouseAlertSettings(model: model)
+                        MosPreferencesPane(identifier: "general").frame(maxWidth: 840).frame(height: 160)
+                        Spacer(minLength: 0)
+                    } else {
+                        MosPreferencesPane(identifier: navigation.page.rawValue).id(navigation.page)
+                            .frame(maxWidth: 840, maxHeight: .infinity)
+                    }
                 }.padding(28).frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
@@ -32,7 +40,7 @@ struct MouseControlView: View {
             Button(tr("OK"), role: .cancel) { model.error = nil }
         } message: { Text(model.error ?? "") }
         .onChange(of: selectedButton) { _, _ in assignment = -1 }
-        .onChange(of: model.selectedID) { _, _ in assignment = -1; sideView = false }
+        .onChange(of: model.selectedID) { _, _ in assignment = -1; selectedButton = 0; sideView = false }
         .onChange(of: model.profile) { old, new in
             if old?.mapping(selectedButton) != new?.mapping(selectedButton) { assignment = -1 }
         }
@@ -53,7 +61,7 @@ struct MouseControlView: View {
                         HStack(spacing: 6) {
                             Circle().fill(device.online ? Color.green : Color.secondary).frame(width: 6, height: 6)
                             Text(device.online ? tr("Connected") : tr("Sleeping or unavailable"))
-                            Text("· 2.4 GHz")
+                            Text("· \(device.connectionLabel)")
                         }.font(.callout).foregroundStyle(.secondary)
                     }
                     Spacer()
@@ -72,7 +80,8 @@ struct MouseControlView: View {
 
                 HStack(spacing: 20) {
                     VStack(spacing: 0) {
-                        MouseArtwork(model: device.model, side: sideView, selected: $selectedButton)
+                        MouseArtwork(model: device.model, side: sideView, selected: $selectedButton,
+                                     interactive: !showShortcuts && device.online)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .opacity(device.online ? 1 : 0.45)
                         if device.model == "g502x" {
@@ -83,26 +92,50 @@ struct MouseControlView: View {
                                 .padding(.bottom, 28)
                         }
                     }
-                    if device.model == "g502x" {
-                        inspector.frame(width: 300).padding(.trailing, 40)
-                    }
+                    buttonSettings(for: device).padding(.trailing, 40)
                 }.frame(maxHeight: .infinity)
             }
         } else {
-            Spacer()
-            if model.scanning { ProgressView().controlSize(.small) }
-            else { Image(systemName: "computermouse").font(.system(size: 38, weight: .ultraLight)).foregroundStyle(.tertiary).help(tr("No mouse connected")) }
-            Spacer()
+            HStack(spacing: 28) {
+                MouseArtwork(model: "generic", side: false, selected: $selectedButton)
+                    .foregroundStyle(.tertiary).help(tr("No mouse connected"))
+                VStack(spacing: 16) {
+                    Text(tr("Shortcuts (all mice)")).font(.headline)
+                    shortcutSettings
+                }.frame(width: 470).padding(.vertical, 28)
+            }.padding(.horizontal, 40)
+        }
+    }
+
+    private func buttonSettings(for device: MouseSnapshot) -> some View {
+        VStack(spacing: 12) {
+            if device.model == "g502x" {
+                Picker("", selection: $showShortcuts) {
+                    Text(tr("Onboard buttons")).tag(false)
+                    Text(tr("Shortcuts (all mice)")).tag(true)
+                }.pickerStyle(.segmented).labelsHidden().controlSize(.large)
+            } else {
+                Text(tr("Shortcuts (all mice)")).font(.headline)
+            }
+            if device.model == "g502x" && !showShortcuts { inspector }
+            else { shortcutSettings }
+        }.frame(width: 470)
+            .padding(.top, 10).padding(.bottom, 20)
+    }
+
+    private var shortcutSettings: some View {
+        VStack(spacing: 12) {
+            if !AXIsProcessTrusted() {
+                Button(tr("Enable Accessibility")) { Utils.requireAccessibilityPermissions() }
+                    .buttonStyle(.borderedProminent)
+            }
+            MosPreferencesPane(identifier: "buttons")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 
     private var inspector: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                Text(tr("Buttons")).font(.headline)
-                Spacer()
-                if model.busy { ProgressView().controlSize(.small) }
-            }
+        VStack(alignment: .leading, spacing: 10) {
             VStack(spacing: 2) {
                 ForEach(0..<11, id: \.self) { index in
                     Button {
@@ -114,7 +147,7 @@ struct MouseControlView: View {
                             Spacer(minLength: 8)
                             Text(mappingName(model.profile?.mapping(index), index: index))
                                 .foregroundStyle(.secondary).font(.system(size: 12))
-                        }.padding(.horizontal, 10).frame(height: 29)
+                        }.padding(.horizontal, 10).frame(height: 27)
                             .contentShape(Rectangle())
                     }.buttonStyle(.plain)
                         .background(selectedButton == index ? Color.accentColor.opacity(0.10) : .clear, in: RoundedRectangle(cornerRadius: 6))
@@ -131,6 +164,7 @@ struct MouseControlView: View {
                             Text(value > 3 ? "Mouse \(value - 1)" : tr(buttonNames[value - 1])).tag(value)
                         }
                     }.disabled(selectedButton == 0 || model.busy).frame(maxWidth: .infinity)
+                    if model.busy { ProgressView().controlSize(.small) }
                     applyButton.disabled(assignment < 0 || selectedButton == 0 || model.busy)
                 }
                 Divider().padding(.top, 4)
@@ -146,7 +180,7 @@ struct MouseControlView: View {
                     .help(error).disabled(model.busy)
             }
             Spacer(minLength: 0)
-        }.padding(.top, 22).padding(.bottom, 28)
+        }.padding(.top, 8).padding(.bottom, 8)
     }
 
     @ViewBuilder private var applyButton: some View {
@@ -184,9 +218,16 @@ struct MouseArtwork: View {
     let model: String
     let side: Bool
     @Binding var selected: Int
+    var interactive = true
+
+    private var hasDriverRender: Bool {
+        model == "g502x" && NSImage(named: side ? "G502RenderSide" : "G502RenderTop") != nil
+    }
 
     private var image: NSImage? {
-        guard let source = NSImage(named: model == "g502x" ? (side ? "G502Side" : "G502Top") : "G7") else { return nil }
+        if hasDriverRender { return NSImage(named: side ? "G502RenderSide" : "G502RenderTop") }
+        guard ["g502x", "g7"].contains(model),
+              let source = NSImage(named: model == "g502x" ? (side ? "G502Side" : "G502Top") : "G7") else { return nil }
         guard model == "g502x", let cg = source.cgImage(forProposedRect: nil, context: nil, hints: nil) else { return source }
         // Gallery files include transparent margins; crop only while rendering the view.
         let rect = side ? CGRect(x: 170, y: 280, width: 1030, height: 500) : CGRect(x: 390, y: 95, width: 590, height: 900)
@@ -195,6 +236,12 @@ struct MouseArtwork: View {
     }
 
     private var points: [(Int, CGFloat, CGFloat)] {
+        if hasDriverRender {
+            if side { return [(5,0.54,0.48),(3,0.59,0.63),(4,0.29,0.39)] }
+            return [(0,0.37,0.20),(1,0.78,0.20),(2,0.578,0.25),
+                    (9,0.205,0.18),(10,0.185,0.30),(6,0.478,0.25),
+                    (7,0.678,0.25),(8,0.583,0.47)]
+        }
         if side { return [(5,0.47,0.48),(3,0.61,0.40),(4,0.375,0.70)] }
         return [(0,0.340,0.22),(1,0.704,0.24),(2,0.503,0.255),(9,0.205,0.18),(10,0.177,0.30),
                 (6,0.433,0.28),(7,0.578,0.28),(8,0.513,0.445)]
@@ -208,9 +255,9 @@ struct MouseArtwork: View {
                 let width = height * aspect
                 ZStack {
                     Image(nsImage: image).resizable().scaledToFit()
-                    if model == "g502x" {
+                    if model == "g502x" && interactive {
                         if #available(macOS 26.0, *) {
-                            GlassEffectContainer(spacing: 6) { hotspots(width: width, height: height) }
+                            GlassEffectContainer(spacing: 0) { hotspots(width: width, height: height) }
                         } else { hotspots(width: width, height: height) }
                     }
                 }.frame(width: width, height: height)
@@ -228,6 +275,7 @@ struct MouseArtwork: View {
                 Button { selected = point.0 } label: {
                     hotspot(selected: selected == point.0)
                 }.buttonStyle(.plain)
+                    .help(NSLocalizedString(["Left click","Right click","Middle click","Back","DPI shift","Forward","Tilt left","Tilt right","Profile cycle","DPI +","DPI -"][point.0], tableName: "MouseControl", comment: "Mouse button"))
                     .accessibilityLabel(NSLocalizedString(["Left click","Right click","Middle click","Back","DPI shift","Forward","Tilt left","Tilt right","Profile cycle","DPI +","DPI -"][point.0], tableName: "MouseControl", comment: "Mouse button"))
                     .accessibilityAddTraits(selected == point.0 ? .isSelected : [])
                     .position(x: width * point.1, y: height * point.2)
@@ -237,7 +285,7 @@ struct MouseArtwork: View {
 
     @ViewBuilder private func hotspot(selected: Bool) -> some View {
         let dot = Circle().fill(selected ? Color.accentColor : Color.primary.opacity(0.65))
-            .frame(width: 7, height: 7).frame(width: 28, height: 28)
+            .frame(width: 6, height: 6).frame(width: 24, height: 24)
         if #available(macOS 26.0, *) {
             dot.glassEffect(.regular.interactive(), in: Circle())
         } else {

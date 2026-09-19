@@ -5,7 +5,7 @@ import XCTest
 final class MouseControlNavigationTests: XCTestCase {
     func testTabsMatchStoryboardRoutesInDisplayOrder() {
         XCTAssertEqual(MouseControlNavigation.Page.allCases.map(\.rawValue),
-                       ["device", "scrolling", "buttons", "application", "general"])
+                       ["device", "scrolling", "application", "general"])
     }
 
     func testSelectionVisitsEveryPage() {
@@ -19,10 +19,10 @@ final class MouseControlNavigationTests: XCTestCase {
 
     func testInvalidSelectionKeepsCurrentPage() {
         let navigation = MouseControlNavigation()
-        navigation.select(index: 4)
+        navigation.select(index: 3)
         navigation.select(index: -1)
         XCTAssertEqual(navigation.page, .general)
-        navigation.select(index: 5)
+        navigation.select(index: 4)
         XCTAssertEqual(navigation.page, .general)
     }
 }

@@ -95,14 +95,16 @@ final class MouseHIDChannel {
 }
 
 enum MouseDeviceDiscovery {
+    static let matches: [[String: Int]] = [
+        [kIOHIDVendorIDKey: 0x046D, kIOHIDProductIDKey: 0xC547,
+         kIOHIDPrimaryUsagePageKey: 0xFF00, kIOHIDPrimaryUsageKey: 1],
+        [kIOHIDVendorIDKey: 0xA8A5, kIOHIDProductIDKey: 0x2255,
+         kIOHIDPrimaryUsagePageKey: 0xFF01, kIOHIDPrimaryUsageKey: 0x10],
+        [kIOHIDPrimaryUsagePageKey: 1, kIOHIDPrimaryUsageKey: 2]
+    ]
+
     static func withDevices<T>(_ body: ([IOHIDDevice]) throws -> T) throws -> T {
         let manager = IOHIDManagerCreate(kCFAllocatorDefault, 0)
-        let matches: [[String: Int]] = [
-            [kIOHIDVendorIDKey: 0x046D, kIOHIDProductIDKey: 0xC547,
-             kIOHIDPrimaryUsagePageKey: 0xFF00, kIOHIDPrimaryUsageKey: 1],
-            [kIOHIDVendorIDKey: 0xA8A5, kIOHIDProductIDKey: 0x2255,
-             kIOHIDPrimaryUsagePageKey: 0xFF01, kIOHIDPrimaryUsageKey: 0x10]
-        ]
         IOHIDManagerSetDeviceMatchingMultiple(manager, matches as CFArray)
         let result = IOHIDManagerOpen(manager, 0)
         guard result == kIOReturnSuccess else { throw MouseHardwareError.io(result) }
@@ -111,11 +113,71 @@ enum MouseDeviceDiscovery {
     }
 
     static func model(_ device: IOHIDDevice) -> String {
-        (IOHIDDeviceGetProperty(device, kIOHIDVendorIDKey as CFString) as? Int) == 0x046D ? "g502x" : "g7"
+        let vendor = IOHIDDeviceGetProperty(device, kIOHIDVendorIDKey as CFString) as? Int
+        let product = IOHIDDeviceGetProperty(device, kIOHIDProductIDKey as CFString) as? Int
+        if vendor == 0x046D && product == 0xC547 { return "g502x" }
+        if vendor == 0xA8A5 && product == 0x2255 { return "g7" }
+        return "generic"
     }
 
     static func id(_ device: IOHIDDevice) -> String {
         let location = IOHIDDeviceGetProperty(device, kIOHIDLocationIDKey as CFString) as? Int ?? 0
+        if model(device) == "generic" {
+            let vendor = IOHIDDeviceGetProperty(device, kIOHIDVendorIDKey as CFString) as? Int ?? 0
+            let product = IOHIDDeviceGetProperty(device, kIOHIDProductIDKey as CFString) as? Int ?? 0
+            let serial = IOHIDDeviceGetProperty(device, kIOHIDSerialNumberKey as CFString) as? String ?? ""
+            var registryID: UInt64 = 0
+            IORegistryEntryGetRegistryEntryID(IOHIDDeviceGetService(device), &registryID)
+            return "generic-\(vendor)-\(product)-\(serial.isEmpty ? String(location == 0 ? registryID : UInt64(location)) : serial)"
+        }
         return "\(model(device))-\(location)"
+    }
+
+    static func isMouseInterface(_ device: IOHIDDevice) -> Bool {
+        (IOHIDDeviceGetProperty(device, kIOHIDPrimaryUsagePageKey as CFString) as? Int) == 1
+    }
+
+    static func genericSnapshot(_ device: IOHIDDevice) -> MouseSnapshot? {
+        let name = IOHIDDeviceGetProperty(device, kIOHIDProductKey as CFString) as? String ?? "Mouse"
+        let builtIn = IOHIDDeviceGetProperty(device, "Built-In" as CFString) as? Bool ?? false
+        let transport = IOHIDDeviceGetProperty(device, kIOHIDTransportKey as CFString) as? String ?? "USB"
+        guard isGenericMouse(name: name, builtIn: builtIn, transport: transport) else { return nil }
+        return MouseSnapshot(id: id(device), model: "generic", name: name, battery: nil,
+                             charging: false, online: true, updatedAt: Date(),
+                             transport: transport.hasPrefix("Bluetooth") ? "Bluetooth" : transport)
+    }
+
+    static func isGenericMouse(name: String, builtIn: Bool, transport: String) -> Bool {
+        !builtIn && !["trackpad", "keyboard", "virtual", "touchpad", "receiver"].contains(where: {
+            name.localizedCaseInsensitiveContains($0)
+        }) && ["USB", "Bluetooth", "Bluetooth Low Energy"].contains(transport)
+    }
+}
+
+// Hot-plug prompts a read; radio wake and battery changes still use the low-rate poll.
+final class MouseConnectionWatcher {
+    private let manager = IOHIDManagerCreate(kCFAllocatorDefault, 0)
+    var onChange: ((String, Bool) -> Void)?
+
+    init() {
+        IOHIDManagerSetDeviceMatchingMultiple(manager, MouseDeviceDiscovery.matches as CFArray)
+        let context = Unmanaged.passUnretained(self).toOpaque()
+        IOHIDManagerRegisterDeviceMatchingCallback(manager, { context, result, _, device in
+            guard result == kIOReturnSuccess, let context else { return }
+            Unmanaged<MouseConnectionWatcher>.fromOpaque(context).takeUnretainedValue()
+                .onChange?(MouseDeviceDiscovery.id(device), true)
+        }, context)
+        IOHIDManagerRegisterDeviceRemovalCallback(manager, { context, result, _, device in
+            guard result == kIOReturnSuccess, let context else { return }
+            Unmanaged<MouseConnectionWatcher>.fromOpaque(context).takeUnretainedValue()
+                .onChange?(MouseDeviceDiscovery.id(device), false)
+        }, context)
+        IOHIDManagerScheduleWithRunLoop(manager, CFRunLoopGetMain(), CFRunLoopMode.commonModes.rawValue)
+        IOHIDManagerOpen(manager, 0)
+    }
+
+    deinit {
+        IOHIDManagerUnscheduleFromRunLoop(manager, CFRunLoopGetMain(), CFRunLoopMode.commonModes.rawValue)
+        IOHIDManagerClose(manager, 0)
     }
 }

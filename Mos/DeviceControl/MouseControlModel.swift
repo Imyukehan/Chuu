@@ -16,11 +16,22 @@ final class MouseControlModel: ObservableObject {
     private let queue = DispatchQueue(label: "moe.khan.MouseControl.hardware", qos: .utility)
     private var timer: Timer?
     private var sleeping = false
+    private var watcher: MouseConnectionWatcher?
+    private var hotPlugRefresh: DispatchWorkItem?
 
     var selected: MouseSnapshot? { devices.first { $0.id == selectedID } }
 
     func start() {
         guard timer == nil else { refresh(); return }
+        watcher = MouseConnectionWatcher()
+        watcher?.onChange = { [weak self] id, connected in
+            guard let self else { return }
+            if !connected { MouseAlerts.shared.deviceRemoved(id) }
+            self.hotPlugRefresh?.cancel()
+            let work = DispatchWorkItem { [weak self] in self?.refresh() }
+            self.hotPlugRefresh = work
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: work)
+        }
         WidgetCenter.shared.getCurrentConfigurations { result in
             let log = OSLog(subsystem: "moe.khan.MouseControl", category: "Widgets")
             switch result {
@@ -40,8 +51,8 @@ final class MouseControlModel: ObservableObject {
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(sleep), name: NSWorkspace.willSleepNotification, object: nil)
     }
 
-    @objc private func sleep() { sleeping = true }
-    @objc private func wake() { sleeping = false; refresh() }
+    @objc private func sleep() { sleeping = true; MouseAlerts.shared.suspend() }
+    @objc private func wake() { sleeping = false; MouseAlerts.shared.resume(); refresh() }
 
     func refresh() {
         guard !scanning, !busy, !sleeping else { return }
@@ -63,6 +74,7 @@ final class MouseControlModel: ObservableObject {
                     let changed = self.devices.map { "\($0.id):\($0.battery ?? -1):\($0.online):\($0.charging)" } !=
                         devices.map { "\($0.id):\($0.battery ?? -1):\($0.online):\($0.charging)" }
                     self.devices = devices
+                    MouseAlerts.shared.update(devices)
                     if !devices.contains(where: { $0.id == self.selectedID }) { self.selectedID = devices.first?.id }
                     if self.selected?.online != true { self.profile = nil }
                     else if self.profile == nil && self.profileError == nil { self.loadProfile() }

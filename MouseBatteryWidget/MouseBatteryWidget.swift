@@ -64,8 +64,8 @@ struct MouseBatteryView: View {
                 .font(.system(size: 32, weight: .medium, design: .rounded)).monospacedDigit()
             Text(device.name).font(.caption.weight(.medium)).lineLimit(1).minimumScaleFactor(0.8)
             HStack(spacing: 4) {
-                Text(device.battery == nil ? NSLocalizedString("Sleeping or unavailable", tableName: "MouseControl", comment: "Widget state") :
-                    fresh && device.online ? "2.4 GHz" : NSLocalizedString("Last seen", tableName: "MouseControl", comment: "Widget stale state"))
+                Text(device.battery == nil ? NSLocalizedString("Battery unavailable", tableName: "MouseControl", comment: "Widget state") :
+                    fresh && device.online ? device.connectionLabel : NSLocalizedString("Last seen", tableName: "MouseControl", comment: "Widget stale state"))
                 if device.battery != nil && (!fresh || !device.online) { Text(device.updatedAt, style: .time) }
             }.font(.system(size: 10)).foregroundStyle(.secondary)
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
