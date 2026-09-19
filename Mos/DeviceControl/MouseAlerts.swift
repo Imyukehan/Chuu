@@ -2,6 +2,7 @@ import AppKit
 import SwiftUI
 import UserNotifications
 import OSLog
+import ImageIO
 
 @available(macOS 14.0, *)
 final class MouseAlerts: NSObject, UNUserNotificationCenterDelegate {
@@ -180,12 +181,51 @@ final class MouseConnectionPanel: NSPanel {
 }
 
 enum MouseConnectionLayout {
-    static let size = NSSize(width: 300, height: 64)
+    static let size = NSSize(width: 236, height: 52)
 
     static func frame(in visibleFrame: NSRect) -> NSRect {
-        NSRect(x: visibleFrame.maxX - size.width - 16,
-               y: visibleFrame.maxY - size.height - 8,
-               width: size.width, height: size.height)
+        // Match the accessory-status area, leaving room for the clock and system controls.
+        let rightInset = min(240, max(16, visibleFrame.width - size.width - 16))
+        return NSRect(x: visibleFrame.maxX - size.width - rightInset,
+                      y: visibleFrame.maxY - size.height - 12,
+                      width: size.width, height: size.height)
+    }
+}
+
+enum MouseConnectionArtwork {
+    private static let cache = NSCache<NSString, NSImage>()
+
+    static func image(for device: MouseSnapshot) -> NSImage? {
+        let names = device.model == "g502x" ? ["G502RenderTop", device.imageName] : [device.imageName]
+        for name in names where !name.isEmpty {
+            if let image = cache.object(forKey: name as NSString) { return image }
+            guard let source = NSImage(named: name), let image = thumbnail(from: source) else { continue }
+            cache.setObject(image, forKey: name as NSString)
+            return image
+        }
+        return nil
+    }
+
+    static func thumbnail(from image: NSImage) -> NSImage? {
+        guard let data = image.tiffRepresentation,
+              let source = CGImageSourceCreateWithData(data as CFData, nil) else { return nil }
+        let result = NSImage(size: .zero)
+        // Supply pixel-matched representations so AppKit does not minify a full product render.
+        for scale in [1, 2] {
+            let options: [CFString: Any] = [
+                kCGImageSourceCreateThumbnailFromImageAlways: true,
+                kCGImageSourceCreateThumbnailWithTransform: true,
+                kCGImageSourceThumbnailMaxPixelSize: 32 * scale,
+                kCGImageSourceShouldCacheImmediately: true
+            ]
+            guard let cg = CGImageSourceCreateThumbnailAtIndex(source, 0, options as CFDictionary) else { return nil }
+            let rep = NSBitmapImageRep(cgImage: cg)
+            let points = NSSize(width: CGFloat(cg.width) / CGFloat(scale), height: CGFloat(cg.height) / CGFloat(scale))
+            if scale == 1 { result.size = points }
+            rep.size = result.size
+            result.addRepresentation(rep)
+        }
+        return result
     }
 }
 
@@ -195,26 +235,26 @@ struct MouseConnectionCard: View {
     let close: () -> Void
     var body: some View {
         Button(action: close) {
-            HStack(spacing: 10) {
+            HStack(spacing: 8) {
                 Group {
-                    if let image = connectionImage {
-                        Image(nsImage: image).resizable().scaledToFit()
+                    if let image = MouseConnectionArtwork.image(for: device) {
+                        Image(nsImage: image).interpolation(.high)
                     } else {
-                        Image(systemName: "computermouse.fill").font(.system(size: 27, weight: .light))
+                        Image(systemName: "computermouse.fill").font(.system(size: 24, weight: .light))
                     }
-                }.frame(width: 36, height: 42).accessibilityHidden(true)
+                }.frame(width: 28, height: 32).accessibilityHidden(true)
 
-                VStack(spacing: 3) {
-                    Text(device.name).font(.system(size: 14, weight: .semibold))
+                VStack(spacing: 2) {
+                    Text(device.name).font(.system(size: 13, weight: .semibold))
                         .lineLimit(1).truncationMode(.middle)
                     Text(NSLocalizedString(device.charging ? "Charging" : "Connected", tableName: "MouseControl", comment: "Connection popup"))
-                        .font(.system(size: 12)).foregroundStyle(.secondary)
+                        .font(.system(size: 11)).foregroundStyle(.secondary)
                 }
                 .frame(maxWidth: .infinity)
 
                 MouseConnectionBatteryRing(battery: device.battery)
             }
-            .padding(.horizontal, 12)
+            .padding(.horizontal, 10)
             .frame(width: MouseConnectionLayout.size.width, height: MouseConnectionLayout.size.height)
             .contentShape(Capsule())
         }
@@ -223,10 +263,6 @@ struct MouseConnectionCard: View {
         .help(NSLocalizedString("Close", tableName: "MouseControl", comment: "Close popup"))
     }
 
-    private var connectionImage: NSImage? {
-        if device.model == "g502x", let image = NSImage(named: "G502RenderTop") { return image }
-        return device.imageName.isEmpty ? nil : NSImage(named: device.imageName)
-    }
 }
 
 @available(macOS 14.0, *)
@@ -240,15 +276,15 @@ private struct MouseConnectionBatteryRing: View {
 
     var body: some View {
         ZStack {
-            Circle().stroke(.primary.opacity(0.08), lineWidth: 4.5)
+            Circle().stroke(.primary.opacity(0.08), lineWidth: 3.5)
             Circle().trim(from: 0, to: CGFloat(percentage ?? 0) / 100)
-                .stroke(tint, style: StrokeStyle(lineWidth: 4.5, lineCap: .round))
+                .stroke(tint, style: StrokeStyle(lineWidth: 3.5, lineCap: .round))
                 .rotationEffect(.degrees(-90))
             Text(percentage.map(String.init) ?? "—")
-                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                .font(.system(size: 11, weight: .semibold, design: .rounded))
                 .monospacedDigit().foregroundStyle(.secondary)
         }
-        .padding(3).frame(width: 44, height: 44)
+        .padding(2).frame(width: 36, height: 36)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(NSLocalizedString("Mouse battery", tableName: "MouseControl", comment: "Battery ring"))
         .accessibilityValue(percentage.map { "\($0)%" } ?? NSLocalizedString("Battery unavailable", tableName: "MouseControl", comment: "Unknown battery"))

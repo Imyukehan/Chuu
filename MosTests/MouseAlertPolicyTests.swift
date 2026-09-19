@@ -108,11 +108,31 @@ final class MouseAlertPolicyTests: XCTestCase {
         for visible in [NSRect(x: 0, y: 80, width: 1512, height: 870),
                         NSRect(x: -1920, y: -600, width: 1920, height: 1050)] {
             let frame = MouseConnectionLayout.frame(in: visible)
-            XCTAssertEqual(frame.size, NSSize(width: 300, height: 64))
-            XCTAssertEqual(frame.maxX, visible.maxX - 16)
-            XCTAssertEqual(frame.maxY, visible.maxY - 8)
+            XCTAssertEqual(frame.size, NSSize(width: 236, height: 52))
+            XCTAssertEqual(frame.maxX, visible.maxX - 240)
+            XCTAssertEqual(frame.maxY, visible.maxY - 12)
             XCTAssertTrue(visible.contains(frame))
         }
+    }
+
+    func testConnectionCapsuleMatchesFullScreenReferenceAndFitsNarrowDisplays() {
+        let reference = MouseConnectionLayout.frame(in: NSRect(x: 0, y: 98, width: 1920, height: 952))
+        XCTAssertEqual(reference, NSRect(x: 1444, y: 986, width: 236, height: 52))
+        let narrow = NSRect(x: -320, y: 0, width: 320, height: 900)
+        XCTAssertTrue(narrow.contains(MouseConnectionLayout.frame(in: narrow)))
+    }
+
+    func testConnectionArtworkUsesPixelMatchedRetinaRepresentations() throws {
+        let rep = try XCTUnwrap(NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: 100, pixelsHigh: 200,
+                                               bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true,
+                                               isPlanar: false, colorSpaceName: .deviceRGB, bytesPerRow: 0, bitsPerPixel: 0))
+        let source = NSImage(size: NSSize(width: 100, height: 200))
+        source.addRepresentation(rep)
+        let thumbnail = try XCTUnwrap(MouseConnectionArtwork.thumbnail(from: source))
+        XCTAssertEqual(thumbnail.size, NSSize(width: 16, height: 32))
+        XCTAssertEqual(thumbnail.representations.map(\.pixelsWide), [16, 32])
+        XCTAssertEqual(thumbnail.representations.map(\.pixelsHigh), [32, 64])
+        XCTAssertTrue(thumbnail.representations.allSatisfy { $0.size == thumbnail.size })
     }
 
     @MainActor
