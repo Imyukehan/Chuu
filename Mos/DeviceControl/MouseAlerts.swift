@@ -145,8 +145,8 @@ final class MouseAlerts: NSObject, UNUserNotificationCenterDelegate {
     func present(_ device: MouseSnapshot) {
         guard canPresent, let screen = NSScreen.screens.first(where: { NSMouseInRect(NSEvent.mouseLocation, $0.frame, false) }) ?? NSScreen.main else { return }
         dismiss()
-        let size = NSSize(width: 320, height: 260)
-        let panel = MouseConnectionPanel(contentRect: NSRect(origin: .zero, size: size),
+        let frame = MouseConnectionLayout.frame(in: screen.visibleFrame)
+        let panel = MouseConnectionPanel(contentRect: frame,
                             styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
         panel.isOpaque = false
         panel.backgroundColor = .clear
@@ -158,7 +158,7 @@ final class MouseAlerts: NSObject, UNUserNotificationCenterDelegate {
         panel.title = "Chuu"
         panel.contentView = NSHostingView(rootView: MouseConnectionCard(device: device, close: { [weak self] in self?.dismiss() }))
         panel.setAccessibilityLabel(NSLocalizedString("Connection popup", tableName: "MouseControl", comment: "Popup"))
-        panel.setFrameOrigin(NSPoint(x: screen.visibleFrame.midX - size.width / 2, y: screen.visibleFrame.minY + 36))
+        panel.setFrame(frame, display: false)
         panel.orderFrontRegardless()
         self.panel = panel
         let dismissal = DispatchWorkItem { [weak self] in self?.dismiss() }
@@ -179,32 +179,48 @@ final class MouseConnectionPanel: NSPanel {
     override var canBecomeMain: Bool { false }
 }
 
+enum MouseConnectionLayout {
+    static let size = NSSize(width: 300, height: 64)
+
+    static func frame(in visibleFrame: NSRect) -> NSRect {
+        NSRect(x: visibleFrame.maxX - size.width - 16,
+               y: visibleFrame.maxY - size.height - 8,
+               width: size.width, height: size.height)
+    }
+}
+
 @available(macOS 14.0, *)
-private struct MouseConnectionCard: View {
+struct MouseConnectionCard: View {
     let device: MouseSnapshot
     let close: () -> Void
     var body: some View {
-        VStack(spacing: 10) {
-            if let image = connectionImage {
-                Image(nsImage: image).resizable().scaledToFit().frame(height: 135)
-            } else {
-                Image(systemName: "computermouse.fill").font(.system(size: 68, weight: .light)).frame(height: 135)
-            }
-            Text(device.name).font(.headline).lineLimit(1).truncationMode(.middle)
-            HStack(spacing: 8) {
-                Text(NSLocalizedString("Connected", tableName: "MouseControl", comment: "Connection popup"))
-                Text(device.connectionLabel)
-                if let battery = device.battery {
-                    Label("\(battery)%", systemImage: device.charging ? "battery.100percent.bolt" : "battery.100percent")
+        Button(action: close) {
+            HStack(spacing: 10) {
+                Group {
+                    if let image = connectionImage {
+                        Image(nsImage: image).resizable().scaledToFit()
+                    } else {
+                        Image(systemName: "computermouse.fill").font(.system(size: 27, weight: .light))
+                    }
+                }.frame(width: 36, height: 42).accessibilityHidden(true)
+
+                VStack(spacing: 3) {
+                    Text(device.name).font(.system(size: 14, weight: .semibold))
+                        .lineLimit(1).truncationMode(.middle)
+                    Text(NSLocalizedString(device.charging ? "Charging" : "Connected", tableName: "MouseControl", comment: "Connection popup"))
+                        .font(.system(size: 12)).foregroundStyle(.secondary)
                 }
-            }.font(.callout).foregroundStyle(.secondary)
-        }.padding(24).frame(width: 320, height: 260)
-            .modifier(ConnectionCardSurface())
-            .overlay(alignment: .topTrailing) {
-                Button(action: close) { Image(systemName: "xmark").frame(width: 24, height: 24) }
-                    .buttonStyle(.plain).foregroundStyle(.secondary).padding(12)
-                    .help(NSLocalizedString("Close", tableName: "MouseControl", comment: "Close popup"))
+                .frame(maxWidth: .infinity)
+
+                MouseConnectionBatteryRing(battery: device.battery)
             }
+            .padding(.horizontal, 12)
+            .frame(width: MouseConnectionLayout.size.width, height: MouseConnectionLayout.size.height)
+            .contentShape(Capsule())
+        }
+        .buttonStyle(.plain)
+        .modifier(ConnectionCardSurface())
+        .help(NSLocalizedString("Close", tableName: "MouseControl", comment: "Close popup"))
     }
 
     private var connectionImage: NSImage? {
@@ -214,12 +230,38 @@ private struct MouseConnectionCard: View {
 }
 
 @available(macOS 14.0, *)
+private struct MouseConnectionBatteryRing: View {
+    let battery: Int?
+    private var percentage: Int? { battery.flatMap { (0...100).contains($0) ? $0 : nil } }
+    private var tint: Color {
+        guard let percentage else { return .secondary }
+        return percentage <= 10 ? .red : percentage <= 20 ? .orange : .green
+    }
+
+    var body: some View {
+        ZStack {
+            Circle().stroke(.primary.opacity(0.08), lineWidth: 4.5)
+            Circle().trim(from: 0, to: CGFloat(percentage ?? 0) / 100)
+                .stroke(tint, style: StrokeStyle(lineWidth: 4.5, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+            Text(percentage.map(String.init) ?? "—")
+                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                .monospacedDigit().foregroundStyle(.secondary)
+        }
+        .padding(3).frame(width: 44, height: 44)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(NSLocalizedString("Mouse battery", tableName: "MouseControl", comment: "Battery ring"))
+        .accessibilityValue(percentage.map { "\($0)%" } ?? NSLocalizedString("Battery unavailable", tableName: "MouseControl", comment: "Unknown battery"))
+    }
+}
+
+@available(macOS 14.0, *)
 private struct ConnectionCardSurface: ViewModifier {
     func body(content: Content) -> some View {
         if #available(macOS 26.0, *) {
-            content.glassEffect(.regular, in: RoundedRectangle(cornerRadius: 24))
+            content.glassEffect(.regular, in: Capsule())
         } else {
-            content.background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
+            content.background(.regularMaterial, in: Capsule())
         }
     }
 }

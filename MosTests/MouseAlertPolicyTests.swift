@@ -1,4 +1,5 @@
 import XCTest
+import SwiftUI
 @testable import Mos_Debug
 
 final class MouseAlertPolicyTests: XCTestCase {
@@ -101,6 +102,27 @@ final class MouseAlertPolicyTests: XCTestCase {
         XCTAssertFalse(panel.canBecomeKey)
         XCTAssertFalse(panel.canBecomeMain)
         XCTAssertTrue(panel.styleMask.contains(.nonactivatingPanel))
+    }
+
+    func testConnectionCapsuleSitsBelowRightMenuBarOnEachDisplay() {
+        for visible in [NSRect(x: 0, y: 80, width: 1512, height: 870),
+                        NSRect(x: -1920, y: -600, width: 1920, height: 1050)] {
+            let frame = MouseConnectionLayout.frame(in: visible)
+            XCTAssertEqual(frame.size, NSSize(width: 300, height: 64))
+            XCTAssertEqual(frame.maxX, visible.maxX - 16)
+            XCTAssertEqual(frame.maxY, visible.maxY - 8)
+            XCTAssertTrue(visible.contains(frame))
+        }
+    }
+
+    @MainActor
+    func testConnectionCapsuleSizeIsStableWithLongNameAndUnknownBattery() {
+        for battery: Int? in [100, 20, 0, nil] {
+            var snapshot = device(battery: battery)
+            snapshot.name = "A very long wireless gaming mouse name with many words"
+            let view = NSHostingView(rootView: MouseConnectionCard(device: snapshot, close: {}))
+            XCTAssertEqual(view.fittingSize, MouseConnectionLayout.size)
+        }
     }
 
     func testGenericDiscoveryExcludesNonMouseInterfaces() {
