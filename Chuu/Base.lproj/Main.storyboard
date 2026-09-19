@@ -102,7 +102,7 @@
         <scene sceneID="5zC-sP-JZj">
             <objects>
                 <viewController title="General" storyboardIdentifier="general" id="ITL-GD-CPd" customClass="PreferencesGeneralViewController" customModule="Chuu" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" blendingMode="behindWindow" material="toolTip" state="followsWindowActiveState" id="LZw-qp-NWH">
+                    <customView key="view" id="LZw-qp-NWH">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="105"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -206,7 +206,7 @@
                             <constraint firstItem="vPz-kM-wAq" firstAttribute="top" secondItem="LZw-qp-NWH" secondAttribute="top" constant="10" id="k8K-MT-aLo"/>
                             <constraint firstAttribute="trailing" secondItem="Xzk-6e-mKA" secondAttribute="trailing" constant="20" id="uwt-6G-UwH"/>
                         </constraints>
-                    </visualEffectView>
+                    </customView>
                     <connections>
                         <outlet property="hideStatusBarIconCheckBox" destination="1OP-ac-77Z" id="eAY-em-HEE"/>
                         <outlet property="launchOnLoginCheckBox" destination="Xzk-6e-mKA" id="Dx6-Zs-rVj"/>
@@ -544,14 +544,14 @@
             <objects>
                 <customObject id="l11-a0-4Xa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController title="Application" storyboardIdentifier="application" id="bga-wG-iim" customClass="PreferencesApplicationViewController" customModule="Chuu" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" wantsLayer="YES" blendingMode="behindWindow" material="toolTip" state="followsWindowActiveState" id="jc3-9p-Bfo">
+                    <customView key="view" wantsLayer="YES" id="jc3-9p-Bfo">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="321"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView appearanceType="inheritedVibrantLight" blendingMode="behindWindow" material="underWindowBackground" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="VAL-LC-T3T">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="VAL-LC-T3T">
                                 <rect key="frame" x="0.0" y="291" width="450" height="30"/>
                                 <subviews>
-                                    <visualEffectView blendingMode="behindWindow" material="toolTip" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="ouh-IG-LyJ">
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="ouh-IG-LyJ">
                                         <rect key="frame" x="0.0" y="0.0" width="450" height="30"/>
                                         <subviews>
                                             <textField wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="Dph-wy-8sb">
@@ -585,7 +585,7 @@
                                             <constraint firstItem="XUy-oo-mzG" firstAttribute="leading" secondItem="ouh-IG-LyJ" secondAttribute="leading" id="XRb-rf-T5L"/>
                                             <constraint firstAttribute="trailing" secondItem="XUy-oo-mzG" secondAttribute="trailing" id="do1-QI-fda"/>
                                         </constraints>
-                                    </visualEffectView>
+                                    </customView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Oci-9C-yUn"/>
@@ -594,8 +594,8 @@
                                     <constraint firstItem="ouh-IG-LyJ" firstAttribute="leading" secondItem="VAL-LC-T3T" secondAttribute="leading" id="hkp-a2-qzN"/>
                                     <constraint firstAttribute="width" constant="450" id="nVH-oK-9VM"/>
                                 </constraints>
-                            </visualEffectView>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="57" horizontalPageScroll="10" verticalLineScroll="57" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="2dP-HG-cdi">
+                            </customView>
+                            <scrollView borderType="none" drawsBackground="NO" autohidesScrollers="YES" horizontalLineScroll="57" horizontalPageScroll="10" verticalLineScroll="57" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="2dP-HG-cdi">
                                 <rect key="frame" x="0.0" y="31" width="450" height="260"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="bif-Bv-tOQ">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="260"/>
@@ -886,7 +886,7 @@
                             <constraint firstItem="2yz-Bt-IMN" firstAttribute="top" secondItem="2dP-HG-cdi" secondAttribute="bottom" id="u7y-lk-Ug0"/>
                             <constraint firstAttribute="trailing" secondItem="VAL-LC-T3T" secondAttribute="trailing" id="yNN-sY-waa"/>
                         </constraints>
-                    </visualEffectView>
+                    </customView>
                     <connections>
                         <outlet property="addButton" destination="ceK-ED-PfL" id="6o3-ow-6Jm"/>
                         <outlet property="allowlistModeCheckBox" destination="gnb-pe-ZN5" id="HTP-3G-Zme"/>
@@ -1048,7 +1048,7 @@
             <objects>
                 <customObject id="T8g-3J-WxE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController title="Scrolling" storyboardIdentifier="scrolling" id="iW5-CD-5OC" customClass="PreferencesScrollingViewController" customModule="Chuu" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" wantsLayer="YES" blendingMode="behindWindow" material="toolTip" state="followsWindowActiveState" id="Jsi-ke-bNZ">
+                    <customView key="view" wantsLayer="YES" id="Jsi-ke-bNZ">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="501"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -1551,7 +1551,7 @@
                             <constraint firstItem="PIE-3y-0sa" firstAttribute="top" secondItem="1Hp-EF-wSq" secondAttribute="bottom" constant="18" id="zXK-ZB-H4d"/>
                             <constraint firstItem="EFO-dA-m6V" firstAttribute="centerY" secondItem="mKO-0m-Vb0" secondAttribute="centerY" id="zbA-rs-8kU"/>
                         </constraints>
-                    </visualEffectView>
+                    </customView>
                     <connections>
                         <outlet property="dashKeyBindButton" destination="EFO-dA-m6V" id="FB1-40-nl9"/>
                         <outlet property="dashKeyDelButton" destination="djY-Oz-zp6" id="OOJ-hd-KiK"/>

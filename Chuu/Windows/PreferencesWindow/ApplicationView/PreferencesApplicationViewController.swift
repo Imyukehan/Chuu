@@ -14,7 +14,7 @@ class PreferencesApplicationViewController: NSViewController {
     // 白名单
     @IBOutlet weak var allowlistModeCheckBox: NSButton!
     // 表格
-    @IBOutlet weak var tableHead: NSVisualEffectView!
+    @IBOutlet weak var tableHead: NSView!
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var tableFoot: NSView!
     @IBOutlet weak var tableEmpty: NSView!
