@@ -31,8 +31,13 @@ xcodebuild -project Chuu.xcodeproj -scheme Chuu -configuration Release \
 
 APP="$SOURCE/build/TestRelease/Build/Products/Release/Chuu.app"
 codesign --verify --deep --strict "$APP"
-lipo "$APP/Contents/MacOS/MouseControl" -verify_arch arm64 x86_64
-lipo "$APP/Contents/PlugIns/ChuuWidget.appex/Contents/MacOS/ChuuWidget" -verify_arch arm64 x86_64
+for binary in "$APP/Contents/MacOS/MouseControl" "$APP/Contents/PlugIns/ChuuWidget.appex/Contents/MacOS/ChuuWidget"; do
+  architectures=$(xcrun lipo -archs "$binary")
+  [[ " $architectures " == *" arm64 "* && " $architectures " == *" x86_64 "* ]] || {
+    echo "Missing universal architecture in $binary: $architectures" >&2
+    exit 1
+  }
+done
 python3 "$TOOLS/test_release_metadata.py" "$APP" "$TAG" "$COMMIT" "$OUTPUT"
 
 STAGE=$(mktemp -d "${TMPDIR:-/tmp}/chuu-test-package.XXXXXX")
