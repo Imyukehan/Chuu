@@ -22,7 +22,8 @@ def validate(app, widget, tag):
     if app.get("SUFeedURL"):
         raise ValueError("Test packages must not opt into an update feed")
     return {"version": version, "build": build, "tag": tag, "architectures": ["arm64"],
-            "signing": "ad-hoc", "notarized": False, "widget_runtime_validated": False}
+            "signing": "ad-hoc", "notarized": False, "hardened_runtime": False,
+            "widget_runtime_validated": False}
 
 
 def main():
@@ -42,6 +43,8 @@ def main():
 
 For testing only. Ad-hoc signed, not Developer ID signed or notarized. This is not a stable release and is not delivered through Sparkle.
 
+This test package does not enable Hardened Runtime, so its ad-hoc-signed embedded frameworks can load. Normally signed local builds retain Hardened Runtime.
+
 - Apple Silicon (arm64) macOS app, for M-series Macs only. Intel Macs are not supported by this package. Minimum system: macOS {app['LSMinimumSystemVersion']}.
 - macOS may block first launch. Review this build's source and origin before approving it through System Settings > Privacy & Security. Do not disable Gatekeeper globally.
 - Scrolling and button shortcuts require Accessibility permission. Changing from a signed development app may require granting permission again.
@@ -57,6 +60,8 @@ Changes: https://github.com/Imyukehan/Chuu/blob/{commit}/CHANGELOG.md
 ## 中文说明
 
 这是未公证测试包，不是稳定版，也不会通过应用内更新分发。仅适用于 M 系列芯片的 Mac（Apple Silicon / arm64），不支持 Intel Mac。首次启动可能被 macOS 拦截，请核对来源后自行决定是否允许打开，不要关闭系统的全局安全保护。
+
+此测试包不启用加固运行时，以便加载临时签名的内嵌组件；正常签名的本机构建保持启用。
 
 滚动和快捷操作需要辅助功能权限，更换签名后可能需要重新授权。包内包含 WidgetKit 扩展，但临时签名下的 App Group 共享和小组件功能未经验证；依赖小组件时请继续使用正常签名的本机构建。测试包不包含本机专用鼠标外观素材。替换旧版前请备份设置，并退出正在运行的其他 Chuu 副本。
 """

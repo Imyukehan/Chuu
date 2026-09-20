@@ -1,5 +1,23 @@
 # Chuu Changelog
 
+## 0.1.2 - 2026-09-20
+
+Unnotarized test release. Build `20260920.1`.
+
+- Fix an immediate launch failure in CI packages: Hardened Runtime rejected the ad-hoc-signed Sparkle framework before the app could display a window. Disable Hardened Runtime only for these test packages; normally signed builds retain their existing settings.
+- Build Apple Silicon (`arm64`) packages only.
+- Launch the extracted app on the disposable CI runner before publishing; reject early exits and retain the startup log.
+- No changes to input settings, mouse firmware, or the application interface in this release.
+
+### 中文
+
+未公证测试版，构建号 `20260920.1`。
+
+- 修复云端包双击后无反应：加固运行时拒绝加载临时签名的 Sparkle 组件，导致窗口出现前就退出。仅测试包调整此配置，正常签名版本保持原设置。
+- 安装包仅支持 Apple Silicon（M 系列芯片）。
+- 发布前在隔离的 CI 环境中实际启动解压后的 App，提前退出则停止发布，并保留启动日志。
+- 本版不改变按键设置、鼠标固件或应用界面。
+
 ## 0.1.1 - 2026-09-19
 
 Development source milestone. Build `20260919.1`; no notarized installer or active in-app update feed is published with this tag.

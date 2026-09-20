@@ -22,11 +22,14 @@ cd "$SOURCE"
 mkdir -p build
 xcodegen generate --spec project.yml
 # Ad-hoc signing is only for this isolated package, never the installed app or app-hosted tests.
+# Hardened Runtime library validation rejects ad-hoc embedded frameworks without a Team ID.
+# Normally signed development/distribution builds keep the project defaults unchanged.
 xcodebuild -project Chuu.xcodeproj -scheme Chuu -configuration Release \
   -destination 'generic/platform=macOS' -derivedDataPath build/TestRelease \
   -onlyUsePackageVersionsFromResolvedFile \
   CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= \
   CODE_SIGNING_ALLOWED=YES PROVISIONING_PROFILE_SPECIFIER= \
+  ENABLE_HARDENED_RUNTIME=NO CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO \
   ONLY_ACTIVE_ARCH=NO ARCHS=arm64 build 2>&1 | tee build/ci-build.log
 
 APP="$SOURCE/build/TestRelease/Build/Products/Release/Chuu.app"
@@ -58,6 +61,9 @@ fi
 mkdir "$STAGE/extracted"
 unzip -q "$OUTPUT/$NAME.zip" -d "$STAGE/extracted"
 codesign --verify --deep --strict "$STAGE/extracted/$NAME/Chuu.app"
+if [[ "${GITHUB_ACTIONS:-}" == true ]]; then
+  python3 "$TOOLS/smoke_test_launch.py" "$STAGE/extracted/$NAME/Chuu.app" "$SOURCE/build/ci-launch.log"
+fi
 cd "$OUTPUT"
 shasum -a 256 "$NAME.zip" build-info.json release-notes.md > SHA256SUMS
 if [[ -n "${GITHUB_OUTPUT:-}" ]]; then

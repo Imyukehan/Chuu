@@ -11,6 +11,7 @@ class ReleaseMetadataTests(unittest.TestCase):
         result = validate(self.app, self.widget, "v0.1.1")
         self.assertFalse(result["notarized"])
         self.assertEqual(result["signing"], "ad-hoc")
+        self.assertFalse(result["hardened_runtime"])
 
     def test_package_targets_only_apple_silicon(self):
         result = validate(self.app, self.widget, "v0.1.1")
