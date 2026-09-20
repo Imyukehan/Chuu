@@ -48,7 +48,7 @@ This test package does not enable Hardened Runtime, so its ad-hoc-signed embedde
 - Apple Silicon (arm64) macOS app, for M-series Macs only. Intel Macs are not supported by this package. Minimum system: macOS {app['LSMinimumSystemVersion']}.
 - macOS may block first launch. Review this build's source and origin before approving it through System Settings > Privacy & Security. Do not disable Gatekeeper globally.
 - Scrolling and button shortcuts require Accessibility permission. Changing from a signed development app may require granting permission again.
-- The WidgetKit extension is bundled, but App Group sharing and widget operation are NOT validated with ad-hoc signing. Use a normally signed local build when the widget is essential.
+- The WidgetKit extension is bundled, but ad-hoc signing does not authenticate membership in the shared App Group. Use a normally signed build with a matching App Group when the widget is essential.
 - Optional device artwork is not bundled. Generic mouse artwork is used where an asset is unavailable.
 - Back up your settings before replacing an existing installation. Quit other running copies of Chuu before opening this one.
 - Verify the download using the attached SHA256SUMS file. Build number: {metadata['build']}.
@@ -63,7 +63,7 @@ Changes: https://github.com/Imyukehan/Chuu/blob/{commit}/CHANGELOG.md
 
 此测试包不启用加固运行时，以便加载临时签名的内嵌组件；正常签名的本机构建保持启用。
 
-滚动和快捷操作需要辅助功能权限，更换签名后可能需要重新授权。包内包含 WidgetKit 扩展，但临时签名下的 App Group 共享和小组件功能未经验证；依赖小组件时请继续使用正常签名的本机构建。测试包不包含本机专用鼠标外观素材。替换旧版前请备份设置，并退出正在运行的其他 Chuu 副本。
+滚动和快捷操作需要辅助功能权限，更换签名后可能需要重新授权。临时签名无法认证共享 App Group 的成员身份；需要小组件时请使用 App Group 匹配的正常签名版本。测试包不包含本机专用鼠标外观素材。替换旧版前请备份设置，并退出正在运行的其他 Chuu 副本。
 """
     (output_path / "release-notes.md").write_text(notes, encoding="utf-8")
 

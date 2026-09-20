@@ -1,4 +1,5 @@
 import Foundation
+import Security
 
 struct MouseSnapshot: Codable, Equatable, Identifiable {
     var id: String
@@ -21,11 +22,31 @@ struct MouseSnapshotFile: Codable {
 }
 
 enum MouseSnapshotStore {
+    enum Destination { case shared, local }
+
     static let group = "MA4UNJ3J25.moe.khan.MouseControl"
     static let widgetKind = "MouseBatteryWidget"
 
+    // A team-prefixed group is not owned by an ad-hoc-signed process.
+    static let canUseSharedStorage: Bool = {
+        var code: SecCode?
+        var staticCode: SecStaticCode?
+        var info: CFDictionary?
+        guard SecCodeCopySelf([], &code) == errSecSuccess, let code,
+              SecCodeCopyStaticCode(code, [], &staticCode) == errSecSuccess, let staticCode,
+              SecCodeCopySigningInformation(staticCode, SecCSFlags(rawValue: kSecCSSigningInformation), &info) == errSecSuccess,
+              let values = info as? [String: Any] else { return false }
+        return canUseSharedStorage(teamID: values[kSecCodeInfoTeamIdentifier as String] as? String)
+    }()
+
+    static func canUseSharedStorage(teamID: String?) -> Bool {
+        guard let teamID, !teamID.isEmpty else { return false }
+        return teamID == group.components(separatedBy: ".").first
+    }
+
     static var fileURL: URL? {
-        FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: group)?
+        guard canUseSharedStorage else { return nil }
+        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: group)?
             .appendingPathComponent("mouse-batteries.json")
     }
 
@@ -34,14 +55,31 @@ enum MouseSnapshotStore {
         return try? JSONDecoder().decode(MouseSnapshotFile.self, from: data)
     }
 
-    static func write(_ devices: [MouseSnapshot]) throws {
-        guard let url = fileURL else {
-            throw NSError(domain: "MouseControl", code: 1,
-                          userInfo: [NSLocalizedDescriptionKey: "App Group unavailable"])
+    static func write(_ devices: [MouseSnapshot]) throws -> Destination {
+        let localURL = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask,
+                                                   appropriateFor: nil, create: false)
+            .appendingPathComponent("moe.khan.MouseControl", isDirectory: true)
+            .appendingPathComponent("mouse-batteries.json")
+        return try write(devices, sharedURL: fileURL, localURL: localURL)
+    }
+
+    static func write(_ devices: [MouseSnapshot], sharedURL: URL?, localURL: URL) throws -> Destination {
+        let data = try JSONEncoder().encode(MouseSnapshotFile(devices: devices, writtenAt: Date()))
+        if let sharedURL {
+            do {
+                try save(data, to: sharedURL)
+                return .shared
+            } catch {
+                // A widget-container failure must not block the app's own battery cache.
+            }
         }
+        try save(data, to: localURL)
+        return .local
+    }
+
+    private static func save(_ data: Data, to url: URL) throws {
         try FileManager.default.createDirectory(at: url.deletingLastPathComponent(),
                                                 withIntermediateDirectories: true)
-        let data = try JSONEncoder().encode(MouseSnapshotFile(devices: devices, writtenAt: Date()))
         try data.write(to: url, options: .atomic)
     }
 }

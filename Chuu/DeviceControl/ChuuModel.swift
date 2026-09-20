@@ -18,6 +18,7 @@ final class ChuuModel: ObservableObject {
     private var sleeping = false
     private var watcher: MouseConnectionWatcher?
     private var hotPlugRefresh: DispatchWorkItem?
+    private var snapshotDestination: MouseSnapshotStore.Destination?
 
     var selected: MouseSnapshot? { devices.first { $0.id == selectedID } }
 
@@ -32,14 +33,16 @@ final class ChuuModel: ObservableObject {
             self.hotPlugRefresh = work
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: work)
         }
-        WidgetCenter.shared.getCurrentConfigurations { result in
-            let log = OSLog(subsystem: "moe.khan.MouseControl", category: "Widgets")
-            switch result {
-            case .success(let widgets):
-                os_log("Configured battery widgets: %d", log: log, type: .info,
-                       widgets.filter { $0.kind == MouseSnapshotStore.widgetKind }.count)
-            case .failure(let error):
-                os_log("Widget configuration query failed: %{public}@", log: log, type: .error, error.localizedDescription)
+        if MouseSnapshotStore.canUseSharedStorage {
+            WidgetCenter.shared.getCurrentConfigurations { result in
+                let log = OSLog(subsystem: "moe.khan.MouseControl", category: "Widgets")
+                switch result {
+                case .success(let widgets):
+                    os_log("Configured battery widgets: %d", log: log, type: .info,
+                           widgets.filter { $0.kind == MouseSnapshotStore.widgetKind }.count)
+                case .failure(let error):
+                    os_log("Widget configuration query failed: %{public}@", log: log, type: .error, error.localizedDescription)
+                }
             }
         }
         refresh()
@@ -78,18 +81,31 @@ final class ChuuModel: ObservableObject {
                     if !devices.contains(where: { $0.id == self.selectedID }) { self.selectedID = devices.first?.id }
                     if self.selected?.online != true { self.profile = nil }
                     else if self.profile == nil && self.profileError == nil { self.loadProfile() }
-                    do {
-                        try MouseSnapshotStore.write(devices)
-                        if changed { WidgetCenter.shared.reloadTimelines(ofKind: MouseSnapshotStore.widgetKind) }
-                    } catch { self.error = error.localizedDescription }
+                    self.cacheSnapshot(devices, changed: changed)
                 case .failure(let error):
                     self.error = error.localizedDescription
                     self.devices = []
                     self.profile = nil
-                    try? MouseSnapshotStore.write([])
-                    WidgetCenter.shared.reloadTimelines(ofKind: MouseSnapshotStore.widgetKind)
+                    self.cacheSnapshot([], changed: true)
                 }
             }
+        }
+    }
+
+    private func cacheSnapshot(_ devices: [MouseSnapshot], changed: Bool) {
+        let log = OSLog(subsystem: "moe.khan.MouseControl", category: "Widgets")
+        do {
+            let destination = try MouseSnapshotStore.write(devices)
+            if destination == .shared, changed || snapshotDestination != .shared {
+                WidgetCenter.shared.reloadTimelines(ofKind: MouseSnapshotStore.widgetKind)
+            } else if destination == .local, snapshotDestination != .local {
+                os_log("Battery cache is local; widget sharing is unavailable", log: log, type: .info)
+            }
+            snapshotDestination = destination
+        } catch {
+            // Persistence is optional: keep live readings and never present a repeating scan alert.
+            snapshotDestination = nil
+            os_log("Battery cache write failed: %{public}@", log: log, type: .error, error.localizedDescription)
         }
     }
 

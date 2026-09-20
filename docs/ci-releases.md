@@ -34,7 +34,7 @@ The packaging tools come from the selected workflow revision; application source
 - No local vendor artwork, hardware-profile backups or user settings are included. The packaging script rejects ignored artwork in a development checkout.
 - Ad-hoc signatures are not Developer ID signatures. macOS may block first launch, and Accessibility permission may need to be granted again. Do not disable Gatekeeper globally.
 - Test packages disable Hardened Runtime only for the isolated CI build: library validation otherwise rejects the ad-hoc-signed Sparkle framework because there is no signing Team ID. The normal project signing and Hardened Runtime settings are unchanged. Debugger entitlements are not injected into CI packages.
-- WidgetKit is included, but App Group sharing and widget operation are not validated with this signing mode. Keep a normally signed local build if you depend on the widget.
+- WidgetKit is included, but battery sharing is disabled for ad-hoc signatures because there is no matching Team ID for the App Group. The app keeps live readings and a private battery cache; shared-container errors never block the app. Keep a normally signed build if you depend on the widget.
 - On the disposable GitHub macOS runner, the script launches the extracted app for 10 seconds and rejects an early exit, then stops that exact process. This catches loader/startup failures, not UI, Accessibility, hardware or widget correctness. Both build and launch logs are uploaded. Local packaging never launches the ad-hoc app or replaces an installed Chuu. App-hosted and hardware tests are not run by this workflow.
 - Checksums cover archive integrity, not developer identity. Public distribution signing and notarization are a separate future step; see [updates](updates.md).
 
@@ -43,7 +43,11 @@ The packaging tools come from the selected workflow revision; application source
 ```sh
 bash -n scripts/ci/package-test-build.sh
 python3 -B -m unittest discover -s scripts/ci -p '*_tests.py'
+bash scripts/qa/test-snapshot-storage.sh
 ```
+
+The standalone snapshot tests use temporary directories and an ad-hoc command-line process. They do not launch Chuu, access HID devices, change settings, or open real App Group containers.
+For tags containing these tests (0.1.3 onwards), CI runs them against the tagged source and also verifies that the packaged app wrote a fresh private battery cache during the startup check.
 
 The full packaging script takes a **clean clone checked out at an existing tag**, that tag, and an output directory outside the clone:
 

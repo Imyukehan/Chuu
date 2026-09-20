@@ -60,11 +60,27 @@ jobs:
         run: |
           bash -n scripts/ci/package-test-build.sh
           python3 -B -m unittest discover -s scripts/ci -p '*_tests.py'
+      - name: Test snapshot storage without launching the app
+        if: hashFiles('source/scripts/qa/test-snapshot-storage.sh') != ''
+        run: bash source/scripts/qa/test-snapshot-storage.sh
       - name: Build and verify Apple Silicon test package
         id: package
         env:
           TAG: ${{ inputs.tag || github.ref_name }}
         run: bash scripts/ci/package-test-build.sh "$PWD/source" "$TAG" "$PWD/dist"
+      - name: Verify runtime battery cache
+        if: hashFiles('source/scripts/qa/test-snapshot-storage.sh') != ''
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          import time
+          cache = Path.home() / "Library/Application Support/moe.khan.MouseControl/mouse-batteries.json"
+          data = json.loads(cache.read_text())
+          assert isinstance(data["devices"], list), "Missing device snapshot"
+          assert 0 <= time.time() - (data["writtenAt"] + 978307200) < 120, "Battery cache is stale"
+          print("Packaged app wrote a fresh private battery cache.")
+          PY
       - name: Upload package and checksums
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:

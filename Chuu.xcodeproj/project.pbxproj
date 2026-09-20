@@ -172,6 +172,7 @@
 		E7635DE8E8BC6E3764794E98 /* DraggingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBC3406BCA0438AA158DFDA /* DraggingImageView.swift */; };
 		E919BA7ACB8748039FF7945A /* LogiButtonDeliveryModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A855A1B5B5C5EE49A9D5958 /* LogiButtonDeliveryModeTests.swift */; };
 		EB4F6F1BA2CDAA1F5D543F83 /* LogiScrollForceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40073BF0C92016F105245B4 /* LogiScrollForceTests.swift */; };
+		EB6983AA579BBA02C0054F12 /* MouseSnapshotStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E688259FFD0BAF3316F0D /* MouseSnapshotStoreTests.swift */; };
 		EB71FD9B3DE9F9ACA9C5411B /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B1E41D36565A4A52706FA9 /* PrimaryButton.swift */; };
 		EB981C80C6B3C5AAFF0A4E07 /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFB2DE41C7DA5F57F071ACF /* ShortcutManager.swift */; };
 		EBBCA5770D00D91E4CB4E530 /* ScrollUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F5C8D733424274713C90AD /* ScrollUtils.swift */; };
@@ -240,6 +241,7 @@
 		08E6FE661D01D7BAEA59F365 /* LogiUsageBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiUsageBootstrap.swift; sourceTree = "<group>"; };
 		0914085A88135DCCFF109E05 /* LogiNoOpBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiNoOpBridge.swift; sourceTree = "<group>"; };
 		098B96AD09B0D0C03E461E8F /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		0A1E688259FFD0BAF3316F0D /* MouseSnapshotStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseSnapshotStoreTests.swift; sourceTree = "<group>"; };
 		0C9E493E6C41EFD8C9C47529 /* ScrollActionPort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollActionPort.swift; sourceTree = "<group>"; };
 		0CBAE68610050C196EDDF633 /* ActionDisplayRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionDisplayRenderer.swift; sourceTree = "<group>"; };
 		0E8E3979D901AD383C91D830 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
@@ -905,6 +907,7 @@
 				3884AF4F1E43237FF6B93A90 /* MouseAdapterTests.swift */,
 				DA9841C13CC6C6664BE6C709 /* MouseAlertPolicyTests.swift */,
 				FBCE38FD87251BFF56F58B77 /* MouseInteractionSessionControllerTests.swift */,
+				0A1E688259FFD0BAF3316F0D /* MouseSnapshotStoreTests.swift */,
 				8638EF3DBF91D49E2EAE141B /* OpenTargetPayloadTests.swift */,
 				70E7391EFE5A313783A75C5C /* OptionsButtonsLoaderTests.swift */,
 				ED98904554F3CE10EF88C151 /* OptionsChangePropagationTests.swift */,
@@ -1160,6 +1163,7 @@
 				70B0A662B74C32FAF4560729 /* MouseAdapterTests.swift in Sources */,
 				9B529DB759FACAE38044831E /* MouseAlertPolicyTests.swift in Sources */,
 				4F2004AB438E24588B142E3B /* MouseInteractionSessionControllerTests.swift in Sources */,
+				EB6983AA579BBA02C0054F12 /* MouseSnapshotStoreTests.swift in Sources */,
 				7C096643A617984BAC5D5DE2 /* OpenTargetPayloadTests.swift in Sources */,
 				F7053231E27D634F0C7370F9 /* OptionsButtonsLoaderTests.swift in Sources */,
 				1E745C1B2F4E805EC2BF3872 /* OptionsChangePropagationTests.swift in Sources */,
@@ -1418,7 +1422,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 20260920.1;
+				CURRENT_PROJECT_VERSION = 20260920.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = MA4UNJ3J25;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1431,7 +1435,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MARKETING_VERSION = 0.1.2;
+				MARKETING_VERSION = 0.1.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1514,7 +1518,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 20260920.1;
+				CURRENT_PROJECT_VERSION = 20260920.2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = MA4UNJ3J25;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1533,7 +1537,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MARKETING_VERSION = 0.1.2;
+				MARKETING_VERSION = 0.1.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;

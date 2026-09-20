@@ -1,5 +1,25 @@
 # Chuu Changelog
 
+## 0.1.3 - 2026-09-20
+
+Unnotarized Apple Silicon test release. Build `20260920.2`.
+
+- Fix repeated `mouse-batteries.json` permission alerts when a test build cannot access the widget App Group.
+- Ad-hoc builds use Chuu's own Application Support directory for battery snapshots and do not resolve the protected shared container. Live battery readings remain available.
+- Normally signed builds continue using shared storage, with a local fallback if it is unavailable. Widget timelines reload only after a successful shared write.
+- Add seven standalone storage checks, including a non-writable directory and the actual ad-hoc signing path. CI also checks the private battery cache after launching the packaged app.
+- Battery widgets still require a normally signed build with a matching App Group. No interface or mouse-mapping changes are included.
+
+### 中文
+
+未公证 Apple Silicon 测试版，构建号 `20260920.2`。
+
+- 修复无法写入小组件共享目录时反复弹出的 `mouse-batteries.json` 权限错误。
+- 临时签名版改用 Chuu 自身的电量缓存目录，不再访问受保护的共享目录；App 内实时电量继续可用。
+- 正常签名版保留小组件共享机制，共享目录暂不可用时回退到本地缓存。
+- 加入目录拒绝写入、无团队签名等七项回归检查，云端同时验证打包后的 App 确实生成了私有缓存。
+- 小组件仍需正常签名版本。本版不包含界面或改键变更。
+
 ## 0.1.2 - 2026-09-20
 
 Unnotarized test release. Build `20260920.1`.
