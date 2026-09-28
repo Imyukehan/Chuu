@@ -6,6 +6,10 @@ TAG=${2:?version tag required}
 mkdir -p "${3:?output directory required}"
 OUTPUT=$(cd "$3" && pwd)
 TOOLS=$(cd "$(dirname "$0")" && pwd)
+[[ "$(gh api repos/Imyukehan/Chuu --jq .private)" == true ]] || {
+  echo 'Device artwork is restricted to the private Imyukehan/Chuu repository.' >&2
+  exit 1
+}
 [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo 'Invalid version tag' >&2; exit 1; }
 [[ -z "$(git -C "$SOURCE" status --porcelain)" ]] || { echo 'Source checkout must be clean' >&2; exit 1; }
 if [[ -n "$(git -C "$SOURCE" ls-files --others --ignored --exclude-standard -- Chuu/Assets.xcassets)" ]]; then

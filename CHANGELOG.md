@@ -1,5 +1,27 @@
 # Chuu Changelog
 
+## 0.1.4 - 2026-09-28
+
+Private personal-use, unnotarized Apple Silicon test release. Build `20260928.1`.
+
+- Bundle white G502 X PLUS front/side renders and MCHOSE G7 imagery; use an original larger generic mouse illustration for other devices.
+- Combine shortcut controls and access to onboard button settings on the mouse page.
+- Add hold-to-repeat left click at 5, 10, 15 or 20 clicks per second, with release, app-switch and sleep cancellation. Existing mappings are preserved; choose the action on the desired button.
+- Add first-launch Accessibility and Input Monitoring setup, optional notifications, and recovery help for stale permissions after reinstalling. HID denial links to setup without repeating the alert on every poll.
+- Distinguish unavailable widget sharing, missing/unreadable cache and an actual empty device list. Ad-hoc packages still cannot share battery readings with WidgetKit.
+- Restrict packaging and release automation to the private repository and verify bundled artwork. Preserve upstream attribution and licensing; vendor images are not covered by the code license.
+
+### 中文
+
+私人自用的未公证 Apple Silicon 测试版，构建号 `20260928.1`。
+
+- 内置白色 G502 X PLUS 正面、侧面和迈从 G7 图片；其他鼠标使用更大的原创通用外观。
+- 鼠标页集中展示快捷操作，并提供板载按键设置入口。
+- 新增按住连点左键，每秒 5、10、15、20 次可选，松开、切换应用及休眠时停止。保留原有按键配置，需要手动为目标按键选择连点动作。
+- 新增首次启动的辅助功能、输入监控及可选通知引导；补上重新安装后旧授权失效的恢复说明，HID 拒绝访问不再每次轮询都重复弹窗。
+- 小组件区分共享不可用、缓存缺失或损坏及确实未连接鼠标。临时签名包仍不支持小组件电量共享。
+- 发包仅允许私有仓库，并校验内置图片；保留上游署名与许可，厂商图片不纳入代码开源许可。
+
 ## 0.1.3 - 2026-09-20
 
 Unnotarized Apple Silicon test release. Build `20260920.2`.

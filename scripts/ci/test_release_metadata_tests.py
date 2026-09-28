@@ -1,8 +1,14 @@
 import unittest
-from test_release_metadata import validate
+from test_release_metadata import DEVICE_ARTWORK, validate, validate_artwork
 
 
 class ReleaseMetadataTests(unittest.TestCase):
+    def test_all_private_device_artwork_is_required(self):
+        self.assertEqual(validate_artwork([{"Name": name} for name in DEVICE_ARTWORK]), sorted(DEVICE_ARTWORK))
+        for missing in DEVICE_ARTWORK:
+            with self.subTest(missing=missing), self.assertRaises(ValueError):
+                validate_artwork([{"Name": name} for name in DEVICE_ARTWORK if name != missing])
+
     def setUp(self):
         self.app = {"CFBundleIdentifier": "moe.khan.MouseControl", "CFBundleShortVersionString": "0.1.1", "CFBundleVersion": "20260919.1"}
         self.widget = dict(self.app, CFBundleIdentifier="moe.khan.MouseControl.BatteryWidget")

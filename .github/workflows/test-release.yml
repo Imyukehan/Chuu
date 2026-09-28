@@ -23,6 +23,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.event.repository.private == true
     runs-on: xcode-27
     timeout-minutes: 45
     outputs:
@@ -67,6 +68,7 @@ jobs:
         id: package
         env:
           TAG: ${{ inputs.tag || github.ref_name }}
+          GH_TOKEN: ${{ github.token }}
         run: bash scripts/ci/package-test-build.sh "$PWD/source" "$TAG" "$PWD/dist"
       - name: Verify runtime battery cache
         if: hashFiles('source/scripts/qa/test-snapshot-storage.sh') != ''
@@ -101,7 +103,7 @@ jobs:
 
   publish:
     needs: build
-    if: github.repository == 'Imyukehan/Chuu' && (github.event_name == 'push' || inputs.publish)
+    if: github.event.repository.private == true && github.repository == 'Imyukehan/Chuu' && (github.event_name == 'push' || inputs.publish)
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -122,6 +124,10 @@ jobs:
           TAG: ${{ needs.build.outputs.tag }}
           SOURCE_COMMIT: ${{ needs.build.outputs.commit }}
         run: |
+          [[ "$(gh api "repos/$GH_REPO" --jq .private)" == true ]] || {
+            echo 'Device artwork is restricted to private releases.' >&2
+            exit 1
+          }
           current=$(gh api "repos/$GH_REPO/commits/$TAG" --jq .sha)
           [[ "$current" == "$SOURCE_COMMIT" ]] || {
             echo 'Tag moved after the build; refusing to publish.' >&2

@@ -2,6 +2,13 @@
 
 `.github/workflows/test-release.yml` builds **unnotarized, ad-hoc-signed test packages**, not stable or notarized releases. It needs no signing secrets. This workflow is separate from the inherited Mos release scripts and never updates an appcast.
 
+Starting with 0.1.4, these are private personal-use packages containing device renders.
+Both workflow jobs require a private repository. Packaging and publishing also check
+live GitHub visibility and refuse to proceed if it is public. Downloading Releases
+requires signing in with repository access. Before restoring public visibility,
+review `NOTICES.md` and remove or replace vendor artwork from reachable history,
+screenshots and release assets; changing visibility alone exposes old commits too.
+
 ## Version Tags
 
 1. Update `MARKETING_VERSION` and increment `CURRENT_PROJECT_VERSION` in `project.yml`. Regenerate the project and add a changelog entry.
@@ -31,7 +38,7 @@ The packaging tools come from the selected workflow revision; application source
 - Uses the GitHub-hosted [`xcode-27` runner](https://github.com/actions/runner-images/blob/main/images/macos/xcode-27-arm64-Readme.md), because Chuu currently references macOS 27 SDK APIs. The runner is currently a public preview; availability or SDK changes can require workflow maintenance.
 - Build jobs have read-only repository access. Only the separate publisher has `contents: write`; it runs on this repository, not forks. Third-party actions are pinned to commit hashes. There are no pull-request or `pull_request_target` release triggers.
 - The workflow uses only the built-in `GITHUB_TOKEN`; it does not read Apple credentials, import certificates or alter signing keys.
-- No local vendor artwork, hardware-profile backups or user settings are included. The packaging script rejects ignored artwork in a development checkout.
+- The approved device artwork is bundled for private personal use and checked in the compiled asset catalog. Hardware-profile backups and user settings are not included. The packaging script still rejects ignored artwork in a development checkout.
 - Ad-hoc signatures are not Developer ID signatures. macOS may block first launch, and Accessibility permission may need to be granted again. Do not disable Gatekeeper globally.
 - Test packages disable Hardened Runtime only for the isolated CI build: library validation otherwise rejects the ad-hoc-signed Sparkle framework because there is no signing Team ID. The normal project signing and Hardened Runtime settings are unchanged. Debugger entitlements are not injected into CI packages.
 - WidgetKit is included, but battery sharing is disabled for ad-hoc signatures because there is no matching Team ID for the App Group. The app keeps live readings and a private battery cache; shared-container errors never block the app. Keep a normally signed build if you depend on the widget.
@@ -55,4 +62,4 @@ The full packaging script takes a **clean clone checked out at an existing tag**
 bash scripts/ci/package-test-build.sh /path/to/clean-checkout v0.1.1 /tmp/chuu-test-package
 ```
 
-It requires Xcode 27+, XcodeGen and Python 3. Do not run it against the main local development checkout containing optional private artwork.
+It requires Xcode 27+, XcodeGen, Python 3 and an authenticated GitHub CLI with access to the private repository. Use a clean checkout of the tag, not a dirty development checkout. Local packaging does not launch the ad-hoc app or replace the installed signed build.

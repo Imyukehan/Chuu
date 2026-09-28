@@ -3,8 +3,20 @@
 import json
 import plistlib
 import re
+import subprocess
 import sys
 from pathlib import Path
+
+
+DEVICE_ARTWORK = {"G502Top", "G502Side", "G502RenderTop", "G502RenderSide", "G7", "GenericMouse"}
+
+
+def validate_artwork(entries):
+    names = {entry.get("Name") for entry in entries}
+    missing = DEVICE_ARTWORK - names
+    if missing:
+        raise ValueError("Missing bundled device artwork: " + ", ".join(sorted(missing)))
+    return sorted(DEVICE_ARTWORK)
 
 
 def validate(app, widget, tag):
@@ -34,12 +46,29 @@ def main():
     with (app_path / "Contents/PlugIns/ChuuWidget.appex/Contents/Info.plist").open("rb") as stream:
         widget = plistlib.load(stream)
     metadata = validate(app, widget, tag)
+    catalog = subprocess.run(["xcrun", "assetutil", "--info", str(app_path / "Contents/Resources/Assets.car")],
+                             check=True, capture_output=True, text=True)
+    metadata["bundled_device_artwork"] = validate_artwork(json.loads(catalog.stdout))
+    metadata["distribution"] = "private-personal-use"
     if not re.fullmatch(r"[0-9a-f]{40}", commit):
         raise ValueError("Invalid source commit")
     metadata["source_commit"] = commit
     output_path.mkdir(parents=True, exist_ok=True)
     (output_path / "build-info.json").write_text(json.dumps(metadata, indent=2) + "\n")
-    notes = f"""# Chuu {tag}: Unnotarized Test Build
+    source = Path.cwd()
+    changelog = (source / "CHANGELOG.md").read_text(encoding="utf-8")
+    heading = f"## {metadata['version']} - "
+    sections = changelog.split(heading, 1)
+    if len(sections) != 2:
+        raise ValueError("Missing release changelog section")
+    changes = sections[1].split("\n", 1)[1].split("\n## ", 1)[0].strip()
+    notes = f"""# Chuu {tag}: Private Unnotarized Test Build
+
+## Changes / 更新内容
+
+{changes}
+
+## Installation
 
 For testing only. Ad-hoc signed, not Developer ID signed or notarized. This is not a stable release and is not delivered through Sparkle.
 
@@ -47,9 +76,9 @@ This test package does not enable Hardened Runtime, so its ad-hoc-signed embedde
 
 - Apple Silicon (arm64) macOS app, for M-series Macs only. Intel Macs are not supported by this package. Minimum system: macOS {app['LSMinimumSystemVersion']}.
 - macOS may block first launch. Review this build's source and origin before approving it through System Settings > Privacy & Security. Do not disable Gatekeeper globally.
-- Scrolling and button shortcuts require Accessibility permission. Changing from a signed development app may require granting permission again.
+- Complete Accessibility and Input Monitoring setup on first launch. If Chuu is already enabled but access is denied, quit Chuu, remove the old permission entry, add the currently installed app, enable it and reopen Chuu.
 - The WidgetKit extension is bundled, but ad-hoc signing does not authenticate membership in the shared App Group. Use a normally signed build with a matching App Group when the widget is essential.
-- Optional device artwork is not bundled. Generic mouse artwork is used where an asset is unavailable.
+- This private personal-use package includes G502 X PLUS and MCHOSE G7 artwork; other mice use an original generic illustration. Vendor artwork is not covered by the code license. Do not redistribute this package publicly.
 - Back up your settings before replacing an existing installation. Quit other running copies of Chuu before opening this one.
 - Verify the download using the attached SHA256SUMS file. Build number: {metadata['build']}.
 
@@ -63,7 +92,9 @@ Changes: https://github.com/Imyukehan/Chuu/blob/{commit}/CHANGELOG.md
 
 此测试包不启用加固运行时，以便加载临时签名的内嵌组件；正常签名的本机构建保持启用。
 
-滚动和快捷操作需要辅助功能权限，更换签名后可能需要重新授权。临时签名无法认证共享 App Group 的成员身份；需要小组件时请使用 App Group 匹配的正常签名版本。测试包不包含本机专用鼠标外观素材。替换旧版前请备份设置，并退出正在运行的其他 Chuu 副本。
+首次启动请完成辅助功能和输入监控授权。若已开启却仍提示拒绝访问，请先退出 Chuu，移除旧授权条目，再添加当前安装的 App、开启权限并重新打开。临时签名无法认证共享 App Group 的成员身份；需要小组件时请使用 App Group 匹配的正常签名版本。
+
+此私人自用包内置 G502 X PLUS 和迈从 G7 图片，厂商素材不属于代码开源许可，请勿公开转发。替换旧版前请备份设置，并退出正在运行的其他 Chuu 副本。
 """
     (output_path / "release-notes.md").write_text(notes, encoding="utf-8")
 
