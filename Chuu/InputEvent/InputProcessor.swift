@@ -62,6 +62,7 @@ class InputProcessor: ModifierFlagsProviding {
         activeModifierFlags = 0
         MouseInteractionSessionController.shared.clearAllSessions()
         MouseInteractionSessionController.shared.refreshMotionTapState()
+        ShortcutExecutor.shared.stopAutoClick()
     }
 
     // MARK: - Virtual Modifier Flags
@@ -102,6 +103,10 @@ class InputProcessor: ModifierFlagsProviding {
 
         // Down 事件: 完整匹配 (type + code + modifiers + deviceFilter)
         let key = TriggerKey(type: event.type, code: event.code)
+        // Do not restart a cancelled hold on duplicate down/key-repeat; require release first.
+        if let session = activeBindings[key], case .autoClick = session.action {
+            return .consumed
+        }
         guard let binding = ButtonUtils.shared.getBestMatchingBinding(for: event) else {
             return .passthrough
         }
@@ -126,7 +131,8 @@ class InputProcessor: ModifierFlagsProviding {
             )
         }
 
-        let executionResult = ShortcutExecutor.shared.execute(action: action, phase: .down, inputModifiers: event.modifiers)
+        let executionResult = ShortcutExecutor.shared.execute(action: action, phase: .down,
+            inputModifiers: event.modifiers, trigger: event)
         activeBindings[key] = ActiveBindingSession(
             action: action,
             mouseSessionID: executionResult.mouseSessionID,

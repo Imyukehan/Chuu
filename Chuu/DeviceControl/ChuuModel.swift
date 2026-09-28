@@ -11,7 +11,10 @@ final class ChuuModel: ObservableObject {
     @Published private(set) var profile: OnboardMouseProfile?
     @Published private(set) var busy = false
     @Published private(set) var scanning = false
+    @Published private(set) var widgetSharingIssue: MouseSnapshotStore.ReadStatus? =
+        MouseSnapshotStore.canUseSharedStorage ? nil : .unsupportedBuild
     @Published var error: String?
+    private(set) var errorNeedsPermissions = false
     @Published private(set) var profileError: String?
     private let queue = DispatchQueue(label: "moe.khan.MouseControl.hardware", qos: .utility)
     private var timer: Timer?
@@ -23,6 +26,15 @@ final class ChuuModel: ObservableObject {
     var selected: MouseSnapshot? { devices.first { $0.id == selectedID } }
 
     func start() {
+        guard ChuuPermissions.requiredGranted else {
+            if timer != nil || snapshotDestination == nil { cacheSnapshot([], changed: true) }
+            timer?.invalidate()
+            timer = nil
+            hotPlugRefresh?.cancel()
+            watcher = nil
+            NSWorkspace.shared.notificationCenter.removeObserver(self)
+            return
+        }
         guard timer == nil else { refresh(); return }
         watcher = MouseConnectionWatcher()
         watcher?.onChange = { [weak self] id, connected in
@@ -58,14 +70,17 @@ final class ChuuModel: ObservableObject {
     @objc private func wake() { sleeping = false; MouseAlerts.shared.resume(); refresh() }
 
     func refresh() {
-        guard !scanning, !busy, !sleeping else { return }
+        guard ChuuPermissions.requiredGranted, !scanning, !busy, !sleeping else { return }
         scanning = true
         queue.async {
             let result = Result { try MouseHardwareService.scan() }
             DispatchQueue.main.async {
                 self.scanning = false
+                guard ChuuPermissions.requiredGranted else { return }
                 switch result {
                 case .success(let readings):
+                    if self.errorNeedsPermissions { self.error = nil }
+                    self.errorNeedsPermissions = false
                     let devices = readings.map { reading -> MouseSnapshot in
                         guard !reading.online, let previous = self.devices.first(where: { $0.id == reading.id }),
                               previous.battery != nil else { return reading }
@@ -83,7 +98,7 @@ final class ChuuModel: ObservableObject {
                     else if self.profile == nil && self.profileError == nil { self.loadProfile() }
                     self.cacheSnapshot(devices, changed: changed)
                 case .failure(let error):
-                    self.error = error.localizedDescription
+                    self.report(error)
                     self.devices = []
                     self.profile = nil
                     self.cacheSnapshot([], changed: true)
@@ -92,10 +107,20 @@ final class ChuuModel: ObservableObject {
         }
     }
 
+    private func report(_ error: Error) {
+        let denied = (error as? MouseHardwareError)?.isAccessDenied == true
+        // Polling must not reopen the same permissions alert every 30 seconds.
+        guard !denied || !errorNeedsPermissions else { return }
+        errorNeedsPermissions = denied
+        self.error = error.localizedDescription
+    }
+
     private func cacheSnapshot(_ devices: [MouseSnapshot], changed: Bool) {
         let log = OSLog(subsystem: "moe.khan.MouseControl", category: "Widgets")
         do {
             let destination = try MouseSnapshotStore.write(devices)
+            widgetSharingIssue = destination == .shared ? nil :
+                (MouseSnapshotStore.canUseSharedStorage ? .containerUnavailable : .unsupportedBuild)
             if destination == .shared, changed || snapshotDestination != .shared {
                 WidgetCenter.shared.reloadTimelines(ofKind: MouseSnapshotStore.widgetKind)
             } else if destination == .local, snapshotDestination != .local {
@@ -105,6 +130,7 @@ final class ChuuModel: ObservableObject {
         } catch {
             // Persistence is optional: keep live readings and never present a repeating scan alert.
             snapshotDestination = nil
+            widgetSharingIssue = MouseSnapshotStore.canUseSharedStorage ? .containerUnavailable : .unsupportedBuild
             os_log("Battery cache write failed: %{public}@", log: log, type: .error, error.localizedDescription)
         }
     }
@@ -112,7 +138,8 @@ final class ChuuModel: ObservableObject {
     func loadProfile() {
         profile = nil
         profileError = nil
-        guard let device = selected, device.model == "g502x", device.online, !busy else { return }
+        guard ChuuPermissions.requiredGranted,
+              let device = selected, device.model == "g502x", device.online, !busy else { return }
         busy = true
         queue.async {
             let result = Result { try MouseHardwareService.profile(id: device.id) }
@@ -121,14 +148,16 @@ final class ChuuModel: ObservableObject {
                 guard self.selectedID == device.id else { self.loadProfile(); return }
                 switch result {
                 case .success(let profile): self.profile = profile
-                case .failure(let error): self.profileError = error.localizedDescription
+                case .failure(let error):
+                    self.profileError = error.localizedDescription
+                    if (error as? MouseHardwareError)?.isAccessDenied == true { self.report(error) }
                 }
             }
         }
     }
 
     func save(button: Int? = nil, mapping: [UInt8]? = nil, lightingEnabled: Bool? = nil) {
-        guard let profile, !busy else { return }
+        guard ChuuPermissions.requiredGranted, let profile, !busy else { return }
         busy = true
         queue.async {
             let result = Result { try MouseHardwareService.save(profile, button: button, mapping: mapping, lightingEnabled: lightingEnabled) }
@@ -137,7 +166,7 @@ final class ChuuModel: ObservableObject {
                 guard self.selectedID == profile.deviceID else { self.loadProfile(); return }
                 switch result {
                 case .success(let updated): self.profile = updated
-                case .failure(let error): self.error = error.localizedDescription; self.loadProfile()
+                case .failure(let error): self.report(error); self.loadProfile()
                 }
             }
         }

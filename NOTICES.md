@@ -12,13 +12,17 @@ Upstream documentation, website and release assets that remain in this repositor
 The Chuu Icon Composer layers and status-item symbol were created for this project.
 They do not use the OpenLogi or Logitech app icons.
 
+`GenericMouse` is an AI-generated, unbranded illustration created for Chuu,
+inspired by the white touch-mouse form of Magic Mouse. It is a visual placeholder,
+not an Apple-supplied asset or a claim that the connected device is an Apple mouse.
+
 ## Product Images
 
 The local-development screenshot in `docs/images/home.png` contains Logitech product imagery.
 Product images and trademarks belong to their respective owners and are not covered by the code license.
-Standalone vendor image files are not distributed in this repository. No affiliation or endorsement is implied.
+As of 0.1.4, this repository is private and includes device renders for the owner's personal-use builds. They are not covered by Chuu's source license, and private storage does not grant redistribution rights. No affiliation or endorsement is implied.
 
-Local prototype image sources:
+Private-build image sources:
 
 - [Logitech G502 X PLUS, white, top](https://resource.logitechg.com/content/dam/gaming/en/products/g502x-plus/gallery/g502x-plus-gallery-2-white.png)
 - [Logitech G502 X PLUS, white, side](https://resource.logitechg.com/content/dam/gaming/en/products/g502x-plus/gallery/g502x-plus-gallery-4-white.png)
@@ -27,7 +31,7 @@ Local prototype image sources:
 - [G502 X PLUS white driver render, side](https://assets.openlogi.org/v1/devices/g502x_plus/images/device/22c9ac7a-43ed-48b7-8771-72ca4ae2a6bb)
 
 The last two optional PNG files were located through the [OpenLogi asset manifest](https://assets.openlogi.org/v1/devices/g502x_plus/manifest.json).
-The asset index identifies Logitech runtime caches as their source. OpenLogi's code license does not establish redistribution rights for these vendor assets. They are ignored by Git and used only in the local prototype; no OpenLogi code or brand assets were copied.
+The asset index identifies Logitech runtime caches as their source. OpenLogi's code license does not establish redistribution rights for these vendor assets. These images are tracked only in the private repository; no OpenLogi code or brand assets were copied. Before making this repository public, remove or replace the vendor renders from reachable Git history and release assets, and review screenshots as well. Packaging and release automation require the repository to remain private.
 
 ## Dependencies And References
 

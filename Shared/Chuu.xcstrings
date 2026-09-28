@@ -1,6 +1,282 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Permission not working?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permission not working?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "权限未生效？"
+          }
+        }
+      }
+    },
+    "If Chuu is already enabled, quit Chuu, remove its old entry from Input Monitoring and Accessibility, then add the current app and enable it again. Reopen Chuu afterward.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If Chuu is already enabled, quit Chuu, remove its old entry from Input Monitoring and Accessibility, then add the current app and enable it again. Reopen Chuu afterward."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "若 Chuu 已开启权限却仍无法使用，请先退出 Chuu，在「输入监控」和「辅助功能」中移除旧条目，再添加当前安装的 Chuu 并开启权限，最后重新打开 Chuu。"
+          }
+        }
+      }
+    },
+    "Mouse access denied. If Chuu is already enabled in Input Monitoring, remove the old entry, add the current app, then restart Chuu.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mouse access denied. If Chuu is already enabled in Input Monitoring, remove the old entry, add the current app, then restart Chuu."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鼠标访问被拒绝。若「输入监控」中已开启 Chuu，请移除旧条目，重新添加当前应用并开启权限，再重启 Chuu。"
+          }
+        }
+      }
+    },
+    "This build cannot sync widgets": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This build cannot sync widgets"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此版本不支持小组件同步"
+          }
+        }
+      }
+    },
+    "Widget storage unavailable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widget storage unavailable"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小组件共享存储不可用"
+          }
+        }
+      }
+    },
+    "Open Chuu to sync": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Chuu to sync"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开 Chuu 同步电量"
+          }
+        }
+      }
+    },
+    "Battery data could not be read": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Battery data could not be read"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取电量数据"
+          }
+        }
+      }
+    },
+    "Install a build signed for widget sharing.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install a build signed for widget sharing."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请安装支持小组件共享的签名版本。"
+          }
+        }
+      }
+    },
+    "Open Chuu to check widget sharing.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Chuu to check widget sharing."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开 Chuu 检查共享状态。"
+          }
+        }
+      }
+    },
+    "Widget sharing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widget sharing"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小组件共享"
+          }
+        }
+      }
+    },
+    "This test build keeps battery data in the app only. Widget sharing requires the app and widget to be signed by the team that owns their App Group. Input Monitoring permission does not enable sharing.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This test build keeps battery data in the app only. Widget sharing requires the app and widget to be signed by the team that owns their App Group. Input Monitoring permission does not enable sharing."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此测试版仅在 App 内保存电量。小组件共享需要 App 与小组件均由所属 App Group 的开发团队签名，开启输入监控权限不能解决此问题。"
+          }
+        }
+      }
+    },
+    "The app could not write the shared battery cache. Restart Chuu and check that the app and widget come from the same signed installation.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app could not write the shared battery cache. Restart Chuu and check that the app and widget come from the same signed installation."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App 无法写入共享电量缓存。请重启 Chuu，并确认 App 和小组件来自同一份签名安装包。"
+          }
+        }
+      }
+    },
+    "categoryHoldAutoClick": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Hold to Auto-Click"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "按住连点左键"}}}
+    },
+    "mouseAutoClick5": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Auto-click: 5 clicks/s"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "左键连点：5 次/秒"}}}
+    },
+    "mouseAutoClick10": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Auto-click: 10 clicks/s"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "左键连点：10 次/秒"}}}
+    },
+    "mouseAutoClick15": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Auto-click: 15 clicks/s"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "左键连点：15 次/秒"}}}
+    },
+    "mouseAutoClick20": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Auto-click: 20 clicks/s"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "左键连点：20 次/秒"}}}
+    },
+    "Drag this icon into the permission list if Chuu is missing.": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Drag this icon into the permission list if Chuu is missing."}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "列表中没有 Chuu 时，可将此图标拖入权限列表。"}}}
+    },
+    "Set Up Chuu": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Set Up Chuu"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "设置 Chuu"}}}
+    },
+    "Accessibility": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Accessibility"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "辅助功能"}}}
+    },
+    "Input Monitoring": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Input Monitoring"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "输入监控"}}}
+    },
+    "Notifications": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Notifications"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "通知"}}}
+    },
+    "Scrolling and shortcuts": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Scrolling and shortcuts"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "平滑滚动与快捷操作"}}}
+    },
+    "Mouse status and battery": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Mouse status and battery"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "鼠标状态与电量"}}}
+    },
+    "Low battery alerts (optional)": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Low battery alerts (optional)"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "低电量提醒（可选）"}}}
+    },
+    "Continue": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Continue"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "继续"}}}
+    },
+    "Set Up": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Set Up"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "设置"}}}
+    },
+    "Authorized": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Authorized"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "已授权"}}}
+    },
+    "Permissions…": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Permissions…"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "权限…"}}}
+    },
+    "Mouse access denied. Check permissions or reconnect the receiver.": {
+      "extractionState": "manual",
+      "localizations": {"en": {"stringUnit": {"state": "translated", "value": "Mouse access denied. Check permissions or reconnect the receiver."}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "鼠标访问被拒绝，请检查权限或重新连接接收器。"}}}
+    },
     "About Chuu": {
       "extractionState": "manual",
       "localizations": {"en": {"stringUnit": {"state": "translated", "value": "About Chuu"}}, "zh-Hans": {"stringUnit": {"state": "translated", "value": "关于 Chuu"}}}

@@ -23,6 +23,31 @@ struct MouseSnapshotFile: Codable {
 
 enum MouseSnapshotStore {
     enum Destination { case shared, local }
+    enum ReadStatus: Equatable {
+        case available, unsupportedBuild, containerUnavailable, waitingForApp, unreadable
+
+        var messageKey: String? {
+            switch self {
+            case .available: return nil
+            case .unsupportedBuild: return "This build cannot sync widgets"
+            case .containerUnavailable: return "Widget storage unavailable"
+            case .waitingForApp: return "Open Chuu to sync"
+            case .unreadable: return "Battery data could not be read"
+            }
+        }
+
+        var detailKey: String? {
+            switch self {
+            case .unsupportedBuild: return "Install a build signed for widget sharing."
+            case .containerUnavailable, .unreadable: return "Open Chuu to check widget sharing."
+            default: return nil
+            }
+        }
+    }
+    struct ReadResult {
+        var status: ReadStatus
+        var snapshot: MouseSnapshotFile?
+    }
 
     static let group = "MA4UNJ3J25.moe.khan.MouseControl"
     static let widgetKind = "MouseBatteryWidget"
@@ -51,8 +76,25 @@ enum MouseSnapshotStore {
     }
 
     static func read() -> MouseSnapshotFile? {
-        guard let url = fileURL, let data = try? Data(contentsOf: url) else { return nil }
-        return try? JSONDecoder().decode(MouseSnapshotFile.self, from: data)
+        readResult().snapshot
+    }
+
+    static func readResult() -> ReadResult {
+        readResult(sharingSupported: canUseSharedStorage, sharedURL: fileURL)
+    }
+
+    static func readResult(sharingSupported: Bool, sharedURL: URL?) -> ReadResult {
+        guard sharingSupported else { return ReadResult(status: .unsupportedBuild) }
+        guard let url = sharedURL else { return ReadResult(status: .containerUnavailable) }
+        do {
+            let data = try Data(contentsOf: url)
+            let snapshot = try JSONDecoder().decode(MouseSnapshotFile.self, from: data)
+            return ReadResult(status: .available, snapshot: snapshot)
+        } catch CocoaError.fileReadNoSuchFile {
+            return ReadResult(status: .waitingForApp)
+        } catch {
+            return ReadResult(status: .unreadable)
+        }
     }
 
     static func write(_ devices: [MouseSnapshot]) throws -> Destination {

@@ -135,6 +135,14 @@ class ShortcutManager {
             totalShortcuts: &totalShortcuts
         )
 
+        addCategoryToMenu(
+            menu: menu,
+            category: SystemShortcut.autoClickCategory,
+            target: target,
+            action: action,
+            totalShortcuts: &totalShortcuts
+        )
+
         // Mos 鼠标滚动分类 (始终显示, 使用 Mos tag 样式)
         addCategoryToMenu(
             menu: menu,

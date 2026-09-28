@@ -61,11 +61,15 @@ struct SystemShortcut {
 
         /// 获取本地化显示名称
         var localizedName: String {
+            if HoldClickRate(identifier: identifier) != nil {
+                return NSLocalizedString(identifier, tableName: "Chuu", comment: "Hold-to-click rate")
+            }
             return NSLocalizedString(identifier, comment: "")
         }
 
         /// 获取 SF Symbol 图标名称 (macOS 11.0+)
         var symbolName: String {
+            if HoldClickRate(identifier: identifier) != nil { return "cursorarrow.click.2" }
             switch identifier {
                 // 功能键
                 case "missionControl": return "square.grid.3x2"
@@ -329,6 +333,10 @@ struct SystemShortcut {
         "mouseLeftClick": mouseLeftClick, "mouseRightClick": mouseRightClick,
         "mouseMiddleClick": mouseMiddleClick, "mouseBackClick": mouseBackClick,
         "mouseForwardClick": mouseForwardClick,
+        "mouseAutoClick5": autoClickShortcut(.slow),
+        "mouseAutoClick10": autoClickShortcut(.normal),
+        "mouseAutoClick15": autoClickShortcut(.fast),
+        "mouseAutoClick20": autoClickShortcut(.fastest),
         // Mos 鼠标滚动
         "mosScrollDash": mosScrollDash,
         "mosScrollToggle": mosScrollToggle,
@@ -413,6 +421,14 @@ struct SystemShortcut {
     static let mouseBackClick = Shortcut("mouseBackClick", 0xFFFF, NSEvent.ModifierFlags(rawValue: 3), executionMode: .stateful)
     static let mouseForwardClick = Shortcut("mouseForwardClick", 0xFFFF, NSEvent.ModifierFlags(rawValue: 4), executionMode: .stateful)
 
+    static func autoClickShortcut(_ rate: HoldClickRate) -> Shortcut {
+        Shortcut(rate.identifier, 0xFFFB, NSEvent.ModifierFlags(rawValue: UInt(rate.rawValue)), executionMode: .stateful)
+    }
+
+    static let autoClickCategory: (category: String, shortcuts: [Shortcut]) = (
+        "categoryHoldAutoClick", HoldClickRate.allCases.map { autoClickShortcut($0) }
+    )
+
     // MARK: - Mos Scroll Actions
     // Mos 鼠标滚动动作 (由 ShortcutExecutor 转发给 ScrollCore, 保留旧的单热键配置不迁移)
     // 使用 code=0xFFFC 作为占位, modifiers.rawValue 区分滚动功能角色
@@ -487,6 +503,9 @@ struct SystemShortcut {
 
     /// 获取分类的本地化名称
     static func localizedCategoryName(_ categoryIdentifier: String) -> String {
+        if categoryIdentifier == "categoryHoldAutoClick" {
+            return NSLocalizedString(categoryIdentifier, tableName: "Chuu", comment: "Hold-to-click category")
+        }
         return NSLocalizedString(categoryIdentifier, comment: "")
     }
 
@@ -503,6 +522,7 @@ struct SystemShortcut {
         case "categoryAccessibility": return "eye"
         case "categoryModifierKeys": return "command"
         case "categoryMouseButtons": return "computermouse"
+        case "categoryHoldAutoClick": return "cursorarrow.click.2"
         case "categoryMosMouseScroll": return "scroll"
         case "categoryLogiActions": return "gear.badge"
         default: return "questionmark.folder"
@@ -574,7 +594,7 @@ struct SystemShortcut {
         let matchingShortcuts = allShortcuts.values.filter { shortcut in
             shortcut.code == payload.code &&
             shortcut.modifiers.rawValue == payload.modifiers &&
-            shortcut.code < 0xFFFC  // 0xFFFC... are pseudo actions, not recordable key equivalents
+            shortcut.code < 0xFFFB  // 0xFFFB... are pseudo actions, not recordable key equivalents
         }
 
         guard matchingShortcuts.count == 1 else {

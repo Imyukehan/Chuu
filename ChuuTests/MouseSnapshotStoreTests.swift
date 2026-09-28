@@ -33,6 +33,43 @@ final class MouseSnapshotStoreTests: XCTestCase {
         }
     }
 
+    func testUnsupportedBuildNeverReadsEvenAnExistingSharedSnapshot() throws {
+        _ = try MouseSnapshotStore.write(devices, sharedURL: shared, localURL: local)
+        let result = MouseSnapshotStore.readResult(sharingSupported: false, sharedURL: shared)
+        XCTAssertEqual(result.status, .unsupportedBuild)
+        XCTAssertNil(result.snapshot)
+        XCTAssertNotEqual(result.status.messageKey, "No mouse connected")
+    }
+
+    func testUnavailableContainerAndMissingSnapshotHaveDifferentStates() {
+        XCTAssertEqual(MouseSnapshotStore.readResult(sharingSupported: true, sharedURL: nil).status,
+                       .containerUnavailable)
+        XCTAssertEqual(MouseSnapshotStore.readResult(sharingSupported: true, sharedURL: shared).status,
+                       .waitingForApp)
+    }
+
+    func testUnreadableSnapshotIsNotReportedAsDisconnected() throws {
+        try FileManager.default.createDirectory(at: shared.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try Data("invalid json".utf8).write(to: shared)
+        let result = MouseSnapshotStore.readResult(sharingSupported: true, sharedURL: shared)
+        XCTAssertEqual(result.status, .unreadable)
+        XCTAssertNil(result.snapshot)
+    }
+
+    func testG7SnapshotReachesWidgetReaderAndDisconnectRemainsDistinct() throws {
+        let mouse = MouseSnapshot(id: "g7-fixture", model: "g7", name: "MCHOSE G7", battery: 80,
+                                  charging: false, online: true, updatedAt: Date(), transport: "2.4 GHz")
+        _ = try MouseSnapshotStore.write([mouse], sharedURL: shared, localURL: local)
+        let result = MouseSnapshotStore.readResult(sharingSupported: true, sharedURL: shared)
+        XCTAssertEqual(result.status, .available)
+        XCTAssertEqual(result.snapshot?.devices, [mouse])
+        _ = try MouseSnapshotStore.write([], sharedURL: shared, localURL: local)
+        let disconnected = MouseSnapshotStore.readResult(sharingSupported: true, sharedURL: shared)
+        XCTAssertEqual(disconnected.status, .available)
+        XCTAssertNil(disconnected.status.messageKey)
+        XCTAssertEqual(disconnected.snapshot?.devices, [])
+    }
+
     func testSharedStoragePreservesSnapshotAndDoesNotWriteLocalCache() throws {
         XCTAssertEqual(try MouseSnapshotStore.write(devices, sharedURL: shared, localURL: local), .shared)
         XCTAssertEqual(try read(shared).devices, devices)

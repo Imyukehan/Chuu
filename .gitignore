@@ -36,11 +36,7 @@ pnpm-lock.yaml
 yarn.lock
 bun.lockb
 
-# Optional vendor-owned renders used only by the local development install.
-Chuu/Assets.xcassets/G502Top.imageset/
-Chuu/Assets.xcassets/G502Side.imageset/
-Chuu/Assets.xcassets/G502RenderTop.imageset/
-Chuu/Assets.xcassets/G502RenderSide.imageset/
-Chuu/Assets.xcassets/G7.imageset/
+# Device renders are tracked only for this private personal-use repository.
+# Remove them from distributable history before restoring public visibility.
 Configuration/Local.xcconfig
 *.xcarchive

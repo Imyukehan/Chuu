@@ -46,4 +46,14 @@ final class ChuuModePickerTests: XCTestCase {
             XCTAssertEqual(bundle.localizedString(forKey: "Shortcuts (all mice)", value: nil, table: "Chuu"), expected)
         }
     }
+
+    func testGenericMouseArtworkIsBundledAtRetinaResolution() throws {
+        let image = try XCTUnwrap(NSImage(named: "GenericMouse"))
+        let bitmap = try XCTUnwrap(image.cgImage(forProposedRect: nil, context: nil, hints: nil))
+        XCTAssertGreaterThanOrEqual(bitmap.height, 840)
+        XCTAssertGreaterThan(bitmap.height, bitmap.width)
+        XCTAssertNotEqual(bitmap.alphaInfo, .none)
+        XCTAssertNotEqual(bitmap.alphaInfo, .noneSkipFirst)
+        XCTAssertNotEqual(bitmap.alphaInfo, .noneSkipLast)
+    }
 }

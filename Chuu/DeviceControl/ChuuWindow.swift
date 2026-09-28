@@ -103,6 +103,10 @@ final class ChuuWindow: NSWindowController, NSWindowDelegate, NSToolbarDelegate 
     }
 
     func present(deviceID: String? = nil, page: ChuuNavigation.Page? = nil) {
+        if ChuuPermissions.shared.needsSetup {
+            IntroductionWindowController.present()
+            return
+        }
         if let deviceID {
             ChuuModel.shared.selectedID = deviceID
             navigation.select(index: 0)

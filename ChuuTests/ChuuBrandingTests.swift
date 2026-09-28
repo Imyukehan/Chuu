@@ -1,7 +1,15 @@
 import XCTest
+import AppKit
 @testable import Chuu
 
 final class ChuuBrandingTests: XCTestCase {
+    func testPrivateBuildIncludesDeviceArtwork() throws {
+        for name in ["G502Top", "G502Side", "G502RenderTop", "G502RenderSide", "G7", "GenericMouse"] {
+            let image = try XCTUnwrap(NSImage(named: name), "Missing bundled artwork: \(name)")
+            XCTAssertGreaterThan(image.size.width, 100)
+            XCTAssertGreaterThan(image.size.height, 100)
+        }
+    }
     func testCompiledDisplayStringsDoNotUseLegacyBrand() throws {
         let resources = try XCTUnwrap(Bundle.main.resourceURL)
         let files = try XCTUnwrap(FileManager.default.enumerator(at: resources, includingPropertiesForKeys: nil))

@@ -28,6 +28,7 @@ final class ChuuAppMenu: NSObject {
         add("Check for Updates…", to: app, action: #selector(checkForUpdates), target: self)
         app.addItem(.separator())
         add("Settings…", to: app, action: #selector(showSettings), key: ",", target: self)
+        add("Permissions…", to: app, action: #selector(showPermissions), target: self)
         app.addItem(.separator())
         let services = NSMenu(title: tr("Services"))
         add("Services", to: app, action: nil).submenu = services
@@ -84,6 +85,7 @@ final class ChuuAppMenu: NSObject {
 
     @objc func checkForUpdates() { UpdateManager.shared.checkForUpdates() }
     @objc func showSettings() { ChuuWindow.shared.present(page: .general) }
+    @objc func showPermissions() { IntroductionWindowController.present(manually: true) }
     @objc func showMainWindow() { ChuuWindow.shared.present() }
     @objc func openRepository() { NSWorkspace.shared.open(Self.repositoryURL) }
     @objc func reportIssue() { NSWorkspace.shared.open(Self.repositoryURL.appendingPathComponent("issues")) }

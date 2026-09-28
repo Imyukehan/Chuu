@@ -103,6 +103,8 @@ extension StatusItemManager {
             // Preferences
             Utils.addMenuItem(to: menu, title: NSLocalizedString("Preferences", comment: ""), icon: #imageLiteral(resourceName: "SF.gauge"), action: #selector(preferencesClick))
             if #available(macOS 14.0, *) {
+                menu.addItem(withTitle: NSLocalizedString("Permissions…", tableName: "Chuu", comment: "Permission menu"),
+                             action: #selector(ChuuAppMenu.showPermissions), keyEquivalent: "").target = ChuuAppMenu.shared
                 menu.addItem(withTitle: NSLocalizedString("About", tableName: "Chuu", comment: "About menu"),
                              action: #selector(aboutClick), keyEquivalent: "").target = self
                 menu.addItem(withTitle: NSLocalizedString("Check for Updates…", tableName: "Chuu", comment: "Update menu"),

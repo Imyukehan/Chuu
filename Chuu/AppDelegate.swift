@@ -61,6 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             NSLog("Running under XCTest; skipping app startup side effects")
             return
         }
+        guard !ChuuPermissions.isPreview else { return }
 
         // 禁止重复运行, 结束正在运行的实例
         Utils.preventMultiRunning(killExist: true)
@@ -124,20 +125,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             name: .mosAccessibilityPermissionLost,
             object: nil
         )
+        NotificationCenter.default.addObserver(self, selector: #selector(permissionsChanged),
+                                              name: ChuuPermissions.changed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkPermissions),
+                                              name: NSApplication.didBecomeActiveNotification, object: nil)
     }
     // 运行后启动滚动处理
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         guard AppRuntime.shouldRunAppStartupSideEffects else { return }
         ChuuAppMenu.shared.install()
-        if #available(macOS 14.0, *) {
-            ChuuModel.shared.start()
-            ChuuWindow.shared.present()
+        if ChuuPermissions.isPreview {
+            if let appearance = UserDefaults.standard.string(forKey: "ChuuPreviewAppearance") {
+                NSApp.appearance = NSAppearance(named: appearance == "dark" ? .darkAqua : .aqua)
+            }
+            IntroductionWindowController.present(manually: true)
+            return
         }
         LogiCenter.shared.installBridge(LogiIntegrationBridge.shared)
         ShortcutExecutor.shared.scrollActionPort = ScrollCore.shared
         ShortcutExecutor.shared.modifierFlagsProvider = InputProcessor.shared
         LogiUsageBootstrap.installOptionsObservers()
         LogiUsageBootstrap.refreshAll()
+        ChuuModel.shared.start()
+        ChuuWindow.shared.present()
         startWithAccessibilityPermissionsChecker(nil)
         UpdateManager.shared.scheduleCheckOnAppStartIfNeeded()
     }
@@ -168,6 +178,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // 关闭前停止滚动处理
     func applicationWillTerminate(_ aNotification: Notification) {
         guard AppRuntime.shouldRunAppStartupSideEffects else { return }
+        guard !ChuuPermissions.isPreview else { return }
         LogiCenter.shared.stop()
         ScrollCore.shared.disable()
         ButtonCore.shared.disable()
@@ -178,6 +189,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // 检查是否有访问 accessibility 权限, 如果有则启动滚动处理, 并结束计时器
     // 10.14(Mojave) 后, 若无该权限会直接在创建 eventTap 时报错 (https://developer.apple.com/videos/play/wwdc2018/702/)
     @objc func startWithAccessibilityPermissionsChecker(_ timer: Timer?) {
+        guard ChuuPermissions.requiredGranted else {
+            ChuuModel.shared.start()
+            LogiCenter.shared.stop()
+            ScrollCore.shared.disable()
+            ButtonCore.shared.disable()
+            if permissionRecoveryTimer == nil {
+                permissionRecoveryTimer = Timer.scheduledTimer(timeInterval: 2, target: self,
+                    selector: #selector(startWithAccessibilityPermissionsChecker(_:)), userInfo: nil, repeats: true)
+            }
+            return
+        }
+        ChuuModel.shared.start()
         if Bundle.main.bundleIdentifier == "moe.khan.MouseControl",
            !NSRunningApplication.runningApplications(withBundleIdentifier: "com.caldis.Mos").isEmpty {
             // Keep batteries available, but leave global events to the original Mos.
@@ -190,41 +213,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             return
         }
-        if let validTimer = timer {
-            // 开启辅助权限后, 关闭定时器, 开始处理
-            if Utils.isHadAccessibilityPermissions() {
-                validTimer.invalidate()
-                permissionRecoveryTimer = nil
-                NSLog("First Initialization (Accessibility Authorization Needed)")
-                ScrollCore.shared.enable()
-                ButtonCore.shared.enable()
-                LogiCenter.shared.start()
-            }
-        } else {
-            if Utils.isHadAccessibilityPermissions() {
-                permissionRecoveryTimer?.invalidate()
-                permissionRecoveryTimer = nil
-                NSLog("Regular Initialization")
-                ScrollCore.shared.enable()
-                ButtonCore.shared.enable()
-                LogiCenter.shared.start()
-            } else {
-                // 如果应用不在辅助权限列表内, 则弹出欢迎窗口
-                if #unavailable(macOS 14.0) {
-                    WindowManager.shared.showWindow(withIdentifier: WINDOW_IDENTIFIER.introductionWindowController, withTitle: "")
-                }
-                // 启动定时器检测权限, 当拥有授权时启动滚动处理
-                // 统一由 permissionRecoveryTimer 持有, 使 sessionDidResign 可取消, 避免反复休眠/切换用户时叠加
-                permissionRecoveryTimer?.invalidate()
-                permissionRecoveryTimer = Timer.scheduledTimer(
-                    timeInterval: 10.0,
-                    target: self,
-                    selector: #selector(startWithAccessibilityPermissionsChecker(_:)),
-                    userInfo: nil,
-                    repeats: true
-                )
-            }
-        }
+        permissionRecoveryTimer?.invalidate()
+        permissionRecoveryTimer = nil
+        if !ScrollCore.shared.isActive { ScrollCore.shared.enable() }
+        if !ButtonCore.shared.isActive { ButtonCore.shared.enable() }
+        LogiCenter.shared.start()
+    }
+
+    @objc private func checkPermissions() { ChuuPermissions.shared.refreshRequired() }
+
+    @objc private func permissionsChanged() {
+        startWithAccessibilityPermissionsChecker(nil)
     }
 
     @objc private func inputAppDidChange(_ notification: Notification) {

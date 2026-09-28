@@ -18,7 +18,8 @@ final class ChuuAppMenuTests: XCTestCase {
         let app = try XCTUnwrap(owner.makeMenu().items.first?.submenu)
         for (key, action) in [("About Chuu", #selector(ChuuAppMenu.showAbout)),
                               ("Check for Updates…", #selector(ChuuAppMenu.checkForUpdates)),
-                              ("Settings…", #selector(ChuuAppMenu.showSettings))] {
+                              ("Settings…", #selector(ChuuAppMenu.showSettings)),
+                              ("Permissions…", #selector(ChuuAppMenu.showPermissions))] {
             let item = try XCTUnwrap(app.item(withTitle: tr(key)))
             XCTAssertEqual(item.action, action)
             XCTAssertTrue(item.target === owner)

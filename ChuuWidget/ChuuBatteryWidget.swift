@@ -5,6 +5,7 @@ import OSLog
 struct BatteryEntry: TimelineEntry {
     let date: Date
     let snapshot: MouseSnapshotFile?
+    var status: MouseSnapshotStore.ReadStatus = .available
 }
 
 struct BatteryProvider: TimelineProvider {
@@ -15,15 +16,18 @@ struct BatteryProvider: TimelineProvider {
         ], writtenAt: Date()))
     }
     func getSnapshot(in context: Context, completion: @escaping (BatteryEntry) -> Void) {
-        completion(context.isPreview ? placeholder(in: context) : BatteryEntry(date: Date(), snapshot: MouseSnapshotStore.read()))
+        let result = MouseSnapshotStore.readResult()
+        completion(context.isPreview ? placeholder(in: context) : BatteryEntry(date: Date(), snapshot: result.snapshot, status: result.status))
     }
     func getTimeline(in context: Context, completion: @escaping (Timeline<BatteryEntry>) -> Void) {
         let now = Date()
-        let snapshot = MouseSnapshotStore.read()
+        let result = MouseSnapshotStore.readResult()
+        let snapshot = result.snapshot
         Logger(subsystem: "moe.khan.MouseControl", category: "Widgets")
             .info("Battery timeline: \(snapshot?.devices.count ?? 0) devices, first reading \(snapshot?.devices.first?.battery ?? -1) percent")
         let expiry = max(now.addingTimeInterval(1), (snapshot?.writtenAt ?? now).addingTimeInterval(30 * 60))
-        completion(Timeline(entries: [BatteryEntry(date: now, snapshot: snapshot), BatteryEntry(date: expiry, snapshot: snapshot)],
+        completion(Timeline(entries: [BatteryEntry(date: now, snapshot: snapshot, status: result.status),
+                                      BatteryEntry(date: expiry, snapshot: snapshot, status: result.status)],
                             policy: .after(now.addingTimeInterval(15 * 60))))
     }
 }
@@ -35,7 +39,18 @@ struct MouseBatteryView: View {
 
     var body: some View {
         Group {
-            if devices.isEmpty {
+            if let key = entry.status.messageKey {
+                VStack(spacing: 8) {
+                    Image(systemName: "exclamationmark.triangle")
+                        .font(.title2).foregroundStyle(.secondary)
+                    Text(NSLocalizedString(key, tableName: "Chuu", comment: "Widget sharing state"))
+                        .font(.caption.weight(.medium))
+                    if let detail = entry.status.detailKey {
+                        Text(NSLocalizedString(detail, tableName: "Chuu", comment: "Widget sharing recovery"))
+                            .font(.caption2).foregroundStyle(.secondary)
+                    }
+                }.multilineTextAlignment(.center).frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else if devices.isEmpty {
                 VStack(spacing: 12) {
                     Image(systemName: "computermouse").font(.largeTitle).foregroundStyle(.secondary)
                     Text(NSLocalizedString("No mouse connected", tableName: "Chuu", comment: "Widget empty state")).font(.caption)

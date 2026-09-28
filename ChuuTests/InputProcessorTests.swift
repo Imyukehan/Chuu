@@ -3,6 +3,45 @@ import XCTest
 
 final class InputProcessorTests: XCTestCase {
 
+    func testAutoClickReleaseDuplicateDownAndEmergencyCleanup() {
+        let trigger = RecordedEvent(type: .mouse, code: 5, modifiers: 0,
+                                    displayComponents: ["Mouse 5"], deviceFilter: nil)
+        Options.shared.buttons.binding = [ButtonBinding(triggerEvent: trigger,
+            systemShortcutName: "mouseAutoClick10", isEnabled: true)]
+        ButtonUtils.shared.invalidateCache()
+        var observed: [CGEventType] = []
+        ShortcutExecutor.shared.setTestingMouseEventObserver {
+            observed.append($0.type)
+            XCTAssertEqual($0.getIntegerValueField(.mouseEventClickState), 1)
+            XCTAssertEqual($0.getIntegerValueField(.eventSourceUserData), ChuuEventMarker.syntheticCustom)
+        }
+        let down = InputEvent(type: .mouse, code: 5, modifiers: [], phase: .down, source: .hidPP, device: nil)
+        let up = InputEvent(type: .mouse, code: 5, modifiers: .maskShift, phase: .up, source: .hidPP, device: nil)
+        XCTAssertEqual(InputProcessor.shared.process(down), .consumed)
+        XCTAssertEqual(InputProcessor.shared.process(down), .consumed)
+        XCTAssertEqual(observed, [.leftMouseDown])
+        XCTAssertEqual(InputProcessor.shared.process(up), .consumed)
+        XCTAssertEqual(observed, [.leftMouseDown, .leftMouseUp])
+        _ = InputProcessor.shared.process(down)
+        InputProcessor.shared.clearActiveBindings()
+        XCTAssertEqual(observed, [.leftMouseDown, .leftMouseUp, .leftMouseDown, .leftMouseUp])
+    }
+
+    func testEditingBindingStopsAutoClickUntilRelease() {
+        let trigger = RecordedEvent(type: .mouse, code: 5, modifiers: 0,
+                                    displayComponents: ["Mouse 5"], deviceFilter: nil)
+        Options.shared.buttons.binding = [ButtonBinding(triggerEvent: trigger,
+            systemShortcutName: "mouseAutoClick10", isEnabled: true)]
+        ButtonUtils.shared.invalidateCache()
+        var observed: [CGEventType] = []
+        ShortcutExecutor.shared.setTestingMouseEventObserver { observed.append($0.type) }
+        let down = InputEvent(type: .mouse, code: 5, modifiers: [], phase: .down, source: .hidPP, device: nil)
+        _ = InputProcessor.shared.process(down)
+        ButtonUtils.shared.invalidateCache()
+        _ = InputProcessor.shared.process(down)
+        XCTAssertEqual(observed, [.leftMouseDown, .leftMouseUp])
+    }
+
     override func setUp() {
         super.setUp()
         Options.shared.buttons.binding = []

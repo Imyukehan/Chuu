@@ -84,6 +84,7 @@ enum ResolvedAction {
     case customKey(code: UInt16, modifiers: UInt64)
     case customMouseButton(buttonNumber: UInt16, modifiers: UInt64)
     case mouseButton(kind: MouseButtonActionKind)
+    case autoClick(rate: HoldClickRate)
     case mosScroll(role: ScrollRole)
     case systemShortcut(identifier: String)
     case logiAction(identifier: String)
@@ -91,7 +92,7 @@ enum ResolvedAction {
 
     var executionMode: ActionExecutionMode {
         switch self {
-        case .customKey, .customMouseButton, .mouseButton, .mosScroll:
+        case .customKey, .customMouseButton, .mouseButton, .mosScroll, .autoClick:
             return .stateful
         case .logiAction, .openTarget:
             return .trigger
@@ -129,6 +130,12 @@ class ShortcutExecutor {
     weak var modifierFlagsProvider: ModifierFlagsProviding?
 
     private var testingMouseEventObserver: ((CGEvent) -> Void)?
+
+    private lazy var holdClickController = HoldClickController { [weak self] phase in
+        self?.postAutoClick(phase: phase)
+    }
+
+    func stopAutoClick() { holdClickController.stop() }
 
     /// 快速识别 Mos Scroll 三个 stateful 动作, 供事件热路径避免完整 action 解析。
     static func isMosScrollActionIdentifier(_ shortcutName: String) -> Bool {
@@ -184,9 +191,19 @@ class ShortcutExecutor {
         action: ResolvedAction,
         phase: InputPhase,
         mouseSessionID: UUID? = nil,
-        inputModifiers: CGEventFlags? = nil
+        inputModifiers: CGEventFlags? = nil,
+        trigger: InputEvent? = nil
     ) -> ActionExecutionResult {
         switch action {
+        case .autoClick(let rate):
+            if phase == .up {
+                if let mouseSessionID { holdClickController.stop(session: mouseSessionID) }
+                return .none
+            }
+            guard let trigger else { return .none }
+            return ActionExecutionResult(mouseSessionID: holdClickController.start(
+                rate: rate, held: HoldClickController.heldCheck(for: trigger)
+            ))
         case .customKey(let code, let modifiers):
             executeCustom(code: code, modifiers: modifiers, phase: phase)
             return .none
@@ -227,6 +244,7 @@ class ShortcutExecutor {
     }
 
     func resolveAction(named shortcutName: String, binding: ButtonBinding? = nil) -> ResolvedAction? {
+        if let rate = HoldClickRate(identifier: shortcutName) { return .autoClick(rate: rate) }
         // 优先: 结构化 payload (在 cachedCustomCode 之前判定, 避免命名冲突)
         if let payload = binding?.openTarget,
            shortcutName == ButtonBinding.openTargetSentinel {
@@ -353,6 +371,18 @@ class ShortcutExecutor {
     }
 
     // MARK: - Mouse Actions
+
+    private func postAutoClick(phase: InputPhase) {
+        guard let source = CGEventSource(stateID: .privateState),
+              let event = CGEvent(mouseEventSource: source,
+                                  mouseType: phase == .down ? .leftMouseDown : .leftMouseUp,
+                                  mouseCursorPosition: CGEvent(source: nil)?.location ?? .zero,
+                                  mouseButton: .left) else { return }
+        event.flags = []
+        event.setIntegerValueField(.mouseEventClickState, value: 1)
+        event.setIntegerValueField(.eventSourceUserData, value: ChuuEventMarker.syntheticCustom)
+        notifyOrPostMouseEvent(event)
+    }
 
     /// 执行鼠标按键动作 (1:1 down/up 映射)
     private func executeMouseButton(

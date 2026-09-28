@@ -6,6 +6,6 @@ struct SnapshotStorageTests {
     static func main() {
         let suite = MouseSnapshotStoreTests.defaultTestSuite
         suite.run()
-        guard let result = suite.testRun, result.executionCount == 7, result.hasSucceeded else { exit(1) }
+        guard let result = suite.testRun, result.executionCount == 11, result.hasSucceeded else { exit(1) }
     }
 }

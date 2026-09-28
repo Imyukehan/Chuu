@@ -5,6 +5,11 @@ enum MouseHardwareError: LocalizedError {
     case unavailable, timedOut, malformed, unsupported, profileChanged, verificationFailed, rollbackFailed
     case io(IOReturn)
 
+    var isAccessDenied: Bool {
+        if case .io(let code) = self { return code == kIOReturnNotPermitted }
+        return false
+    }
+
     var errorDescription: String? {
         let key: String
         switch self {
@@ -15,7 +20,12 @@ enum MouseHardwareError: LocalizedError {
         case .profileChanged: key = "Profile changed. Refresh and try again."
         case .verificationFailed: key = "Write failed; original profile restored"
         case .rollbackFailed: key = "Write verification failed. Restore the saved backup before continuing."
-        case .io(let code): return String(format: "HID: 0x%08X", code)
+        case .io(let code):
+            if code == kIOReturnNotPermitted {
+                return NSLocalizedString("Mouse access denied. If Chuu is already enabled in Input Monitoring, remove the old entry, add the current app, then restart Chuu.",
+                                         tableName: "Chuu", comment: "HID access denied")
+            }
+            return String(format: "HID: 0x%08X", code)
         }
         return NSLocalizedString(key, tableName: "Chuu", comment: "Hardware operation error")
     }
