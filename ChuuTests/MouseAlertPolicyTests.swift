@@ -104,12 +104,36 @@ final class MouseAlertPolicyTests: XCTestCase {
         XCTAssertTrue(panel.styleMask.contains(.nonactivatingPanel))
     }
 
-    func testConnectionCapsuleSitsBelowRightMenuBarOnEachDisplay() {
+    func testConnectionMotionUsesSlowerTransitionsAndHonorsReduceMotion() {
+        XCTAssertEqual(MouseConnectionMotion.duration(appearing: true, reduceMotion: false), 0.42)
+        XCTAssertEqual(MouseConnectionMotion.duration(appearing: false, reduceMotion: false), 0.32)
+        XCTAssertEqual(MouseConnectionMotion.offset(reduceMotion: true), 0)
+        XCTAssertEqual(MouseConnectionMotion.duration(appearing: true, reduceMotion: true), 0.12)
+    }
+
+    @MainActor
+    func testConnectionSurfaceUsesOneNativeGlassContainerWithoutTint() throws {
+        let root = MouseConnectionSurface.makeView(device: device(), close: {})
+        XCTAssertEqual(root.subviews.count, 1)
+        if #available(macOS 26.0, *) {
+            let glass = try XCTUnwrap(root.subviews.first as? NSGlassEffectView)
+            XCTAssertEqual(glass.style, .regular)
+            XCTAssertNil(glass.tintColor)
+            XCTAssertEqual(glass.cornerRadius, 26)
+            XCTAssertNotNil(glass.contentView)
+            XCTAssertEqual(glass.frame.size, MouseConnectionLayout.size)
+        } else {
+            let effect = try XCTUnwrap(root.subviews.first as? NSVisualEffectView)
+            XCTAssertEqual(effect.blendingMode, .behindWindow)
+        }
+    }
+
+    func testConnectionCapsuleDefaultsToTopCenterOnEachDisplay() {
         for visible in [NSRect(x: 0, y: 80, width: 1512, height: 870),
                         NSRect(x: -1920, y: -600, width: 1920, height: 1050)] {
             let frame = MouseConnectionLayout.frame(in: visible)
             XCTAssertEqual(frame.size, NSSize(width: 236, height: 52))
-            XCTAssertEqual(frame.maxX, visible.maxX - 240)
+            XCTAssertEqual(frame.midX, visible.midX)
             XCTAssertEqual(frame.maxY, visible.maxY - 12)
             XCTAssertTrue(visible.contains(frame))
         }
@@ -117,9 +141,30 @@ final class MouseAlertPolicyTests: XCTestCase {
 
     func testConnectionCapsuleMatchesFullScreenReferenceAndFitsNarrowDisplays() {
         let reference = MouseConnectionLayout.frame(in: NSRect(x: 0, y: 98, width: 1920, height: 952))
-        XCTAssertEqual(reference, NSRect(x: 1444, y: 986, width: 236, height: 52))
+        XCTAssertEqual(reference, NSRect(x: 842, y: 986, width: 236, height: 52))
         let narrow = NSRect(x: -320, y: 0, width: 320, height: 900)
         XCTAssertTrue(narrow.contains(MouseConnectionLayout.frame(in: narrow)))
+    }
+
+    func testConnectionCapsuleAnchorsBelowVisibleStatusItem() {
+        let visible = NSRect(x: 0, y: 80, width: 1512, height: 870)
+        let icon = NSRect(x: 1200, y: 950, width: 24, height: 24)
+        let frame = MouseConnectionLayout.frame(in: visible, statusItemFrame: icon)
+        XCTAssertEqual(frame.midX, icon.midX)
+        XCTAssertEqual(frame.maxY, visible.maxY - 12)
+        let edge = MouseConnectionLayout.frame(in: visible, statusItemFrame: NSRect(x: 1488, y: 950, width: 24, height: 24))
+        XCTAssertEqual(edge.maxX, visible.maxX - 12)
+    }
+
+    func testConnectionCapsuleIgnoresHiddenOrOtherScreenAnchors() {
+        let visible = NSRect(x: 0, y: 0, width: 1512, height: 950)
+        for icon in [NSRect(x: -10000, y: 950, width: 24, height: 24),
+                     NSRect(x: -800, y: 950, width: 24, height: 24),
+                     NSRect(x: 1200, y: 900, width: 24, height: 24), .zero] {
+            XCTAssertEqual(MouseConnectionLayout.frame(in: visible, statusItemFrame: icon).midX, visible.midX)
+        }
+        let fullScreen = NSRect(x: -1920, y: 0, width: 1920, height: 1080)
+        XCTAssertEqual(MouseConnectionLayout.frame(in: fullScreen).midX, -960)
     }
 
     func testConnectionArtworkUsesPixelMatchedRetinaRepresentations() throws {

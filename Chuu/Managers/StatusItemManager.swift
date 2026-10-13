@@ -143,6 +143,16 @@ extension StatusItemManager {
  * 图标显示
  **/
 extension StatusItemManager {
+    static func visibleAnchor(on screen: NSScreen) -> NSRect? {
+        guard statusItem.isVisible, NSMenu.menuBarVisible(),
+              let button = statusItem.button, !button.isHiddenOrHasHiddenAncestor,
+              let window = button.window, window.isVisible, window.isOnActiveSpace,
+              window.occlusionState.contains(.visible), window.screen == screen else { return nil }
+        let frame = window.convertToScreen(button.convert(button.bounds, to: nil))
+        guard screen.frame.contains(frame) else { return nil }
+        return frame
+    }
+
     // 显示状态栏图标
     class func showStatusItem() {
         if #available(OSX 10.12, *) {

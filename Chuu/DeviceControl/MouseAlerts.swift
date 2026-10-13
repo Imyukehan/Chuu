@@ -3,6 +3,7 @@ import SwiftUI
 import UserNotifications
 import OSLog
 import ImageIO
+import QuartzCore
 
 @available(macOS 14.0, *)
 final class MouseAlerts: NSObject, UNUserNotificationCenterDelegate {
@@ -11,7 +12,7 @@ final class MouseAlerts: NSObject, UNUserNotificationCenterDelegate {
     static let lowBatteryKey = "chuu.lowBatteryAlerts"
     private static let warnedKey = "chuu.lowBatteryWarnedDevices"
     private var policy = MouseAlertPolicy()
-    private var panel: NSPanel?
+    private var panel: MouseConnectionPanel?
     private var dismissal: DispatchWorkItem?
     private var sleeping = false
     private var displaySleeping = false
@@ -146,49 +147,141 @@ final class MouseAlerts: NSObject, UNUserNotificationCenterDelegate {
     func present(_ device: MouseSnapshot) {
         guard canPresent, let screen = NSScreen.screens.first(where: { NSMouseInRect(NSEvent.mouseLocation, $0.frame, false) }) ?? NSScreen.main else { return }
         dismiss()
-        let frame = MouseConnectionLayout.frame(in: screen.visibleFrame)
+        var visibleFrame = screen.visibleFrame
+        let safeTop = min(visibleFrame.maxY, screen.frame.maxY - screen.safeAreaInsets.top)
+        visibleFrame.size.height = safeTop - visibleFrame.minY
+        let capsuleFrame = MouseConnectionLayout.frame(
+            in: visibleFrame, statusItemFrame: StatusItemManager.visibleAnchor(on: screen))
+        // Leave room for the system glass edge instead of clipping it at the window boundary.
+        let frame = capsuleFrame.insetBy(dx: -8, dy: -8)
         let panel = MouseConnectionPanel(contentRect: frame,
                             styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
         panel.isOpaque = false
         panel.backgroundColor = .clear
-        panel.hasShadow = true
+        panel.hasShadow = false
         panel.level = .floating
+        panel.isFloatingPanel = true
         panel.hidesOnDeactivate = false
         panel.isReleasedWhenClosed = false
         panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .ignoresCycle]
         panel.title = "Chuu"
-        panel.contentView = NSHostingView(rootView: MouseConnectionCard(device: device, close: { [weak self] in self?.dismiss() }))
+        panel.contentView = MouseConnectionSurface.makeView(device: device, close: { [weak self] in self?.dismiss(animated: true) })
         panel.setAccessibilityLabel(NSLocalizedString("Connection popup", tableName: "Chuu", comment: "Popup"))
-        panel.setFrame(frame, display: false)
-        panel.orderFrontRegardless()
         self.panel = panel
-        let dismissal = DispatchWorkItem { [weak self] in self?.dismiss() }
+        panel.reveal(at: frame, reduceMotion: NSWorkspace.shared.accessibilityDisplayShouldReduceMotion)
+        let dismissal = DispatchWorkItem { [weak self] in self?.dismiss(animated: true) }
         self.dismissal = dismissal
         DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: dismissal)
     }
 
-    private func dismiss() {
+    private func dismiss(animated: Bool = false) {
         dismissal?.cancel()
         dismissal = nil
-        panel?.orderOut(nil)
-        panel = nil
+        guard let panel else { return }
+        if animated {
+            panel.conceal(reduceMotion: NSWorkspace.shared.accessibilityDisplayShouldReduceMotion) { [weak self, weak panel] in
+                if self?.panel === panel { self?.panel = nil }
+            }
+        } else {
+            // Lock, sleep, device removal and replacement must hide immediately.
+            panel.orderOut(nil)
+            self.panel = nil
+        }
     }
 }
 
 final class MouseConnectionPanel: NSPanel {
     override var canBecomeKey: Bool { false }
     override var canBecomeMain: Bool { false }
+    private var dismissing = false
+
+    func reveal(at frame: NSRect, reduceMotion: Bool) {
+        animationBehavior = .none
+        alphaValue = 0
+        setFrame(frame.offsetBy(dx: 0, dy: MouseConnectionMotion.offset(reduceMotion: reduceMotion)), display: false)
+        orderFrontRegardless()
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = MouseConnectionMotion.duration(appearing: true, reduceMotion: reduceMotion)
+            context.timingFunction = CAMediaTimingFunction(name: .easeOut)
+            animator().alphaValue = 1
+            animator().setFrame(frame, display: true)
+        }
+    }
+
+    func conceal(reduceMotion: Bool, completion: @escaping () -> Void) {
+        guard !dismissing else { return }
+        dismissing = true
+        let destination = frame.offsetBy(dx: 0, dy: MouseConnectionMotion.offset(reduceMotion: reduceMotion))
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = MouseConnectionMotion.duration(appearing: false, reduceMotion: reduceMotion)
+            context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+            animator().alphaValue = 0
+            animator().setFrame(destination, display: true)
+        } completionHandler: { [self] in
+            orderOut(nil)
+            completion()
+        }
+    }
+}
+
+enum MouseConnectionMotion {
+    static func duration(appearing: Bool, reduceMotion: Bool) -> TimeInterval {
+        reduceMotion ? 0.12 : (appearing ? 0.42 : 0.32)
+    }
+    static func offset(reduceMotion: Bool) -> CGFloat { reduceMotion ? 0 : 8 }
+}
+
+@available(macOS 14.0, *)
+enum MouseConnectionSurface {
+    static func makeView(device: MouseSnapshot, close: @escaping () -> Void) -> NSView {
+        let size = MouseConnectionLayout.size
+        let root = NSView(frame: NSRect(origin: .zero, size: NSSize(width: size.width + 16, height: size.height + 16)))
+        let content = NSHostingView(rootView: MouseConnectionCard(device: device, close: close))
+        let surface: NSView
+        if #available(macOS 26.0, *) {
+            let glass = NSGlassEffectView()
+            // Regular responds to the system glass slider in our macOS 27 panel checks.
+            glass.style = .regular
+            glass.cornerRadius = MouseConnectionLayout.size.height / 2
+            glass.contentView = content
+            surface = glass
+        } else {
+            let effect = NSVisualEffectView()
+            effect.material = .hudWindow
+            effect.blendingMode = .behindWindow
+            effect.state = .active
+            effect.wantsLayer = true
+            effect.layer?.cornerRadius = MouseConnectionLayout.size.height / 2
+            effect.layer?.masksToBounds = true
+            effect.addSubview(content)
+            content.frame = NSRect(origin: .zero, size: MouseConnectionLayout.size)
+            content.autoresizingMask = [.width, .height]
+            surface = effect
+        }
+        surface.frame = NSRect(origin: NSPoint(x: 8, y: 8), size: MouseConnectionLayout.size)
+        root.addSubview(surface)
+        return root
+    }
 }
 
 enum MouseConnectionLayout {
     static let size = NSSize(width: 236, height: 52)
 
-    static func frame(in visibleFrame: NSRect) -> NSRect {
-        // Match the accessory-status area, leaving room for the clock and system controls.
-        let rightInset = min(240, max(16, visibleFrame.width - size.width - 16))
-        return NSRect(x: visibleFrame.maxX - size.width - rightInset,
+    static func frame(in visibleFrame: NSRect, statusItemFrame: NSRect? = nil) -> NSRect {
+        let margin: CGFloat = 12
+        let width = min(size.width, max(0, visibleFrame.width - margin * 2))
+        // Ignore stale/off-screen anchors (including menu-bar managers' hidden items).
+        let anchor = statusItemFrame.flatMap { frame -> NSRect? in
+            guard frame.width > 0, frame.height > 0,
+                  frame.minX >= visibleFrame.minX, frame.maxX <= visibleFrame.maxX,
+                  frame.maxY >= visibleFrame.maxY, frame.minY <= visibleFrame.maxY + 64 else { return nil }
+            return frame
+        }
+        let centerX = anchor?.midX ?? visibleFrame.midX
+        let x = min(max(centerX - width / 2, visibleFrame.minX + margin), visibleFrame.maxX - width - margin)
+        return NSRect(x: x,
                       y: visibleFrame.maxY - size.height - 12,
-                      width: size.width, height: size.height)
+                      width: width, height: size.height)
     }
 }
 
@@ -259,7 +352,6 @@ struct MouseConnectionCard: View {
             .contentShape(Capsule())
         }
         .buttonStyle(.plain)
-        .modifier(ConnectionCardSurface())
         .help(NSLocalizedString("Close", tableName: "Chuu", comment: "Close popup"))
     }
 
@@ -288,17 +380,6 @@ private struct MouseConnectionBatteryRing: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(NSLocalizedString("Mouse battery", tableName: "Chuu", comment: "Battery ring"))
         .accessibilityValue(percentage.map { "\($0)%" } ?? NSLocalizedString("Battery unavailable", tableName: "Chuu", comment: "Unknown battery"))
-    }
-}
-
-@available(macOS 14.0, *)
-private struct ConnectionCardSurface: ViewModifier {
-    func body(content: Content) -> some View {
-        if #available(macOS 26.0, *) {
-            content.glassEffect(.regular, in: Capsule())
-        } else {
-            content.background(.regularMaterial, in: Capsule())
-        }
     }
 }
 
