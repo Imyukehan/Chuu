@@ -152,14 +152,20 @@ enum MouseDeviceDiscovery {
         let name = IOHIDDeviceGetProperty(device, kIOHIDProductKey as CFString) as? String ?? "Mouse"
         let builtIn = IOHIDDeviceGetProperty(device, "Built-In" as CFString) as? Bool ?? false
         let transport = IOHIDDeviceGetProperty(device, kIOHIDTransportKey as CFString) as? String ?? "USB"
-        guard isGenericMouse(name: name, builtIn: builtIn, transport: transport) else { return nil }
+        guard isGenericMouse(name: name, builtIn: builtIn, transport: transport,
+                             identity: identity(device)) else { return nil }
         return MouseSnapshot(id: id(device), model: "generic", name: name, battery: nil,
                              charging: false, online: true, updatedAt: Date(),
                              transport: transport.hasPrefix("Bluetooth") ? "Bluetooth" : transport)
     }
 
-    static func isGenericMouse(name: String, builtIn: Bool, transport: String) -> Bool {
-        !builtIn && !["trackpad", "keyboard", "virtual", "touchpad", "receiver"].contains(where: {
+    static func isGenericMouse(name: String, builtIn: Bool, transport: String,
+                               identity: MouseHIDIdentity? = nil) -> Bool {
+        // The SKN keyboard receiver exposes a mouse interface for QMK mouse keys.
+        if let identity, identity.vendorID == 0x362d, identity.productID == 0xd101 { return false }
+        let normalizedName = name.split(whereSeparator: \.isWhitespace).joined(separator: " ").lowercased()
+        guard !["wireless link", "keychron link", "keychron link-km"].contains(normalizedName) else { return false }
+        return !builtIn && !["trackpad", "keyboard", "virtual", "touchpad", "receiver"].contains(where: {
             name.localizedCaseInsensitiveContains($0)
         }) && ["USB", "Bluetooth", "Bluetooth Low Energy"].contains(transport)
     }

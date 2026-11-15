@@ -200,6 +200,29 @@ final class MouseAlertPolicyTests: XCTestCase {
         XCTAssertFalse(MouseDeviceDiscovery.isGenericMouse(name: "Mouse", builtIn: false, transport: "Virtual"))
     }
 
+    func testGenericDiscoveryExcludesWirelessReceiverNames() {
+        for name in ["Wireless Link ", " WIRELESS  LINK\t", "Keychron Link", "Keychron Link-KM"] {
+            XCTAssertFalse(MouseDeviceDiscovery.isGenericMouse(name: name, builtIn: false, transport: "USB"), name)
+        }
+    }
+
+    func testGenericDiscoveryExcludesSKNReceiverEvenWithMouseProductName() {
+        let receiver = MouseHIDIdentity(vendorID: 0x362d, productID: 0xd101, usagePage: 1, usage: 2)
+        XCTAssertFalse(MouseDeviceDiscovery.isGenericMouse(name: "USB Mouse", builtIn: false,
+                                                          transport: "USB", identity: receiver))
+    }
+
+    func testGenericDiscoveryPreservesOtherProductsAndWirelessMice() {
+        for identity in [MouseHIDIdentity(vendorID: 0x362d, productID: 0x9999, usagePage: 1, usage: 2),
+                         MouseHIDIdentity(vendorID: 0x9999, productID: 0xd101, usagePage: 1, usage: 2)] {
+            XCTAssertTrue(MouseDeviceDiscovery.isGenericMouse(name: "USB Mouse", builtIn: false,
+                                                             transport: "USB", identity: identity))
+        }
+        for name in ["Wireless Mouse", "TP-Link Mouse", "Link Gaming Mouse"] {
+            XCTAssertTrue(MouseDeviceDiscovery.isGenericMouse(name: name, builtIn: false, transport: "USB"), name)
+        }
+    }
+
     func testStaleBatteryDoesNotWarn() {
         var policy = MouseAlertPolicy()
         XCTAssertEqual(policy.consume([device(battery: 10)], at: now.addingTimeInterval(1801), lowBatteryEnabled: true), [])

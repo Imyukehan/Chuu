@@ -1,5 +1,19 @@
 # Chuu Changelog
 
+## 0.1.5 - 2026-11-15
+
+Local development build `20261115.1`.
+
+- Exclude Wireless Link keyboard receivers from generic mouse discovery, connection prompts and widget snapshots. Match the confirmed SKN receiver identity even if its product name changes, while preserving other generic mice.
+- Refine the native Liquid Glass connection capsule, anchor it below a visible status item or at the top center, and use smoother transitions with Reduce Motion support.
+
+### 中文
+
+本地开发版，构建号 `20261115.1`。
+
+- 过滤 Wireless Link 类键盘接收器，避免误显示为鼠标、触发连接提示或进入小组件数据；按已确认的 SKN 接收器 ID 过滤改名设备，保留其他普通鼠标。
+- 优化原生 Liquid Glass 连接胶囊：状态栏图标可见时在其下方弹出，否则在顶部居中；调整进出动画并适配减少动态效果设置。
+
 ## 0.1.4 - 2026-09-28
 
 Private personal-use, unnotarized Apple Silicon test release. Build `20260928.1`.
