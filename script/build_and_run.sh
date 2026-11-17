@@ -2,16 +2,32 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 MODE="${1:-run}"
-case "$MODE" in run|--build|--install|--verify|--logs|--debug) ;; *) printf 'Usage: %s [--build|--install|--verify|--logs|--debug]\n' "$0"; exit 2 ;; esac
+case "$MODE" in run|--build|--install|--install-app|--verify|--logs|--debug) ;; *) printf 'Usage: %s [--build|--install|--install-app PATH|--verify|--logs|--debug]\n' "$0"; exit 2 ;; esac
+if [[ "$MODE" == "--install-app" ]]; then
+  [[ $# == 2 && -d "$2" ]] || { printf 'Provide a notarized Chuu.app path.\n' >&2; exit 2; }
+  APP="$(cd "$2" && pwd -P)"
+  [[ "$APP" != "$HOME/Applications/Chuu.app" ]] || { printf 'Source is already installed.\n' >&2; exit 2; }
+  IDENTIFIER=$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$APP/Contents/Info.plist")
+  [[ "$IDENTIFIER" == "moe.khan.MouseControl" ]] || { printf 'Not a Chuu app.\n' >&2; exit 1; }
+  codesign --verify --deep --strict "$APP"
+  SIGNATURE=$(codesign -dvv "$APP" 2>&1)
+  [[ "$SIGNATURE" == *'TeamIdentifier=7XZ82S4RRS'* && "$SIGNATURE" == *'Authority=Developer ID Application:'* ]] || {
+    printf 'Expected Chuu Developer ID signing identity.\n' >&2; exit 1;
+  }
+  xcrun stapler validate "$APP"
+  spctl --assess --type execute "$APP"
+fi
 if [[ "$MODE" != "--build" ]]; then pkill -x MouseControl 2>/dev/null || true; fi
-CONFIGURATION=Debug
-if [[ "$MODE" == "--install" ]]; then CONFIGURATION=Release; fi
-xcodegen generate --spec project.yml
-xcodebuild -project Chuu.xcodeproj -scheme Chuu -configuration "$CONFIGURATION" \
-  -destination 'platform=macOS' -derivedDataPath build/Chuu build
-APP="$PWD/build/Chuu/Build/Products/$CONFIGURATION/Chuu.app"
+if [[ "$MODE" != "--install-app" ]]; then
+  CONFIGURATION=Debug
+  if [[ "$MODE" == "--install" ]]; then CONFIGURATION=Release; fi
+  xcodegen generate --spec project.yml
+  xcodebuild -project Chuu.xcodeproj -scheme Chuu -configuration "$CONFIGURATION" \
+    -destination 'platform=macOS' -derivedDataPath build/Chuu build
+  APP="$PWD/build/Chuu/Build/Products/$CONFIGURATION/Chuu.app"
+fi
 if [[ "$MODE" == "--build" ]]; then printf '\nBuilt: %s\n' "$APP"; exit 0; fi
-if [[ "$MODE" == "--install" ]]; then
+if [[ "$MODE" == "--install" || "$MODE" == "--install-app" ]]; then
   DEST="$HOME/Applications/Chuu.app"
   BACKUP="$HOME/Library/Application Support/moe.khan.MouseControl/InstallBackup/Chuu.app"
   mkdir -p "$HOME/Applications"

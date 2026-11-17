@@ -11,6 +11,7 @@ struct ChuuView: View {
     @State private var assignment = -1
     @State private var showOnboardEditor = false
     @State private var showWidgetHelp = false
+    @AppStorage("SUEnableAutomaticChecks") private var automaticUpdateChecks = true
 
     private let buttonNames = ["Left click", "Right click", "Middle click", "Back", "DPI shift", "Forward",
                                "Tilt left", "Tilt right", "Profile cycle", "DPI +", "DPI -"]
@@ -47,6 +48,19 @@ struct ChuuView: View {
                             }.font(.callout)
                         }
                         ChuuPreferencesPane(identifier: "general").frame(maxWidth: 840).frame(height: 160)
+                        HStack {
+                            Toggle(tr("Automatically check for updates"), isOn: Binding(
+                                get: { automaticUpdateChecks },
+                                set: { automaticUpdateChecks = $0; UpdateManager.shared.setAutomaticChecking($0) }
+                            ))
+                            .toggleStyle(.switch)
+                            Spacer()
+                            Button { UpdateManager.shared.checkForUpdates() } label: {
+                                Image(systemName: "arrow.triangle.2.circlepath")
+                            }
+                            .help(tr("Check for Updates…"))
+                            .accessibilityLabel(tr("Check for Updates…"))
+                        }.frame(maxWidth: 540)
                         Spacer(minLength: 0)
                     } else {
                         ChuuPreferencesPane(identifier: navigation.page.rawValue).id(navigation.page)

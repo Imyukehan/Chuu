@@ -27,8 +27,8 @@ final class MouseSnapshotStoreTests: XCTestCase {
     }
 
     func testOnlyMatchingTeamCanResolveSharedStorage() {
-        XCTAssertTrue(MouseSnapshotStore.canUseSharedStorage(teamID: "MA4UNJ3J25"))
-        for team in [nil, "", "OTHERTEAM1", "MA4UNJ3J25.moe"] as [String?] {
+        XCTAssertTrue(MouseSnapshotStore.canUseSharedStorage(teamID: "7XZ82S4RRS"))
+        for team in [nil, "", "OTHERTEAM1", "MA4UNJ3J25", "7XZ82S4RRS.moe"] as [String?] {
             XCTAssertFalse(MouseSnapshotStore.canUseSharedStorage(teamID: team))
         }
     }

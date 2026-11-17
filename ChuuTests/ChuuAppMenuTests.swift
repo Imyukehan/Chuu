@@ -71,6 +71,12 @@ final class ChuuAppMenuTests: XCTestCase {
         XCTAssertEqual(ChuuAppMenu.releasesURL.absoluteString, "https://github.com/Imyukehan/Chuu/releases")
     }
 
+    func testPublicUpdatesDoNotExposeCredentialCommands() throws {
+        let app = try XCTUnwrap(ChuuAppMenu().makeMenu().items.first?.submenu)
+        XCTAssertNil(app.item(withTitle: tr("Update Access…")))
+        XCTAssertFalse(app.items.contains { $0.action == Selector(("showUpdateAccess")) })
+    }
+
     func testMenuCommandsAreLocalized() throws {
         for (locale, expected) in [("en", "Check for Updates…"), ("zh-Hans", "检查更新…")] {
             let path = try XCTUnwrap(Bundle.main.path(forResource: locale, ofType: "lproj"))

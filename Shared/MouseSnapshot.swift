@@ -49,7 +49,7 @@ enum MouseSnapshotStore {
         var snapshot: MouseSnapshotFile?
     }
 
-    static let group = "MA4UNJ3J25.moe.khan.MouseControl"
+    static let group = "7XZ82S4RRS.moe.khan.MouseControl"
     static let widgetKind = "MouseBatteryWidget"
 
     // A team-prefixed group is not owned by an ad-hoc-signed process.

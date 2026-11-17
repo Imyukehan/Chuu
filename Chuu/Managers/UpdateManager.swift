@@ -1,9 +1,3 @@
-//
-//  UpdateManager.swift
-//  Mos
-//  Updates management via Sparkle
-//
-
 import Cocoa
 import Sparkle
 
@@ -38,7 +32,8 @@ extension UpdateManager {
 
     func scheduleCheckOnAppStartIfNeeded() {
         guard isConfigured else { return }
-        guard Options.shared.update.checkOnAppStart else { return }
+        let updater = updaterController.updater
+        guard Options.shared.update.checkOnAppStart, updater.automaticallyChecksForUpdates else { return }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
             self?.checkForUpdatesInBackground()
@@ -52,7 +47,13 @@ extension UpdateManager {
 
     func checkForUpdatesInBackground() {
         guard isConfigured else { return }
+        guard !updaterController.updater.sessionInProgress else { return }
         updaterController.updater.checkForUpdatesInBackground()
+    }
+
+    func setAutomaticChecking(_ enabled: Bool) {
+        guard isConfigured else { return }
+        updaterController.updater.automaticallyChecksForUpdates = enabled
     }
 
     private func showConfigurationNotice() {
@@ -74,6 +75,10 @@ extension UpdateManager {
 }
 
 extension UpdateManager: SPUUpdaterDelegate {
+
+    func feedURLString(for updater: SPUUpdater) -> String? {
+        Bundle.main.object(forInfoDictionaryKey: "SUFeedURL") as? String
+    }
 
     func allowedChannels(for updater: SPUUpdater) -> Set<String> {
         Options.shared.update.includingBetaVersion ? ["beta"] : []

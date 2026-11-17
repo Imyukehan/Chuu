@@ -8,11 +8,11 @@ configs:
 settings:
   base:
     SWIFT_VERSION: '5.0'
-    DEVELOPMENT_TEAM: MA4UNJ3J25
+    DEVELOPMENT_TEAM: 7XZ82S4RRS
     CODE_SIGN_IDENTITY: Apple Development
     CODE_SIGN_STYLE: Automatic
-    MARKETING_VERSION: '0.1.5'
-    CURRENT_PROJECT_VERSION: '20261115.1'
+    MARKETING_VERSION: '0.1.6'
+    CURRENT_PROJECT_VERSION: '20261117.2'
 packages:
   LoginServiceKit:
     url: https://github.com/Clipy/LoginServiceKit
@@ -22,7 +22,7 @@ packages:
     exactVersion: 5.1.0
   Sparkle:
     url: https://github.com/sparkle-project/Sparkle
-    from: 2.0.0
+    from: 2.10.0
 targets:
   Chuu:
     type: application
@@ -59,6 +59,13 @@ targets:
         LSApplicationCategoryType: public.app-category.utilities
         NSHumanReadableCopyright: 'Based on Mos © Caldis. CC BY-NC 4.0. Personal development fork.'
         NSAppleEventsUsageDescription: Chuu uses accessibility for scrolling and button shortcuts.
+        SUPublicEDKey: '7B9Yg733ert29zXeJm+H+GTNPV6IHAdT5yWiGmDfMjY='
+        SUFeedURL: 'https://raw.githubusercontent.com/Imyukehan/Chuu/main/release/chuu-appcast.xml'
+        SUEnableAutomaticChecks: true
+        SUScheduledCheckInterval: 43200
+        SUAutomaticallyUpdate: false
+        SUVerifyUpdateBeforeExtraction: true
+        SURequireSignedFeed: true
         CFBundleURLTypes:
           - CFBundleURLName: moe.khan.MouseControl
             CFBundleURLSchemes: [mousecontrol]

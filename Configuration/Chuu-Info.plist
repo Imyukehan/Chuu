@@ -43,5 +43,19 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUAutomaticallyUpdate</key>
+	<false/>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUFeedURL</key>
+	<string>https://raw.githubusercontent.com/Imyukehan/Chuu/main/release/chuu-appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>7B9Yg733ert29zXeJm+H+GTNPV6IHAdT5yWiGmDfMjY=</string>
+	<key>SURequireSignedFeed</key>
+	<true/>
+	<key>SUScheduledCheckInterval</key>
+	<integer>43200</integer>
+	<key>SUVerifyUpdateBeforeExtraction</key>
+	<true/>
 </dict>
 </plist>
