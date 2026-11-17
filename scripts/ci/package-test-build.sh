@@ -6,10 +6,6 @@ TAG=${2:?version tag required}
 mkdir -p "${3:?output directory required}"
 OUTPUT=$(cd "$3" && pwd)
 TOOLS=$(cd "$(dirname "$0")" && pwd)
-[[ "$(gh api repos/Imyukehan/Chuu --jq .private)" == true ]] || {
-  echo 'Device artwork is restricted to the private Imyukehan/Chuu repository.' >&2
-  exit 1
-}
 [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo 'Invalid version tag' >&2; exit 1; }
 [[ -z "$(git -C "$SOURCE" status --porcelain)" ]] || { echo 'Source checkout must be clean' >&2; exit 1; }
 if [[ -n "$(git -C "$SOURCE" ls-files --others --ignored --exclude-standard -- Chuu/Assets.xcassets)" ]]; then
@@ -37,6 +33,10 @@ xcodebuild -project Chuu.xcodeproj -scheme Chuu -configuration Release \
   ONLY_ACTIVE_ARCH=NO ARCHS=arm64 build 2>&1 | tee build/ci-build.log
 
 APP="$SOURCE/build/TestRelease/Build/Products/Release/Chuu.app"
+# Test artifacts never join the signed distribution update channel.
+/usr/libexec/PlistBuddy -c 'Delete SUFeedURL' "$APP/Contents/Info.plist" 2>/dev/null || true
+/usr/libexec/PlistBuddy -c 'Set SUEnableAutomaticChecks false' "$APP/Contents/Info.plist" 2>/dev/null || true
+codesign --force --sign - --preserve-metadata=identifier,entitlements "$APP"
 codesign --verify --deep --strict "$APP"
 for binary in "$APP/Contents/MacOS/MouseControl" "$APP/Contents/PlugIns/ChuuWidget.appex/Contents/MacOS/ChuuWidget"; do
   architectures=$(xcrun lipo -archs "$binary")

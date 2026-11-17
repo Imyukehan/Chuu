@@ -30,6 +30,14 @@ The old Xcode projects and test plans have been removed; they remain in Git hist
 
 `--install` builds Release, verifies the signature, installs in `~/Applications/Chuu.app`, and opens it. One previous version is retained under `~/Library/Application Support/moe.khan.MouseControl/InstallBackup/`; an older rollback copy is moved to Trash. Installation does not erase preferences or hardware-profile backups.
 
+To install an already exported and notarized distribution without rebuilding it:
+
+```sh
+./script/build_and_run.sh --install-app /absolute/path/to/export/Chuu.app
+```
+
+This mode verifies the Chuu identifier, Developer ID team, nested signatures, stapled ticket and Gatekeeper before stopping the running app. It uses the same backup and installation path as `--install` and leaves development signing settings unchanged.
+
 The no-argument script builds and runs Debug. Avoid leaving both the Debug build and installed app running. The script stops this fork's process before launching, but never terminates the original Mos automatically.
 
 ## First Launch Permissions
@@ -90,8 +98,10 @@ The normal tests use fixtures, not writes to attached mice. See [architecture](a
 
 ## Artwork
 
-The original Chuu Icon Composer document is in `Resources/Chuu.icon`. Starting with 0.1.4, the private personal-use repository tracks `G502Top`, `G502Side`, `G502RenderTop`, `G502RenderSide` and `G7`. Unknown devices use the original `GenericMouse` illustration. Packaging verifies the compiled artwork and requires the GitHub repository to remain private. See `NOTICES.md` before changing visibility; the vendor renders are not covered by the source-code license.
+The original Chuu Icon Composer document is in `Resources/Chuu.icon`. Starting with 0.1.4, the repository tracks `G502Top`, `G502Side`, `G502RenderTop`, `G502RenderSide` and `G7`. Unknown devices use the original `GenericMouse` illustration. The owner approved public visibility with the current artwork and history on 2026-11-17. See `NOTICES.md` for sources and third-party ownership.
 
-This private repository provides source and [automated unnotarized test packages](ci-releases.md), not a notarized distribution or a stable release. Keep normal development signing for local installation and app-hosted tests; the CI packaging script uses an isolated ad-hoc build instead.
+The public repository provides source and signed notarized releases. The [manual test-package workflow](ci-releases.md) remains available for CI diagnostics. Starting in 0.1.6, local development uses paid team `7XZ82S4RRS` and its matching App Group. The bundle IDs and preferences remain unchanged. Re-authorize the current app in Accessibility and Input Monitoring once after migrating from the old signing team.
 
-See [in-app updates](updates.md) for the current development behavior and the proposed Sparkle/GitHub release workflow.
+Developer ID distribution is a separate workflow: see [in-app updates](updates.md) and `scripts/distribution/build-notarized.sh`. Keep normal development signing for local installation and app-hosted tests; the CI test packaging script still uses an isolated ad-hoc build.
+
+The first arm64 0.1.6 distribution passed Developer ID export, notarization and Gatekeeper assessment. Sparkle feed publication and an actual in-app update are tracked separately in [updates](updates.md).

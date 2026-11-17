@@ -1,18 +1,12 @@
 name: Build Test Release
 
 on:
-  push:
-    tags: ['v*']
   workflow_dispatch:
     inputs:
       tag:
         description: 'Existing version tag (v0.1.1, for example)'
         required: true
         type: string
-      publish:
-        description: 'Publish a new unnotarized GitHub prerelease'
-        default: false
-        type: boolean
 
 permissions:
   contents: read
@@ -23,7 +17,7 @@ concurrency:
 
 jobs:
   build:
-    if: github.event.repository.private == true
+    if: github.repository == 'Imyukehan/Chuu'
     runs-on: xcode-27
     timeout-minutes: 45
     outputs:
@@ -100,44 +94,3 @@ jobs:
             source/build/ci-launch.log
           if-no-files-found: ignore
           retention-days: 7
-
-  publish:
-    needs: build
-    if: github.event.repository.private == true && github.repository == 'Imyukehan/Chuu' && (github.event_name == 'push' || inputs.publish)
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: write
-    steps:
-      - name: Download verified package
-        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
-        with:
-          name: chuu-test-package
-          path: dist
-      - name: Verify downloaded checksums
-        working-directory: dist
-        run: sha256sum --check SHA256SUMS
-      - name: Publish unnotarized prerelease
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-          TAG: ${{ needs.build.outputs.tag }}
-          SOURCE_COMMIT: ${{ needs.build.outputs.commit }}
-        run: |
-          [[ "$(gh api "repos/$GH_REPO" --jq .private)" == true ]] || {
-            echo 'Device artwork is restricted to private releases.' >&2
-            exit 1
-          }
-          current=$(gh api "repos/$GH_REPO/commits/$TAG" --jq .sha)
-          [[ "$current" == "$SOURCE_COMMIT" ]] || {
-            echo 'Tag moved after the build; refusing to publish.' >&2
-            exit 1
-          }
-          if gh release view "$TAG" >/dev/null 2>&1; then
-            echo 'This release already exists. Existing assets will not be overwritten; use a new version tag.' >&2
-            exit 1
-          fi
-          gh release create "$TAG" dist/*.zip dist/SHA256SUMS dist/build-info.json dist/release-notes.md \
-            --verify-tag --prerelease --latest=false \
-            --title "Chuu $TAG (Unnotarized test build)" \
-            --notes-file dist/release-notes.md

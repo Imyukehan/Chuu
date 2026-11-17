@@ -1,49 +1,23 @@
-# Automated Test Packages
+# Manual CI Test Packages
 
-`.github/workflows/test-release.yml` builds **unnotarized, ad-hoc-signed test packages**, not stable or notarized releases. It needs no signing secrets. This workflow is separate from the inherited Mos release scripts and never updates an appcast.
+The normal installation is a signed, notarized GitHub Release distributed through [Sparkle](updates.md). `.github/workflows/test-release.yml` is a separate **manual** diagnostic workflow for unnotarized ad-hoc packages. It never creates a release and never updates the appcast.
 
-Starting with 0.1.4, these are private personal-use packages containing device renders.
-Both workflow jobs require a private repository. Packaging and publishing also check
-live GitHub visibility and refuse to proceed if it is public. Downloading Releases
-requires signing in with repository access. Before restoring public visibility,
-review `NOTICES.md` and remove or replace vendor artwork from reachable history,
-screenshots and release assets; changing visibility alone exposes old commits too.
+## Running
 
-## Version Tags
+In **Actions > Build Test Release > Run workflow**, select `main` and enter an existing `vMAJOR.MINOR.PATCH` tag. The workflow checks out that exact tag, builds arm64, validates app/widget versions and artwork, and uploads a ZIP, checksums and metadata as an artifact retained for 14 days. Build logs are retained for 7 days. Existing source archives and release assets are unchanged.
 
-1. Update `MARKETING_VERSION` and increment `CURRENT_PROJECT_VERSION` in `project.yml`. Regenerate the project and add a changelog entry.
-2. Commit and push the changes. Create an annotated `vMAJOR.MINOR.PATCH` tag on that commit and push the tag.
-3. Actions checks out that exact tag, builds an Apple Silicon-only (`arm64`) Release app, verifies both bundle versions, architectures and code signatures, then packages a ZIP with license, notices and installation notes. Both the main executable and widget must contain only `arm64`; Intel Macs are not supported by these new packages.
-4. On success, a GitHub **prerelease** is created with the ZIP, SHA256SUMS and build metadata. It is not marked as the latest stable release.
+The release tag must match the marketing version, and app/widget build numbers must match. Packaging tools come from the selected workflow revision; source comes from the requested tag.
 
-Example for a future version (do not move an existing tag):
+## Boundaries
 
-```sh
-git tag -a v0.1.2 -m 'Chuu 0.1.2'
-git push origin v0.1.2
-```
-
-The tag must match the built app's version, and the widget must match both app version and build number. Failed builds do not publish a release. Existing releases and assets are never overwritten; use a new version for corrections. An existing source-only tag can receive its first package through the manual workflow below.
-
-New archives are named `Chuu-<version>-unnotarized-arm64.zip`. Previously published universal archives are unchanged.
-
-## Manual Run
-
-In GitHub **Actions > Build Test Release > Run workflow**, select `main`, enter an existing version tag and choose whether to publish. With **publish off** (the default), the verified ZIP is available only as an Actions artifact for 14 days. With **publish on**, it also creates a new GitHub prerelease. Build logs are retained for 7 days.
-
-The packaging tools come from the selected workflow revision; application source always comes from the specified tag. This permits packaging a tag that predates the workflow. `build-info.json` records the exact application commit. The publisher checks that the tag has not moved since the build.
-
-## Security And Limitations
-
-- Uses the GitHub-hosted [`xcode-27` runner](https://github.com/actions/runner-images/blob/main/images/macos/xcode-27-arm64-Readme.md), because Chuu currently references macOS 27 SDK APIs. The runner is currently a public preview; availability or SDK changes can require workflow maintenance.
-- Build jobs have read-only repository access. Only the separate publisher has `contents: write`; it runs on this repository, not forks. Third-party actions are pinned to commit hashes. There are no pull-request or `pull_request_target` release triggers.
-- The workflow uses only the built-in `GITHUB_TOKEN`; it does not read Apple credentials, import certificates or alter signing keys.
-- The approved device artwork is bundled for private personal use and checked in the compiled asset catalog. Hardware-profile backups and user settings are not included. The packaging script still rejects ignored artwork in a development checkout.
-- Ad-hoc signatures are not Developer ID signatures. macOS may block first launch, and Accessibility permission may need to be granted again. Do not disable Gatekeeper globally.
-- Test packages disable Hardened Runtime only for the isolated CI build: library validation otherwise rejects the ad-hoc-signed Sparkle framework because there is no signing Team ID. The normal project signing and Hardened Runtime settings are unchanged. Debugger entitlements are not injected into CI packages.
-- WidgetKit is included, but battery sharing is disabled for ad-hoc signatures because there is no matching Team ID for the App Group. The app keeps live readings and a private battery cache; shared-container errors never block the app. Keep a normally signed build if you depend on the widget.
-- On the disposable GitHub macOS runner, the script launches the extracted app for 10 seconds and rejects an early exit, then stops that exact process. This catches loader/startup failures, not UI, Accessibility, hardware or widget correctness. Both build and launch logs are uploaded. Local packaging never launches the ad-hoc app or replaces an installed Chuu. App-hosted and hardware tests are not run by this workflow.
-- Checksums cover archive integrity, not developer identity. Public distribution signing and notarization are a separate future step; see [updates](updates.md).
+- Uses the `xcode-27` Apple Silicon runner required by Chuu's current SDK APIs. Third-party actions remain pinned to commits.
+- Repository access is read-only. No Apple credentials, Developer ID private keys or Sparkle private keys are imported into CI.
+- Produces arm64 only; these artifacts do not support Intel Macs.
+- Removes `SUFeedURL` and disables automatic checks before re-signing the host app ad hoc. Diagnostic artifacts cannot enter the signed distribution update channel.
+- Disables hardened-runtime library validation only in this isolated ad-hoc build. Normal local and distribution builds retain hardened runtime.
+- Widget sharing requires a valid team signature and matching App Group, so use a notarized distribution when the widget is essential.
+- The startup smoke test runs only on a disposable CI runner and rejects early exit. It does not exercise real hardware, input permissions or widget UI.
+- User preferences and hardware backups are excluded from the package. Source credits and artwork ownership notices remain in NOTICES.md.
 
 ## Local Validation
 
@@ -53,13 +27,10 @@ python3 -B -m unittest discover -s scripts/ci -p '*_tests.py'
 bash scripts/qa/test-snapshot-storage.sh
 ```
 
-The standalone snapshot tests use temporary directories and an ad-hoc command-line process. They do not launch Chuu, access HID devices, change settings, or open real App Group containers.
-For tags containing these tests (0.1.3 onwards), CI runs them against the tagged source and also verifies that the packaged app wrote a fresh private battery cache during the startup check.
-
-The full packaging script takes a **clean clone checked out at an existing tag**, that tag, and an output directory outside the clone:
+For a full diagnostic package, use a clean checkout at an existing tag:
 
 ```sh
-bash scripts/ci/package-test-build.sh /path/to/clean-checkout v0.1.1 /tmp/chuu-test-package
+bash scripts/ci/package-test-build.sh /path/to/clean-checkout v0.1.7 /tmp/chuu-test-package
 ```
 
-It requires Xcode 27+, XcodeGen, Python 3 and an authenticated GitHub CLI with access to the private repository. Use a clean checkout of the tag, not a dirty development checkout. Local packaging does not launch the ad-hoc app or replace the installed signed build.
+Local packaging does not launch the ad-hoc app or replace the installed signed app. Signing, notarization and the real update channel use `scripts/distribution/` instead.

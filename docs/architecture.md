@@ -37,7 +37,7 @@ Source names are Chuu. These existing runtime identities deliberately remain unc
 
 - App bundle ID: `moe.khan.MouseControl`; widget: `moe.khan.MouseControl.BatteryWidget`.
 - Executable: `MouseControl`, retained alongside the existing signing identity.
-- App Group: `MA4UNJ3J25.moe.khan.MouseControl`.
+- App Group: `7XZ82S4RRS.moe.khan.MouseControl` (paid developer team, migrated in 0.1.6 from `MA4UNJ3J25.moe.khan.MouseControl`). The app and widget must move together. Battery snapshots are recreated from connected devices; preferences and bundle identifiers stay unchanged. macOS may require replacing the old TCC entries after this one-time team migration.
 - Widget kind: `MouseBatteryWidget`; URL scheme: `mousecontrol`.
 - Snapshot file `mouse-batteries.json`, model IDs `g502x` / `g7`, and existing device IDs.
 - Settings keys, shortcut identifiers (including inherited `mos...` values), notification identifiers and hardware-backup paths.

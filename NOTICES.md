@@ -20,9 +20,9 @@ not an Apple-supplied asset or a claim that the connected device is an Apple mou
 
 The local-development screenshot in `docs/images/home.png` contains Logitech product imagery.
 Product images and trademarks belong to their respective owners and are not covered by the code license.
-As of 0.1.4, this repository is private and includes device renders for the owner's personal-use builds. They are not covered by Chuu's source license, and private storage does not grant redistribution rights. No affiliation or endorsement is implied.
+Device renders were added in 0.1.4. The owner chose to make the repository and existing artwork public on 2026-11-17. Third-party images remain excluded from Chuu's source-code license. No affiliation or endorsement is implied.
 
-Private-build image sources:
+Image sources:
 
 - [Logitech G502 X PLUS, white, top](https://resource.logitechg.com/content/dam/gaming/en/products/g502x-plus/gallery/g502x-plus-gallery-2-white.png)
 - [Logitech G502 X PLUS, white, side](https://resource.logitechg.com/content/dam/gaming/en/products/g502x-plus/gallery/g502x-plus-gallery-4-white.png)
@@ -31,7 +31,7 @@ Private-build image sources:
 - [G502 X PLUS white driver render, side](https://assets.openlogi.org/v1/devices/g502x_plus/images/device/22c9ac7a-43ed-48b7-8771-72ca4ae2a6bb)
 
 The last two optional PNG files were located through the [OpenLogi asset manifest](https://assets.openlogi.org/v1/devices/g502x_plus/manifest.json).
-The asset index identifies Logitech runtime caches as their source. OpenLogi's code license does not establish redistribution rights for these vendor assets. These images are tracked only in the private repository; no OpenLogi code or brand assets were copied. Before making this repository public, remove or replace the vendor renders from reachable Git history and release assets, and review screenshots as well. Packaging and release automation require the repository to remain private.
+The asset index identifies Logitech runtime caches as their source. These are vendor assets rather than OpenLogi code or brand assets. Their inclusion does not extend Chuu's code license to them. Source credits are retained for transparency; contact the maintainer through the repository if an asset needs correction or removal.
 
 ## Dependencies And References
 

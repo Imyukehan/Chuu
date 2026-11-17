@@ -4,13 +4,13 @@
 
 一个正在开发中的 macOS 鼠标管理 App，基于 [Mos](https://github.com/Caldis/Mos)，把电量、板载按键、平滑滚动和应用设置放在一起。
 
-**私人自用项目，仍在开发中。** 目前主要在个人使用的 G502 X PLUS 和 MCHOSE G7 上验证，不代表支持全部罗技或迈从鼠标。
+**项目仍在开发中。** 目前主要在个人使用的 G502 X PLUS 和 MCHOSE G7 上验证。
 
-[未公证测试包](https://github.com/Imyukehan/Chuu/releases) 仅对拥有仓库访问权限的用户提供，首次启动可能需要系统授权；临时签名包不支持小组件电量共享。流程说明见[自动打包文档](docs/ci-releases.md)。
+在 [Releases](https://github.com/Imyukehan/Chuu/releases) 下载 Apple Silicon 正式签名公证版。标为“unnotarized”的旧包是历史测试版。App 通过 Sparkle 从 GitHub 自动检查更新，无需登录或令牌；见[更新说明](docs/updates.md)。
 
 ![Chuu 首页：白色 G502 X PLUS、电量和按键设置](docs/images/home.png)
 
-私有构建包含白色 G502 X PLUS 与迈从 G7 图片，其他鼠标使用原创通用外观。厂商素材不属于代码开源许可；对外公开前需按 [NOTICES](NOTICES.md) 清理素材、相关历史及安装包。
+包含白色 G502 X PLUS 与迈从 G7 图片，其他鼠标使用原创通用外观。第三方素材的权利及来源见 [NOTICES](NOTICES.md)。
 
 ## 已有功能
 
@@ -24,6 +24,7 @@
 - 鼠标页集中管理板载按键与全局快捷操作，普通鼠标使用通用外观。
 - 连接电量浮窗；可在“通用”中预览或关闭。
 - 可选的 20% 低电量通知，充至 25% 后重新启用下一次提醒。
+- 每 12 小时自动检查 GitHub 更新，安装前确认；可在“通用”中关闭。
 
 电量读取需要 Chuu 在后台运行；WidgetKit 的实际刷新时间由系统安排。第三方 Qi 充电底座不一定会上报充电状态。板载写入会先备份，再读回校验。
 

@@ -1,35 +1,53 @@
 # Chuu Updates
 
-## Current State
+## Distribution
 
-Chuu includes Sparkle 2 and a native **Chuu > Check for Updates...** command, also available from the status-item menu. The development app does not yet have a Chuu update feed or public update-signing key. Checking manually shows that state and offers the project's [GitHub Releases](https://github.com/Imyukehan/Chuu/releases) page; it does not claim the installed version is current.
+Chuu uses **Sparkle 2 + public GitHub Releases**. No GitHub login, token, private update server or GitHub Pages site is required by the installed app.
 
-Automatic checks remain inactive until both `SUFeedURL` (HTTPS) and `SUPublicEDKey` (a 32-byte Ed25519 public key in Base64) are configured. Inherited upstream feeds are rejected. Never reuse Mos release artifacts, signing keys or feeds for Chuu.
+- Feed: `https://raw.githubusercontent.com/Imyukehan/Chuu/main/release/chuu-appcast.xml`.
+- Downloads: immutable versioned GitHub Release ZIP URLs, never GitHub source archives or expiring asset redirects.
+- App and embedded widget: Apple Silicon, Developer ID signed, hardened runtime enabled, notarized and stapled.
+- Feed and archive: signed with Chuu's Ed25519 key. Only the public verification key is embedded in the app; the private key stays in the maintainer's login Keychain under account `moe.khan.MouseControl`.
+- Automatic checks run every 12 hours while Chuu runs and can be disabled in **General**. Installation asks for confirmation. **Chuu > Check for Updates...** checks immediately.
+- Existing settings, bundle IDs, widget kind and the paid-team App Group remain stable.
 
-## Recommended Distribution
+The initial 0.1.6 build (`20261117.1`) predates the feed. Install the newer signed bootstrap once to join the update channel. Subsequent updates are handled by Sparkle. Legacy ad-hoc packages are excluded from the feed.
 
-Use **Sparkle 2 + GitHub Releases + GitHub Pages**:
+## Preparing A Release
 
-- GitHub Releases hosts versioned, signed and notarized Chuu app archives, such as ZIP or DMG. GitHub's automatically generated source archives are not app updates.
-- GitHub Pages hosts an `appcast.xml` describing versions, minimum OS versions, download URLs, signatures and release notes.
-- Sparkle checks the appcast, presents available updates, verifies downloads, installs and relaunches. No custom update server is required.
+1. Change version/build in `project.yml`; use a new `YYYYMMDD.N` build for every artifact and regenerate with XcodeGen.
+2. Run focused tests, review the diff and commit the app changes. Keep credentials, hardware backups, preferences and local audit reports out of Git.
+3. Build and notarize using the local Keychain identities:
 
-The repository's inherited `release/`, website and `pages.yml` workflow are upstream history, not Chuu's publishing pipeline. The separate [test-release workflow](ci-releases.md) publishes unnotarized test packages only; it does not generate or publish a Sparkle feed.
+```sh
+bash scripts/distribution/build-notarized.sh --preflight
+bash scripts/distribution/build-notarized.sh
+```
 
-## First Release Checklist
+Preflight verifies the release repository, the **Developer ID Application** identity for team `7XZ82S4RRS`, Sparkle tools and notarization credentials. The default Keychain profile is `chuu-notary`; override it with `CHUU_NOTARY_PROFILE` if necessary.
 
-1. Keep Chuu's installed app/widget identifiers and App Group stable. Increment `CFBundleVersion` for each release and set a user-facing `CFBundleShortVersionString`.
-2. Build the app and embedded widget with the appropriate distribution entitlements, Developer ID signing and notarization. The local Apple Development build is not the public distribution artifact.
-3. Generate Chuu's own Sparkle EdDSA key pair. Protect and back up the private key outside the repository; embed only the public key as `SUPublicEDKey`.
-4. Use Sparkle's `generate_appcast` to sign archives and create the feed, using immutable versioned GitHub Release asset URLs. Set `SUFeedURL` to the actual HTTPS Chuu appcast location, not a placeholder.
-5. Publish the assets before publishing an appcast that references them. Keep release notes and version/OS constraints accurate.
-6. Verify an actual older signed installation updating to a newer release. Confirm signature rejection, app relaunch, preserved preferences, input permissions and widget behavior before calling in-app updates ready.
+The script archives arm64, exports Developer ID, submits to Apple, staples and verifies the ticket, checks Gatekeeper and produces a clean ZIP, archive signature and checksums under `build/distribution/<version>-<build>/`. Development builds and app-hosted tests retain Apple Development signing.
 
-The menu/configuration tests do not replace this final install-and-update test. Feed hosting, distribution signing and release automation are intentionally not provisioned by the menu change.
+4. Review bilingual release notes. Create a **draft** release tagged `v<version>` and upload the notarized ZIP and SHA256SUMS. Never overwrite an existing published asset.
+5. Generate and verify the signed feed, using the reviewed HTML notes:
+
+```sh
+python3 scripts/distribution/make_appcast.py \
+  build/distribution/<version>-<build>/Chuu-<version>-<build>-arm64.zip \
+  <reviewed-notes.html> build/chuu-appcast.xml
+```
+
+6. Review the feed and draft together. Copy the final signed feed to `release/chuu-appcast.xml`, commit it, and obtain approval to push code and the matching release tag. The user publishes the reviewed GitHub draft after branch/tag alignment. Coordinate feed publication with release publication so the feed does not point to an unavailable draft asset during normal use.
+7. Verify the feed and ZIP anonymously, then use an older signed installation to check, download, verify, install and relaunch through Sparkle. Confirm the build advanced and settings survived.
+
+None of the local distribution tools publishes or pushes automatically. The old upstream appcast and release scripts are historical; Chuu uses only `release/chuu-appcast.xml`.
+
+## CI Test Packages
+
+The [test-package workflow](ci-releases.md) is manual and produces diagnostic artifacts only. It does not publish releases or modify the signed feed, and its packaged app has the feed disabled. Apple and Sparkle private signing keys are not uploaded to CI by this workflow.
 
 ## References
 
 - [Sparkle setup](https://sparkle-project.org/documentation/)
 - [Publishing a Sparkle update](https://sparkle-project.org/documentation/publishing/)
 - [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
-- [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)

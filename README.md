@@ -4,11 +4,11 @@ English | [简体中文](README.zh-CN.md)
 
 A native macOS mouse companion for battery status, onboard buttons, smooth scrolling, and per-app settings. Built on [Mos](https://github.com/Caldis/Mos).
 
-**Private personal-use project, still in development.** [Unnotarized test packages](https://github.com/Imyukehan/Chuu/releases) require repository access. First launch may require approval; ad-hoc packages do not support widget battery sharing. See [automated packaging](docs/ci-releases.md).
+**Still in development.** Download signed and notarized **Apple Silicon** builds from [Releases](https://github.com/Imyukehan/Chuu/releases). Older releases labeled "unnotarized" are legacy test builds. Chuu uses Sparkle to check GitHub for updates without an account or token; see [updates](docs/updates.md).
 
 ![Chuu with a white G502 X PLUS, battery status and button controls](docs/images/home.png)
 
-Private builds include the white G502 X PLUS and MCHOSE G7 artwork shown by the app, with an original generic illustration for other mice. Device renders are not covered by the code license; see [NOTICES](NOTICES.md) before any public redistribution.
+Includes white G502 X PLUS and MCHOSE G7 artwork, with an original generic illustration for other mice. Device renders retain their respective owners' rights; see [NOTICES](NOTICES.md).
 
 ## Features
 
@@ -20,6 +20,7 @@ Private builds include the white G502 X PLUS and MCHOSE G7 artwork shown by the 
 - Hold-to-repeat left click at 5, 10, 15 or 20 clicks per second; release to stop.
 - First-launch permissions and recovery instructions for stale macOS authorization entries.
 - Closing the window hides the Dock icon while Chuu continues running in the background.
+- Signed GitHub updates, checked automatically every 12 hours, with an installation prompt.
 
 The app polls battery status every 30 seconds while running and awake. Widget refresh timing is controlled by macOS. Third-party Qi charging modules may not report charging status. A connected receiver does not necessarily mean its mouse is awake; routine wireless timeouts do not trigger repeated connection popups.
 
@@ -71,6 +72,6 @@ Chuu is a noncommercial fork of [Caldis/Mos](https://github.com/Caldis/Mos), ret
 
 Chuu is an independent community project, not an official app from any mouse manufacturer. Brand and model names are used to identify devices; compatibility does not imply affiliation or endorsement.
 
-Device visuals may be images, rendered previews, or models from different sources. Third-party artwork and trademarks remain subject to their respective owners' rights and are not licensed by Chuu's source-code license. Source-specific credits and private-use restrictions are maintained in [NOTICES](NOTICES.md). Obtaining an asset through another open-source tool does not make that asset part of the tool's code license.
+Device visuals may be images, rendered previews, or models from different sources. Third-party artwork and trademarks remain subject to their respective owners' rights and are not licensed by Chuu's source-code license. Source-specific credits are maintained in [NOTICES](NOTICES.md).
 
 Hardware support is experimental and limited to the documented models and connection modes. Keep backups before changing onboard settings; an untested device or firmware version may behave differently.

@@ -36,7 +36,6 @@ pnpm-lock.yaml
 yarn.lock
 bun.lockb
 
-# Device renders are tracked only for this private personal-use repository.
-# Remove them from distributable history before restoring public visibility.
+# Keep signing overrides and archives local.
 Configuration/Local.xcconfig
 *.xcarchive

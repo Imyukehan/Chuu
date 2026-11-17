@@ -33,7 +33,7 @@ See `docs/build.md` for signing and installation. `--install` retains one rollba
 - Keep high-frequency input paths free of extra allocations, synchronous I/O and logging.
 - UI strings use `NSLocalizedString`. Shared Chuu strings are in `Shared/Chuu.xcstrings`; upstream UI catalogs remain separate.
 - Preserve bundle IDs, executable name, App Group, widget kind, snapshot model/device IDs, URL scheme, settings keys and shortcut identifiers. These are compatibility contracts, documented in `docs/architecture.md`, not branding to replace globally.
-- Vendor-owned device renders are included only in this private personal-use repository and private releases. Verify GitHub visibility before pushing or packaging them; remove or replace them, including reachable Git history and release assets, before making the repository public. Never publish private keys, user preferences, hardware backups or migration data.
+- The owner approved public visibility with the existing device artwork and history on 2026-11-17. Preserve source credits and third-party ownership notices; the source-code license does not license vendor artwork. Never publish private keys, user preferences, hardware backups, migration data or local audit reports.
 
 ## Verification
 
