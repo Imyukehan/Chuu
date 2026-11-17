@@ -11,7 +11,7 @@ SIGN_UPDATE="$PWD/build/Chuu/SourcePackages/artifacts/sparkle/Sparkle/bin/sign_u
   echo "Unexpected release repository. Stop." >&2; exit 1;
 }
 IDENTITIES="$(security find-identity -v -p codesigning)"
-if ! printf '%s\n' "$IDENTITIES" | rg -q "Developer ID Application: .*\\($TEAM\\)"; then
+if ! printf '%s\n' "$IDENTITIES" | rg "Developer ID Application: .*\\($TEAM\\)" >/dev/null; then
   echo "Missing Developer ID Application identity for team $TEAM. Create it in Xcode or the Apple developer portal." >&2
   exit 1
 fi
@@ -40,11 +40,13 @@ xcodebuild -exportArchive -archivePath "$OUT/Chuu.xcarchive" \
   -exportPath "$OUT/export" -allowProvisioningUpdates
 APP="$OUT/export/Chuu.app"
 codesign --verify --deep --strict "$APP"
-codesign -dvv "$APP" 2>&1 | rg -q "TeamIdentifier=$TEAM"
-codesign -dvv "$APP" 2>&1 | rg -q 'Authority=Developer ID Application:'
+SIGNATURE=$(codesign -dvv "$APP" 2>&1)
+[[ "$SIGNATURE" == *"TeamIdentifier=$TEAM"* && "$SIGNATURE" == *'Authority=Developer ID Application:'* ]] || {
+  echo "Export did not use the expected Developer ID identity." >&2; exit 1;
+}
 ditto -c -k --norsrc --noextattr --keepParent "$APP" "$OUT/notarization.zip"
 xcrun notarytool submit "$OUT/notarization.zip" --keychain-profile "$PROFILE" --wait --output-format json > "$OUT/notarization.json"
-plutil -extract status raw "$OUT/notarization.json" | rg -qx Accepted
+[[ "$(plutil -extract status raw "$OUT/notarization.json")" == Accepted ]]
 xcrun stapler staple "$APP"
 xcrun stapler validate "$APP"
 spctl --assess --type execute --verbose "$APP"

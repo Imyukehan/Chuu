@@ -1,5 +1,34 @@
 # Chuu Changelog
 
+## 0.1.7 - 2026-11-17
+
+Developer ID signed, notarized Apple Silicon release. Build `20261117.3`.
+
+- Enable public GitHub updates through Sparkle, with signed feeds and archives and no login or access token.
+- Check automatically every 12 hours while Chuu runs; add a General setting and keep manual checks in the Chuu menu. Ask before installation.
+- Use the paid developer team for the app and WidgetKit extension; preserve bundle IDs, mouse mappings, RGB state and per-app settings.
+- Include the 0.1.5 Wireless Link keyboard-receiver filter and refined connection-capsule material, placement and animation.
+- Separate unsigned diagnostic CI artifacts from the notarized release channel.
+
+### 中文
+
+Developer ID 正式签名、Apple 公证的 Apple Silicon 版本，构建号 `20261117.3`。
+
+- 通过 Sparkle 接入公开 GitHub 更新源，验证更新源及安装包签名，无需登录或访问令牌。
+- 运行期间每 12 小时自动检查更新，“通用”中可关闭，Chuu 菜单保留手动检查，安装前确认。
+- App 与 WidgetKit 使用付费开发者团队签名，保留原有标识符、鼠标改键、RGB 状态及按应用设置。
+- 包含 0.1.5 的 Wireless Link 键盘接收器过滤，以及连接胶囊的材质、位置和动画优化。
+- 将未公证 CI 诊断包与正式公证更新通道分开。
+
+首次从旧的临时签名版本升级时，请完成辅助功能与输入监控授权；若旧条目失效，请按权限引导重新添加当前 Chuu。
+
+## 0.1.6 - 2026-11-17
+
+Local signed-distribution bootstrap builds `20261117.1` and `20261117.2`.
+
+- Migrate the app/widget App Group to the paid developer team, configure Developer ID signing and Apple notarization, and prepare the update channel.
+- These local bootstrap builds are superseded by 0.1.7.
+
 ## 0.1.5 - 2026-11-15
 
 Local development build `20261115.1`.

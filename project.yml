@@ -11,8 +11,8 @@ settings:
     DEVELOPMENT_TEAM: 7XZ82S4RRS
     CODE_SIGN_IDENTITY: Apple Development
     CODE_SIGN_STYLE: Automatic
-    MARKETING_VERSION: '0.1.6'
-    CURRENT_PROJECT_VERSION: '20261117.2'
+    MARKETING_VERSION: '0.1.7'
+    CURRENT_PROJECT_VERSION: '20261117.3'
 packages:
   LoginServiceKit:
     url: https://github.com/Clipy/LoginServiceKit
